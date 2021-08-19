@@ -1,0 +1,72 @@
+<br>
+<button type="button" class="btn btn-info" type="button"><%= link_to "戻る", customer_managements_path, id: "back_to_menu" %></button>
+<br>
+<h3>詳細画面</h3>
+      <table>
+        <tr>
+            <td>タイトル<br><%= @project.title %></td>
+        </tr>
+        <tr>
+            <td>部署<br><%= @project.departments.name %></td>
+        </tr>
+        <tr>
+          <td>
+            弊社担当<br><% @project.employees.each do |employees| %>
+                    <%= employees.name %><br>
+                  <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td>お客様<br><%= @project.customer.name %></td>
+        </tr>
+        <tr>
+          <td>
+            お客様担当<br><% @project.customerusers.each do |users| %>
+                    <%= users.name %><br>
+                  <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td>システム<br><%= @project.package.name %></td>
+        </tr>
+        <tr>
+          <td>
+            機能<br><% @project.features.each do |features| %>
+                    <%= features.name %><br>
+                  <% end %>
+          </td>
+        </tr>
+        <tr>
+            <td>面談日<br><%= @project.apoint_at %></td>
+        </tr>
+        <tr>
+            <td>面談詳細<br><%= @project.description %></td>
+        </tr>
+        <tr>
+            <td>期日<br><%= @project.deadline %></td>
+        </tr>
+        <tr>
+            <td>重要度<br>
+              <% if @project.priority = 1 %>
+                      高
+              <% elsif @project.priority = 2 %>
+                      中
+              <% else %>
+                      低
+              <% end %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+        <button type="button" class="btn btn-warning" type="button"><%= link_to "状況管理", id: "check_list" %></button>　　　
+        <button type="button" class="btn btn-success" type="button"><%= link_to "編集", edit_customer_management_path, id: "back_to_menu" %></button>
+            </td>
+        </tr>
+
+      </table>
+<br>
+<button type="button" class="btn btn-info" type="button"><%= link_to "戻る", customer_managements_path, id: "back_to_main" %></button>
+<br>
+<br>
+<br>
+<br>

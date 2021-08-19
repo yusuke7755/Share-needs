@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  customer: one
+  customeruser: one
+  system: one
+  feature: one
+  description: MyText
+  support_at: 2021-08-12 09:32:56
+  commit_at: 2021-08-12
+  priority: 1
+  employee: one
+  department: one
+
+two:
+  title: MyString
+  customer: two
+  customeruser: two
+  system: two
+  feature: two
+  description: MyText
+  support_at: 2021-08-12 09:32:56
+  commit_at: 2021-08-12
+  priority: 1
+  employee: two
+  department: two

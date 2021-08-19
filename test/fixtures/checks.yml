@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  project: one
+  customer: one
+  employee: one
+
+two:
+  project: two
+  customer: two
+  employee: two

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  supports: one
+  employees: one
+  support_at: 2021-08-07 17:16:07
+  description: MyText
+
+two:
+  supports: two
+  employees: two
+  support_at: 2021-08-07 17:16:07
+  description: MyText

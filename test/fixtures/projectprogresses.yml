@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  project: one
+  employee: one
+  apoint_at: 2021-08-12 09:32:04
+  description: MyText
+
+two:
+  project: two
+  employee: two
+  apoint_at: 2021-08-12 09:32:04
+  description: MyText

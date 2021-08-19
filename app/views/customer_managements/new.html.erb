@@ -1,0 +1,147 @@
+<main>
+
+<br>
+  <h4>レポート登録</h4>
+   <% if @project.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+      <ul>
+      <% @project.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<%= form_with(model: @project, url: customer_managements_path, local: true) do |form| %>
+
+  <div>
+    <h4><%=  current_employee.name %></h4><br>
+    <% form.text_field current_employee.department_id %>
+    <%= form.hidden_field  :employee_id, :value => current_employee.id %>
+    <%= form.hidden_field  :department_id, :value => current_employee.department_id %>
+  </div>
+
+  <div>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </div>
+  <br>
+  <div>
+    <h4>担当</h4>
+    <table>
+    <% Department.where(web_flg: true).all.each do |dm| %>
+
+      <tr>
+        <th>
+        <%= form.check_box :department_ids, { multiple: true, checked: dm[:checked], disabled: dm[:disabled], include_hidden: false }, dm[:id] %>
+        <%= dm.name %>
+        </th>
+          <td>
+          <div>
+            <% Employee.where(department_id: dm.id).all.each do |emp| %>
+              <%if emp.id != current_employee.id %>
+                <%= form.check_box :employee_ids, { multiple: true, checked: emp[:checked], disabled: emp[:disabled], include_hidden: false }, emp[:id] %>
+              <% else %>                
+                <%= form.check_box :employee_ids, { multiple: true, checked: emp[:checked], disabled: emp[:disabled], include_hidden: false }, emp[:id] %>
+              <% end %>
+            <%= emp.name %><br>
+          <% end %>
+          </div>
+          </td>
+      </tr>
+    <% end %>
+    </table>
+  </div>
+
+  <br>
+
+  <div>
+    <h4>企業名/お客様名</h4>
+    <table>
+    <% Customer.all.each do |ct| %>
+      <tr>
+        <th>
+        <label><%= form.radio_button :customer_id, ct.id %><%= ct.name %></label>
+        </th>
+          <td>
+          <div>
+            <% Customeruser.where(customer_id: ct.id).all.each do |usr| %>
+              <%= form.check_box :customeruser_ids, { multiple: true, checked: usr[:checked], disabled: usr[:disabled], include_hidden: false }, usr[:id] %>
+              <%= usr.name %><br>
+            <% end %>
+          </div>
+          </td>
+      </tr>
+    <% end %>
+    </table>
+  </div>
+
+    <br>
+
+  <div>
+    <h4>システム/機能</h4>
+    <table>
+    <% Package.all.each do |pcg| %>
+      <tr>
+        <th>
+        <label><%= form.radio_button :package_id ,pcg.id  %><%= pcg.name %></label>
+        </th>
+          <td>
+          <div>
+            <% Feature.where(package_id: pcg.id).all.each do |ft| %>
+              <%= form.check_box :feature_ids, { multiple: true, checked: ft[:checked], disabled: ft[:disabled], include_hidden: false }, ft[:id] %>
+              <%= ft.name %><br>
+            <% end %>
+          </div>
+          </td>
+      </tr>
+    <% end %>
+    </table>
+  </div>
+
+  <br>
+  <div>
+    <p><%= form.label :priority %></p>
+    <p><%= form.select :priority, Project.priorities.keys.map {|k| [I18n.t("enums.projects.priority.#{k}"), k]}, include_blank: "選択して下さい" %></p>
+  </div> 
+  <br>
+
+  <div>
+    <p><%= form.label :apoint_at %></p>
+    <p><%= form.date_field(
+          :apoint_at, id: "apoint_at", class: "form-control",
+          use_month_numbers: true, # jan, febとかじゃなくて数字で月を表現
+          start_year:     (Time.now.year), # 何年から表示させるか
+          end_year:       (Time.now.year), # 何年まで表示させるか
+          default:        Date.new(1989, 1, 1), # 最初に表示されている年月日
+          date_separator: '/') # 年月日を仕切る文字
+        %></p>
+  </div>
+
+  <div>
+    <p><%= form.label :deadline %></p>
+    <p><%= form.date_field(
+          :deadline, id: "deadline", class: "form-control",
+          use_month_numbers: true, # jan, febとかじゃなくて数字で月を表現
+          start_year:     (Time.now.year), # 何年から表示させるか
+          end_year:       (Time.now.year), # 何年まで表示させるか
+          default:        Date.new(1989, 1, 1), # 最初に表示されている年月日
+          date_separator: '/') # 年月日を仕切る文字
+        %></p>
+  </div>
+
+  <div>
+    <%= form.label :description %><br>
+    <%= form.text_area :description , size: "40x10" %>
+  </div>
+
+  <%= form.submit "レポート作成"  %>
+<% end %>
+  <br>
+<button type="button" class="btn btn-info" type="button"><%= link_to "戻る", customer_managements_path, id: "back_to_menu" %></button>
+  <br>
+  <br>
+  <br>
+  <br>
+</main>

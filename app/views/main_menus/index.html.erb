@@ -1,0 +1,29 @@
+
+  <article>
+    <div class="container-fluid">
+        <li class="col-md-12">
+            <% if current_employee.try(:admin?) %>
+              <h3>admin_menu</h3>
+              <button type="button" class="btn btn-info" type="button"><%= link_to "マスタ登録", rails_admin_path , id: "employee_create" %></button>
+            <% else %>
+              <h3>menu</h3>
+            <% end %>
+          </li>
+    </div>
+    <div class="contents">
+      <li class="col-md-12">
+      <h2>新規顧客管理</h2><button type="button" class="btn btn-primary" type="button"><%= link_to "確認", customer_management_index_path(@customer_flg = 1 ), id: "customer_management_new" %></button>
+      </li>
+    </div>
+    <div class="contents">
+      <li class="col-md-12">
+      <h2>既存顧客管理</h2><button type="button" class="btn btn-primary" type="button"><%= link_to "確認", customer_management_index_path(@customer_flg = 2 ), id: "customer_management_user" %></button>
+      </li>
+    </div>
+    <!-- 省略 -->
+  </article>
+  <article class="row">
+
+
+  </article>
+

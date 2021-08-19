@@ -1,0 +1,54 @@
+// Place all the styles related to the main_menu controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  text-align: center;
+}
+li{
+    list-style:none;
+}
+ul{
+    padding:0;
+}
+.title{
+    font-size:20px;
+    font-weight:bold;
+    text-align:center;
+}
+.menu li {
+    background-color:#012F4B;
+    color:#fff;
+    padding:5% 10%;
+    text-align:center;
+}
+.contents li{
+    background-color:#a7e4f311;
+    white-space: nowrap;
+    color:rgb(6, 2, 19);
+    padding:10% 10%;
+    box-sizing: border-box;
+    border: solid 1px rgba(4, 9, 29, 0.89);
+    width: 100%;
+}
+.topic li{
+    margin:1%;
+    border-bottom: dotted 1px #333333;
+}
+.container{
+  white-space: nowrap;
+  margin-top:20px;
+    padding-bottom: 100px;
+    width: 100%;
+}
+.container {
+  color: white;
+}
+a {
+  color: white;
+  text-decoration: none;
+  background-color: transparent;
+}

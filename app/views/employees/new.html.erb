@@ -1,0 +1,51 @@
+
+    <% if @employee.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
+
+      <ul>
+      <% employee.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+    <% end %>
+<p></p>
+<%= form_with(model: @employee, url: employees_path, local: true) do |form| %>
+
+  <div class="employee">
+    <%= form.label :name %><br>
+    <%= form.text_field :name %><br>
+  </div>
+
+  <div class="employee">
+    <%= form.label :email %><br>
+    <%= form.text_field :email %><br>
+  </div>
+
+  <div class="employee">
+    <%= form.label :password %><br>
+    <%= form.text_field :password %><br>
+  </div>
+
+  <div class="employee">
+    <%= form.label :departments_id %><br>
+    <%= form.select :departments_id, Employee.department_ids.keys.map {|k| [I18n.t("enums.employees.department_id.#{k}"), k]}, include_blank: "選択して下さい" %><br>
+  </div>
+
+  <div class="employee">
+    <p><%= form.label :position %><br>
+       <%= form.select :position, Employee.positions.keys.map {|k| [I18n.t("enums.employees.position.#{k}"), k]}, include_blank: "選択して下さい" %></p>
+  </div>
+
+  <div class="employee">
+    <p><%= form.label :管理者権限  %><%= form.check_box :admin %></p>
+  </div>
+
+  <div class="employee">
+    <%= form.submit "アカウント作成"  %>
+  </div>
+
+<% end %>
+
+

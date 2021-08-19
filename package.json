@@ -1,0 +1,9 @@
+{
+  "name": "Shere-needs",
+  "private": true,
+  "dependencies": {
+    "@nathanvda/cocoon": "^1.2.14",
+    "bootstrap": "4",
+    "jquery": "^3.6.0"
+  }
+}
