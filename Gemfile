@@ -24,7 +24,6 @@ gem 'cancancan'
 #追加機能
 gem 'ransack'
 gem 'kaminari'
-#gem 'kaminari-bootstrap'
 
 gem 'jquery-rails'
 gem 'therubyracer'

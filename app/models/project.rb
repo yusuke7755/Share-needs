@@ -13,4 +13,16 @@ class Project < ApplicationRecord
   has_many :customerusers, through: :projectusers
 
   enum priority: { '1': 1, '2': 2, '3': 3 }
+
+
+    customers = Customer.all
+    names = customers.map(&:name)
+    enum_hash = {}
+    names.each_with_index do |name, i|
+      enum_hash.store(name, i)
+    end
+
+  enum customers: enum_hash
+
+  binding.pry
 end

@@ -1,20 +1,20 @@
 <main>
 <br>
-<button type="button" class="btn btn-info" type="button"><%= link_to "戻る", customer_management_path, id: "back_to_menu" %></button>
+<button type="button" class="btn btn-info" type="button"><%= link_to "戻る", customer_management_path, id: "back_to_show" %></button>
 <br>
 <br>
 <h1>タスク編集</h1>
-   <% if @project.errors.any? %>
+   <% if @projects.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+      <h2><%= pluralize(@projects.errors.count, "error") %> prohibited this project from being saved:</h2>
       <ul>
-      <% @project.errors.full_messages.each do |message| %>
+      <% @projects.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
-<%= form_with(model: @project, url: customer_managements_path, local: true) do |form| %>
+<%= form_with(model: @projects, url: customer_management_path, local: true) do |form| %>
 
   <div>
     <h4><%=  current_employee.name %></h4><br>
@@ -135,12 +135,13 @@
     <%= form.text_area :description , size: "40x10" %>
   </div>
 
-  <%= form.submit "レポート作成"  %>
+  <%= form.submit "レポート編集"  %>
+  <button type="button" class="btn btn-info" type="button"><%= link_to "戻る", customer_management_path, id: "back_to_menu" %></button>
 <% end %>
   <br>
 
   <br>
-<button type="button" class="btn btn-info" type="button"><%= link_to "戻る", customer_management_path, id: "back_to_menu" %></button>
+<button type="button" class="btn btn-info" type="button"><%= link_to "戻る", customer_management_path, id: "back_to_show" %></button>
   <br>
   <br>
   <br>
