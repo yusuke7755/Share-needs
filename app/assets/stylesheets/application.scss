@@ -45,6 +45,7 @@ header ul:after {
 body {
   text-align: center;
   overflow: scroll;
+    background: radial-gradient(#e6f2a1, #62ead8);
 }
 main {
   flex: 1;
@@ -55,22 +56,16 @@ footer {
   background-color:#288ff0;
   position: fixed;
   bottom: 0px;
-
+  color: white;
   // padding: 20px 0 10px 0;
   // color: white;
   // margin: auto;
   // padding-bottom: 10px;
-  // font-size: 18px;
+   font-size: 18px;
    position: absolute;
    bottom: 0;
 }
 footer ul {
   margin: 0 auto;
   list-style: none;
-}
-footer ul a {
-  display: block;
-  padding: 15px;
-  text-decoration: none;
-  color: white;
 }

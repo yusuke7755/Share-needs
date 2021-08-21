@@ -1,6 +1,5 @@
 class Customeruser < ApplicationRecord
-  has_many :projectusers
-  has_many :project, through: :projectusers
+  has_many :projects
   belongs_to :customer
   validates :name, presence: true, length: { maximum: 50 }
   validates :email, presence: true,length: { maximum: 50 },

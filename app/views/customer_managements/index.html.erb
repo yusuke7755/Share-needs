@@ -1,11 +1,11 @@
 <article>
+  <br>
   <% if current_employee.try(:admin?) %>
-    <h3>管理者管理画面</h3>
+    <h6>管理者管理画面</h6>
     <button type="button" class=" btn btn-info" type="button"><%= link_to "マスタ登録", rails_admin_path , id: "employee_create" %></button>
   <% else %>
-    <h3>メニュー画面</h3>
+    <h6>メニュー画面</h6>
   <% end %>
-  <br>
 <hr>
   <br>
   <div>
@@ -16,48 +16,58 @@
 <hr>
   <div>
     <%= search_form_for @q ,url: customer_managements_path do |f| %>
-        <%= f.label :title_cont, "タイトル：一部を含む" %>
-        <%= f.search_field :title_cont %>
-        <%= f.submit "検索" %>
+    <div class="form-group">
+        <%= f.label :department_cont, "部署名" %>
+        <%= f.search_field :department_cont , class: "form-control", placeholder: "部分一致"%>
+    </div>
+    <div class="form-group">
+        <%= f.label :customer_cont, "会社名" %>
+        <%= f.search_field :customer_cont , class: "form-control", placeholder: "部分一致"%>
+    </div>
+    <div class="form-group">
+        <%= f.label :title_cont, "タイトル" %>
+        <%= f.search_field :title_cont , class: "form-control", placeholder: "部分一致"%>
+    </div>
+       <%= f.submit '検索', class: "btn btn-primary" %>
+       <%= link_to 'クリア', url_for, class: "btn btn-info" %>
     <% end %>
+  <br>
     <button type="button" class="btn btn-warning" type="button"><%= link_to "状況管理", id: "check_list" %></button>
   </div>
 <hr>
 <table class="col-md-12">
-  <thead>
-    <tr>
-      <th class="col-md-1">部署名</th>
-      <th class="col-md-4">タイトル</th>
-      <th class="col-md-2">会社名</th>
-      <th class="col-md-1" >発生日</th>
-      <th class="col-md-1">期限</th>
-      <th class="col-md-1">優先度</th>
-      <th class="col-md-1">詳細</th>
-    </tr>
-  </thead>
-  <tbody>
-
+    <thead>
+      <tr class="table-primary">
+        <th class="col-md-1">部署名</th>
+        <th class="col-md-4">タイトル</th>
+        <th class="col-md-2">会社名</th>
+        <th class="col-md-1" >発生日</th>
+        <th class="col-md-1">期限</th>
+        <th class="col-md-1">優先度</th>
+        <th class="col-md-1">詳細</th>
+      </tr>
+    </thead>
+    <tbody>
       <% @projects.each do |pt| %>
-      <tr>
-
- <td><%= pt.department.name %></td> 
-
+      <tr class="table-info">
+        <td><%= pt.department %></td>  
         <td><%= pt.title %></td>
-        <td><%= pt.customer.name %></td>
+        <td><%= pt.customer %></td>
         <td><%= pt.apoint_at.strftime("%Y年%m月%d日") %></td>
-        <td><%= pt.deadline %></td>
-        <td><% if pt.priority = 1 %>
+        <td><%= pt.deadline.strftime("%Y年%m月%d日") %></td>
+        <td>
+          <% if pt.priority = 1 %>
               高
-            <% elsif pt.priority = 2 %>
+          <% elsif pt.priority = 2 %>
               中
-            <% else %>
+          <% else %>
               低
-            <% end %>
+          <% end %>
         </td>
         <td><button type="button" class="btn btn-info" type="button"><%= link_to '詳細', customer_management_path(pt), id: "project_report_view" %></td>
       </tr>
       <% end %>
-  </tbody>
+    </tbody>
   <%= paginate @projects %> 
 </table>
 <br>

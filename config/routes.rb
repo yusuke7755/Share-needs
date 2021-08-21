@@ -10,8 +10,4 @@ Rails.application.routes.draw do
       get 'check'
     end
   end
-
-  # selectからremote: trueでpostされるデータを受け取り、getで描画するための準備
-  match 'set_employee', to: 'customer_managements#set_employee', via: [:get, :post]
-
 end

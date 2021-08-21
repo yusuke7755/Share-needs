@@ -1,28 +1,39 @@
 class Project < ApplicationRecord
-  belongs_to :department
-  belongs_to :customer
-  belongs_to :package
   belongs_to :employee
-  has_many :projectmembers
-  has_many :projectdepartments
-  has_many :projectfeatures
-  has_many :projectusers
-  has_many :employees, through: :projectmembers
-  has_many :departments, through: :projectdepartments
-  has_many :features, through: :projectfeatures
-  has_many :customerusers, through: :projectusers
-
+  belongs_to :customeruser
+  belongs_to :feature
   enum priority: { '1': 1, '2': 2, '3': 3 }
 
+  validates :title, presence: true, length: { maximum: 100 }
+  validates :description, presence: true,length: { maximum: 400 }
+  validates :deadline, presence: true
 
-    customers = Customer.all
-    names = customers.map(&:name)
-    enum_hash = {}
-    names.each_with_index do |name, i|
-      enum_hash.store(name, i)
-    end
+  #リストボックスを作成
+  #部署情報
+  departments= Department.where(web_flg: true).all
+  department_names = departments.map(&:name)
+  department_enum_hash = {}
+  department_names.each_with_index do |name, i|
+  department_enum_hash.store(name, i)
+  end
+  enum enum_departments: department_enum_hash
 
-  enum customers: enum_hash
+  #顧客情報
+  customers = Customer.all
+  customer_names = customers.map(&:name)
+  customer_enum_hash = {}
+  customer_names.each_with_index do |name, i|
+  customer_enum_hash.store(name, i)
+  end
+  enum enum_customers: customer_enum_hash
 
-  binding.pry
+  #システム情報
+  packages = Package.all
+  package_names = packages.map(&:name)
+  package_enum_hash = {}
+  package_names.each_with_index do |name, i|
+  package_enum_hash.store(name, i)
+  end
+  enum enum_packages: package_enum_hash
+
 end

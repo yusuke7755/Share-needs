@@ -105,11 +105,7 @@ Package.create!(
 ]
 )
 
-Project.create!(
-  [
-    { title: 'わかりません', customer_id: 1, package_id: 1 ,description: 'test' ,apoint_at: Date.today ,deadline: Date.today,priority: 1 ,employee_id: 1 ,department_id: 1 }
-  ]
-)
+
 
 Feature.create!(
   [

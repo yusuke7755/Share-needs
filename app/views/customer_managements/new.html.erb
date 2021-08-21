@@ -1,8 +1,5 @@
 <main>
-    <head>
-    <meta charset="utf-8">
-    <%= javascript_include_tag 'application' %>
-    </head>
+
 <br>
   <h4>レポート登録</h4>
    <% if @project.errors.any? %>
@@ -19,53 +16,26 @@
 <%= form_with(model: @project, url: customer_managements_path, local: true) do |form| %>
 
   <div>
-    <h4>作成者:<%=  current_employee.name %></h4><br>
-    <% form.text_field current_employee.department_id %>
-    <%= form.hidden_field  :employee_id, :value => current_employee.id %>
-    <%= form.hidden_field  :department_id, :value => current_employee.department_id %>
-  </div>
-
-  <div>
     <%= form.label :title %><br>
     <%= form.text_field :title %>
   </div>
   <br>
 
-  <div>
-    <%= form.label :customer %>
-    <%= form.select :customer, Project.customers.keys %>
-
-
- <!-- remote: trueを追加することでajaxでparams[:user][color_id]をpostできる -->
-<div>
-  <%= form.select :department_id, options_from_collection_for_select( @department, :id, :name),
-  {prompt: '社員を選択'}, {data: {remote: true, url: url_for(action: :set_employee)}} %>
-</div>
-
-<!-- 色を選択するとここに動的にセレクトボックスが描画される -->
-<div id="employee-select">
-  社員
-</div>
- <br> <br> <br>
-
-  <div>
     <h4>担当</h4>
+  <div>
+    <% form.label :department %>
+    <%= form.select :department, Project.enum_departments.keys %>
+  </div>
     <table>
-    <% Department.where(web_flg: true).all.each do |dm| %>
-
+    <% @department.all.each do |dm| %>
       <tr>
         <th>
-        <%= form.check_box :department_ids, { multiple: true, checked: dm[:checked], disabled: dm[:disabled], include_hidden: false }, dm[:id] %>
-        <%= dm.name %>
+          <%= dm.name %>
         </th>
           <td>
           <div>
             <% Employee.where(department_id: dm.id).all.each do |emp| %>
-              <%if emp.id != current_employee.id %>
-                <%= form.check_box :employee_ids,  { multiple: true, checked: emp[:checked], disabled: emp[:disabled], include_hidden: false }, emp[:id] %>
-              <% else %>                
-                <%= form.check_box :employee_ids, { multiple: true, checked: emp[:checked], disabled: emp[:disabled], include_hidden: false }, emp[:id] , checked_value = "1" %>
-              <% end %>
+              <%= form.radio_button :employee_id, emp.id %>
             <%= emp.name %><br>
           <% end %>
           </div>
@@ -74,21 +44,22 @@
     <% end %>
     </table>
   </div>
-
-  <br>
-
-  <div>
+<br>
     <h4>企業名/お客様名</h4>
+  <div>
+    <%= form.select :customer, Project.enum_customers.keys %>
+  </div>
+  <div>
     <table>
-    <% @customers.each do |ct| %>
+    <% @customer.each do |ct| %>
       <tr>
         <th>
-        <label><%= form.radio_button :customer_id, ct.id %><%= ct.name %></label>
+        <label><%= ct.name %></label>
         </th>
           <td>
           <div>
             <% Customeruser.where(customer_id: ct.id).all.each do |usr| %>
-              <%= form.check_box :customeruser_ids, { multiple: true, checked: usr[:checked], disabled: usr[:disabled], include_hidden: false }, usr[:id] %>
+              <%= form.radio_button :customeruser_id, usr.id %>
               <%= usr.name %><br>
             <% end %>
           </div>
@@ -97,21 +68,21 @@
     <% end %>
     </table>
   </div>
-
-    <br>
-
+<br>
   <div>
     <h4>システム/機能</h4>
+    <%= form.select :package, Project.enum_packages.keys %>
+  </div>
     <table>
-    <% Package.all.each do |pcg| %>
+    <% @package.all.each do |pcg| %>
       <tr>
         <th>
-        <label><%= form.radio_button :package_id ,pcg.id  %><%= pcg.name %></label>
+        <label><%= pcg.name %></label>
         </th>
           <td>
           <div>
             <% Feature.where(package_id: pcg.id).all.each do |ft| %>
-              <%= form.check_box :feature_ids, { multiple: true, checked: ft[:checked], disabled: ft[:disabled], include_hidden: false }, ft[:id] %>
+              <%= form.radio_button :feature_id, ft.id %>
               <%= ft.name %><br>
             <% end %>
           </div>

@@ -10,19 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_17_062554) do
+ActiveRecord::Schema.define(version: 2021_08_12_003343) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "checks", force: :cascade do |t|
     t.bigint "project_id"
-    t.bigint "customer_id"
-    t.bigint "employee_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["customer_id"], name: "index_checks_on_customer_id"
-    t.index ["employee_id"], name: "index_checks_on_employee_id"
     t.index ["project_id"], name: "index_checks_on_project_id"
   end
 
@@ -85,88 +81,29 @@ ActiveRecord::Schema.define(version: 2021_08_17_062554) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "projectdepartments", force: :cascade do |t|
-    t.bigint "project_id"
-    t.bigint "department_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["department_id"], name: "index_projectdepartments_on_department_id"
-    t.index ["project_id"], name: "index_projectdepartments_on_project_id"
-  end
-
-  create_table "projectfeatures", force: :cascade do |t|
-    t.bigint "project_id"
-    t.bigint "feature_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["feature_id"], name: "index_projectfeatures_on_feature_id"
-    t.index ["project_id"], name: "index_projectfeatures_on_project_id"
-  end
-
-  create_table "projectmembers", force: :cascade do |t|
-    t.bigint "project_id"
-    t.bigint "employee_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["employee_id"], name: "index_projectmembers_on_employee_id"
-    t.index ["project_id"], name: "index_projectmembers_on_project_id"
-  end
-
-  create_table "projectprogresses", force: :cascade do |t|
-    t.bigint "project_id"
-    t.bigint "employee_id"
-    t.datetime "apoint_at", null: false
-    t.text "description", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["employee_id"], name: "index_projectprogresses_on_employee_id"
-    t.index ["project_id"], name: "index_projectprogresses_on_project_id"
-  end
-
   create_table "projects", force: :cascade do |t|
     t.string "title", null: false
-    t.bigint "customer_id", null: false
-    t.bigint "package_id", null: false
-    t.text "description", null: false
-    t.date "apoint_at", null: false
-    t.bigint "department_id", null: false
+    t.string "department", null: false
     t.bigint "employee_id", null: false
+    t.string "customer", null: false
+    t.bigint "customeruser_id", null: false
+    t.string "package", null: false
+    t.bigint "feature_id", null: false
+    t.date "apoint_at", null: false
     t.date "deadline"
+    t.text "description", null: false
     t.integer "priority"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["customer_id"], name: "index_projects_on_customer_id"
-    t.index ["department_id"], name: "index_projects_on_department_id"
+    t.index ["customeruser_id"], name: "index_projects_on_customeruser_id"
     t.index ["employee_id"], name: "index_projects_on_employee_id"
-    t.index ["package_id"], name: "index_projects_on_package_id"
+    t.index ["feature_id"], name: "index_projects_on_feature_id"
   end
 
-  create_table "projectusers", force: :cascade do |t|
-    t.bigint "project_id"
-    t.bigint "customeruser_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["customeruser_id"], name: "index_projectusers_on_customeruser_id"
-    t.index ["project_id"], name: "index_projectusers_on_project_id"
-  end
-
-  add_foreign_key "checks", "customers"
-  add_foreign_key "checks", "employees"
   add_foreign_key "checks", "projects"
   add_foreign_key "customerusers", "customers"
   add_foreign_key "features", "packages"
-  add_foreign_key "projectdepartments", "departments"
-  add_foreign_key "projectdepartments", "projects"
-  add_foreign_key "projectfeatures", "features"
-  add_foreign_key "projectfeatures", "projects"
-  add_foreign_key "projectmembers", "employees"
-  add_foreign_key "projectmembers", "projects"
-  add_foreign_key "projectprogresses", "employees"
-  add_foreign_key "projectprogresses", "projects"
-  add_foreign_key "projects", "customers"
-  add_foreign_key "projects", "departments"
+  add_foreign_key "projects", "customerusers"
   add_foreign_key "projects", "employees"
-  add_foreign_key "projects", "packages"
-  add_foreign_key "projectusers", "customerusers"
-  add_foreign_key "projectusers", "projects"
+  add_foreign_key "projects", "features"
 end

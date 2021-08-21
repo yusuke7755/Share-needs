@@ -3,51 +3,73 @@
 <br>
 <h3>詳細画面</h3>
       <table>
-        <tr>
-            <td>タイトル<br><%= @project.title %></td>
+        <tr class="table-info">
+            <td>タイトル</td>
         </tr>
-        <tr>
-            <td>部署<br><%= @project.departments.name %></td>
+        <tr class="table-light">
+            <td><%= @project.title %></td>
         </tr>
-        <tr>
+        <tr class="table-info">
+            <td>部署</td>
+        </tr>
+        <tr class="table-light">
+            <td><%= @project.department %></td>
+        </tr>
+        <tr class="table-info">
+          <td>弊社担当</td>
+        </tr>
+        <tr class="table-light">
+          <td><%= @project.employee.name %></td>
+        </tr>
+        <tr class="table-info">
+          <td>お客様</td>
+        </tr>
+        <tr class="table-light">
+          <td><%= @project.customer %></td>
+        </tr>
+        <tr class="table-info">
+          <td>お客様担当</td>
+        </tr>
+        <tr class="table-light">
+          <td><%= @project.customeruser.name %></td>
+        </tr>
+        <tr class="table-info">
+          <td>システム</td>
+        </tr>
+        <tr class="table-light">
+          <td><%= @project.package %></td>
+        </tr>
+        <tr class="table-info">
+             <td>機能</td>
+        </tr>
+        <tr class="table-light">
           <td>
-            弊社担当<br><% @project.employees.each do |employees| %>
-                    <%= employees.name %><br>
-                  <% end %>
+            <%= @project.feature.name %>
           </td>
         </tr>
-        <tr>
-          <td>お客様<br><%= @project.customer.name %></td>
+        <tr class="table-info">
+          <td>面談日</td>
         </tr>
-        <tr>
-          <td>
-            お客様担当<br><% @project.customerusers.each do |users| %>
-                    <%= users.name %><br>
-                  <% end %>
-          </td>
+        <tr class="table-light">
+          <td><%= @project.apoint_at %></td>
         </tr>
-        <tr>
-          <td>システム<br><%= @project.package.name %></td>
+        <tr class="table-info">
+          <td>面談詳細</td>
         </tr>
-        <tr>
-          <td>
-            機能<br><% @project.features.each do |features| %>
-                    <%= features.name %><br>
-                  <% end %>
-          </td>
+        <tr class="table-light">
+            <td><%= @project.description %></td>
         </tr>
-        <tr>
-            <td>面談日<br><%= @project.apoint_at %></td>
+        <tr class="table-info">
+            <td>期日</td>
         </tr>
-        <tr>
-            <td>面談詳細<br><%= @project.description %></td>
+        <tr class="table-light">
+            <td><%= @project.deadline %></td>
         </tr>
-        <tr>
-            <td>期日<br><%= @project.deadline %></td>
+        <tr class="table-info">
+            <td>重要度</td>
         </tr>
-        <tr>
-            <td>重要度<br>
-              <% if @project.priority = 1 %>
+        <tr class="table-light">
+            <td><% if @project.priority = 1 %>
                       高
               <% elsif @project.priority = 2 %>
                       中
@@ -56,13 +78,14 @@
               <% end %>
             </td>
         </tr>
-        <tr>
+        <tr class="table-info">
             <td>
-        <button type="button" class="btn btn-warning" type="button"><%= link_to "状況管理", id: "check_list" %></button>　　　
-        <button type="button" class="btn btn-success" type="button"><%= link_to "編集", edit_customer_management_path, id: "back_to_menu" %></button>
+          <button type="button" class="btn btn-warning" type="button"><%= link_to "状況管理", id: "check_list" %></button>
+          <% if current_employee.id == @project.employee_id %>　　
+            <button type="button" class="btn btn-success" type="button"><%= link_to "編集", edit_customer_management_path, id: "back_to_menu" %></button>
+          <% end %>
             </td>
         </tr>
-
       </table>
 <br>
 <button type="button" class="btn btn-info" type="button"><%= link_to "戻る", customer_managements_path, id: "back_to_main" %></button>

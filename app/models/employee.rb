@@ -1,7 +1,5 @@
 class Employee < ApplicationRecord
   has_many :projects
-  has_many :projectmembers
-  has_many :employee, through: :projectmembers
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 

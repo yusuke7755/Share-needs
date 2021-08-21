@@ -17,33 +17,26 @@
 <%= form_with(model: @projects, url: customer_management_path, local: true) do |form| %>
 
   <div>
-    <h4><%=  current_employee.name %></h4><br>
-    <% form.text_field current_employee.department_id %>
-  </div>
-
-  <div>
     <%= form.label :title %><br>
     <%= form.text_field :title %>
   </div>
   <br>
-  <div>
-    <h4>担当</h4>
-    <table>
-    <% Department.where(web_flg: true).all.each do |dm| %>
 
+    <h4>担当</h4>
+  <div>
+    <% form.label :department %>
+    <%= form.select :department, Project.enum_departments.keys %>
+  </div>
+    <table>
+    <% @department.all.each do |dm| %>
       <tr>
         <th>
-        <%= form.check_box :department_ids, { multiple: true, checked: dm[:checked], disabled: dm[:disabled], include_hidden: false }, dm[:id] %>
-        <%= dm.name %>
+          <%= dm.name %>
         </th>
           <td>
           <div>
             <% Employee.where(department_id: dm.id).all.each do |emp| %>
-              <%if emp.id != current_employee.id %>
-                <%= form.check_box :employee_ids, { multiple: true, checked: emp[:checked], disabled: emp[:disabled], include_hidden: false }, emp[:id] %>
-              <% else %>                
-                <%= form.check_box :employee_ids, { multiple: true, checked: emp[:checked], disabled: emp[:disabled], include_hidden: false }, emp[:id] %>
-              <% end %>
+              <%= form.radio_button :employee_id, emp.id %>
             <%= emp.name %><br>
           <% end %>
           </div>
@@ -52,21 +45,22 @@
     <% end %>
     </table>
   </div>
-
-  <br>
-
-  <div>
+<br>
     <h4>企業名/お客様名</h4>
+  <div>
+    <%= form.select :customer, Project.enum_customers.keys %>
+  </div>
+  <div>
     <table>
-    <% Customer.all.each do |ct| %>
+    <% @customer.each do |ct| %>
       <tr>
         <th>
-        <label><%= form.radio_button :customer_id, ct.id %><%= ct.name %></label>
+        <label><%= ct.name %></label>
         </th>
           <td>
           <div>
             <% Customeruser.where(customer_id: ct.id).all.each do |usr| %>
-              <%= form.check_box :customeruser_ids, { multiple: true, checked: usr[:checked], disabled: usr[:disabled], include_hidden: false }, usr[:id] %>
+              <%= form.radio_button :customeruser_id, usr.id %>
               <%= usr.name %><br>
             <% end %>
           </div>
@@ -75,21 +69,21 @@
     <% end %>
     </table>
   </div>
-
-    <br>
-
+<br>
   <div>
     <h4>システム/機能</h4>
+    <%= form.select :package, Project.enum_packages.keys %>
+  </div>
     <table>
-    <% Package.all.each do |pcg| %>
+    <% @package.all.each do |pcg| %>
       <tr>
         <th>
-        <label><%= form.radio_button :package_id ,pcg.id  %><%= pcg.name %></label>
+        <label><%= pcg.name %></label>
         </th>
           <td>
           <div>
             <% Feature.where(package_id: pcg.id).all.each do |ft| %>
-              <%= form.check_box :feature_ids, { multiple: true, checked: ft[:checked], disabled: ft[:disabled], include_hidden: false }, ft[:id] %>
+              <%= form.radio_button :feature_id, ft.id %>
               <%= ft.name %><br>
             <% end %>
           </div>
@@ -136,10 +130,7 @@
   </div>
 
   <%= form.submit "レポート編集"  %>
-  <button type="button" class="btn btn-info" type="button"><%= link_to "戻る", customer_management_path, id: "back_to_menu" %></button>
-<% end %>
-  <br>
-
+  <% end %>
   <br>
 <button type="button" class="btn btn-info" type="button"><%= link_to "戻る", customer_management_path, id: "back_to_show" %></button>
   <br>
