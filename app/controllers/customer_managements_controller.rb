@@ -17,8 +17,28 @@ class CustomerManagementsController < ApplicationController
 
 
   def index
-     @q = Project.ransack(params[:q])
-     @projects = @q.result.order("apoint_at asc").page(params[:page]).per(5)
+    @q = Project.ransack(params[:q])
+    if params[:sort_checked].present?
+
+      @check = Check.where(employee_id: current_employee.id)
+      if @check.count > 0
+
+        @customer = []
+        @check.all.each do |ck|
+          @customer << ck.customername
+        end
+
+        @projects = Project.where(customer: @customer).page(params[:page]).per(5)
+        
+      else
+         flash[:notice] = "状況管理しているものはありません。"
+      end
+    else
+      @projects = @q.result.order("apoint_at asc").page(params[:page]).per(5)
+    end
+
+     
+
   end
 
   def search
@@ -36,17 +56,6 @@ class CustomerManagementsController < ApplicationController
   end
 
 
-  def create
-    @project =Project.new(project_params)
-      # binding.pry
-      if @project.save
-        redirect_to customer_managements_path  flash[:notice] = "レポートが作成されました。"
-      else
-        # binding.pry
-        redirect_to customer_managements_path  flash[:notice] = "レポートの作成が失敗しました。"
-      end
-  end
-
   def update
     #binding.pry
     if @project.update(project_params)
@@ -54,6 +63,28 @@ class CustomerManagementsController < ApplicationController
     else
       redirect_to customer_managements_path  flash[:notice] = "レポートの編集が失敗しました。"
     end
+  end
+
+
+  def create
+
+    #所属部署の社員であるかチェックする
+#      checkdepartment = Department.where(name: project_params[:department])
+#      checkemployee = Employee.where(id: project_params[:employee_id])
+# binding.pry
+#      if checkdepartment.id != checkemployee.department_id
+#        errors.add("所属部署の社員を選択してください")
+#        throw(:abort)
+#      end
+
+    @project =Project.new(project_params)
+    # binding.pry
+      if @project.save
+        redirect_to new_customer_management_path  flash[:notice] = "レポートが作成されました。"
+      else
+        binding.pry
+        redirect_to new_customer_management_path  flash[:notice] = "レポートの作成が失敗しました。"
+      end
   end
 
   private
@@ -67,6 +98,7 @@ class CustomerManagementsController < ApplicationController
   end
 
   def project_params
+    # binding.pry
     params.require(:project).permit(:title, :employee_id, :department, :customer, :customeruser_id, :package, :feature_id, :description, :apoint_at, :priority, :deadline  )
   end
 

@@ -6,7 +6,13 @@ class Project < ApplicationRecord
 
   validates :title, presence: true, length: { maximum: 100 }
   validates :description, presence: true,length: { maximum: 400 }
-  validates :deadline, presence: true
+  validates :apoint_at, presence: true
+  validates :feature_id, presence: true
+  validates :customeruser_id, presence: true
+  validates :employee_id, presence: true
+  validates :department, presence: true
+  validates :customer, presence: true
+  validates :package, presence: true
 
   #リストボックスを作成
   #部署情報
@@ -35,5 +41,4 @@ class Project < ApplicationRecord
   package_enum_hash.store(name, i)
   end
   enum enum_packages: package_enum_hash
-
 end

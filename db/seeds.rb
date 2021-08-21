@@ -6,20 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-
-
-# create_table "projects", force: :cascade do |t|
-#   t.string "title", null: false
-#   t.bigint "customer_id"
-#   t.bigint "package_id"
-#   t.bigint "feature_id"
-#   t.text "description", null: false
-#   t. "apoint_at", null: false
-#   t.date "deadline"
-#   t.integer "priority"
-#   t.bigint "employee_id"
-#   t.bigint "department_id"
- 
 Department.create!(
   [
   { name: '営業部', web_flg: true},
@@ -61,39 +47,38 @@ Customer.create!(
 
 Customeruser.create!(
   [
+  { customer_id: 1, department: '財務部', name: '竹村岩男', email: 'dfaoi903faf@email.com', tel: '1115264446' },
+  { customer_id: 1, department: '財務部', name: '亀井定雄', email: 'gfa94tgfg0ga@email.com', tel: '7414141112' },
+  { customer_id: 1, department: '財務部', name: '速水晃一', email: 'iovxb945agfag@email.com', tel: '5411177112' },
+  { customer_id: 2, department: '人事部', name: '中村青司', email: 'k90dgh094@email.com', tel: '1411417989' },
+  { customer_id: 2, department: '人事部', name: '岡部和雄', email: '3dfggf090d@email.com', tel: '2158225211' },
+  { customer_id: 2, department: '人事部', name: '杉原爽香', email: 'adf9u4e343@email.com', tel: '5214411222' },
+  { customer_id: 3, department: '開発部', name: '左文字進', email: 'fg09iv4afd4@email.com', tel: '3118844201' },
+  { customer_id: 3, department: '開発部', name: '狩矢荘助', email: '409dfg0daf@email.com', tel: '2818920143' },
+  { customer_id: 3, department: '開発部', name: '橋口大吾', email: 'bvje004fggs@email.com', tel: '3998191048' },
+  { customer_id: 4, department: '文化部', name: '栗田 ゆう子', email: 'bjio80gffg@email.com', tel: '2497898944' },
+  { customer_id: 4, department: '文化部', name: '三谷 典子', email: 'affag9agga9@email.com', tel: '3114118811' },
+  { customer_id: 4, department: '文化部', name: '谷村 秀夫', email: 'daf9i090ag@emai.com', tel: '4115201155' },
+  { customer_id: 5, department: '経理部', name: '竹村岩男', email: 'b09ug9aa3435f@email.com', tel: '5141415421' },
+  { customer_id: 5, department: '経理部', name: '中村雅楽', email: 'dfag99agag9@email.com', tel: '1414414451' },
+  { customer_id: 5, department: '経理部', name: '栗本薫', email: 'fdaha879gfa@gmail.com', tel: '7454114612' },
+  { customer_id: 6, department: '資材部', name: '狩野俊介', email: 'ojfekaoogf34@email.com', tel: '5890444945' },
+  { customer_id: 6, department: '資材部', name: '伊集院大介', email: 'dgamoopa32i09@email.com', tel: '2194898731' },
+  { customer_id: 6, department: '資材部', name: '如月塔子', email: 'd9d0gga3r5@gmail.com', tel: '4021400025' },
+  { customer_id: 7, department: '営業部', name: '矢代俊一', email: 'd9iga0rhat@email.com', tel: '4046014111' },
+  { customer_id: 7, department: '営業部', name: '栗本薫', email: 'dfsa900ah9tat@email.com', tel: '5132154411' },
+  { customer_id: 7, department: '営業部', name: '伊集院大介', email: 'gfh489hh4s8@email.com', tel: '1048181483' },
+  { customer_id: 8, department: '開発部', name: '柳原弘', email: 'io09a09@email.com', tel: '2118404227' },
+  { customer_id: 8, department: '開発部', name: '里見脩二', email: 'eiofjdajot320@email.com', tel: '4124822974' },
+  { customer_id: 8, department: '開発部', name: '財前五郎', email: 'aioffapitat@email.com', tel: '1455335486' },
+  { customer_id: 9, department: '総務部', name: '黒鳥兵衛', email: 'dfiofaoai@email.com', tel: '8114848484' },
+  { customer_id: 9, department: '総務部', name: '金売吉次', email: 'ariorofai@email.com', tel: '1992008910' },
+  { customer_id: 9, department: '総務部', name: '明石志賀之助', email: 'afijdoaiojag@email.com', tel: '1546519519' },
   { customer_id: 10, department: '経理部', name: '熊坂長範', email: 'erqrqrqrq@email.com', tel: '8219426119' },
   { customer_id: 10, department: '経理部', name: '松浦佐用姫', email: 'fareaffaa@email.com', tel: '5416234555' },
-  { customer_id: 10, department: '経理部', name: '坂上田村丸', email: 'dfjeooffa@email.com', tel: '1411442284' },
-  { customer_id: 9, department: '総務部', name: '明石志賀之助', email: 'afijdoaiojag@email.com', tel: '1546519519' },
-  { customer_id: 9, department: '総務部', name: '金売吉次', email: 'ariorofai@email.com', tel: '1992008910' },
-  { customer_id: 9, department: '総務部', name: '黒鳥兵衛', email: 'dfiofaoai@email.com', tel: '8114848484' },
-  { customer_id: 8, department: '開発部', name: '財前五郎', email: 'aioffapitat@email.com', tel: '1455335486' },
-  { customer_id: 8, department: '開発部', name: '里見脩二', email: 'eiofjdajot320@email.com', tel: '4124822974' },
-  { customer_id: 8, department: '開発部', name: '柳原弘', email: 'io09a09@email.com', tel: '2118404227' },
-  { customer_id: 7, department: '営業部', name: '伊集院大介', email: 'gfh489hh4s8@email.com', tel: '1048181483' },
-  { customer_id: 7, department: '営業部', name: '栗本薫', email: 'dfsa900ah9tat@email.com', tel: '5132154411' },
-  { customer_id: 7, department: '営業部', name: '矢代俊一', email: 'd9iga0rhat@email.com', tel: '4046014111' },
-  { customer_id: 6, department: '資材部', name: '如月塔子', email: 'd9d0gga3r5@gmail.com', tel: '4021400025' },
-  { customer_id: 6, department: '資材部', name: '伊集院大介', email: 'dgamoopa32i09@email.com', tel: '2194898731' },
-  { customer_id: 6, department: '資材部', name: '狩野俊介', email: 'ojfekaoogf34@email.com', tel: '5890444945' },
-  { customer_id: 5, department: '経理部', name: '栗本薫', email: 'fdaha879gfa@gmail.com', tel: '7454114612' },
-  { customer_id: 5, department: '経理部', name: '中村雅楽', email: 'dfag99agag9@email.com', tel: '1414414451' },
-  { customer_id: 5, department: '経理部', name: '竹村岩男', email: 'b09ug9aa3435f@email.com', tel: '5141415421' },
-  { customer_id: 4, department: '文化部', name: '谷村 秀夫', email: 'daf9i090ag@emai.com', tel: '4115201155' },
-  { customer_id: 4, department: '文化部', name: '三谷 典子', email: 'affag9agga9@email.com', tel: '3114118811' },
-  { customer_id: 4, department: '文化部', name: '栗田 ゆう子', email: 'bjio80gffg@email.com', tel: '2497898944' },
-  { customer_id: 3, department: '開発部', name: '橋口大吾', email: 'bvje004fggs@email.com', tel: '3998191048' },
-  { customer_id: 3, department: '開発部', name: '狩矢荘助', email: '409dfg0daf@email.com', tel: '2818920143' },
-  { customer_id: 3, department: '開発部', name: '左文字進', email: 'fg09iv4afd4@email.com', tel: '3118844201' },
-  { customer_id: 2, department: '人事部', name: '杉原爽香', email: 'adf9u4e343@email.com', tel: '5214411222' },
-  { customer_id: 2, department: '人事部', name: '岡部和雄', email: '3dfggf090d@email.com', tel: '2158225211' },
-  { customer_id: 2, department: '人事部', name: '中村青司', email: 'k90dgh094@email.com', tel: '1411417989' },
-  { customer_id: 1, department: '財務部', name: '速水晃一', email: 'iovxb945agfag@email.com', tel: '5411177112' },
-  { customer_id: 1, department: '財務部', name: '亀井定雄', email: 'gfa94tgfg0ga@email.com', tel: '7414141112' },
-  { customer_id: 1, department: '財務部', name: '竹村岩男', email: 'dfaoi903faf@email.com', tel: '1115264446' }
+  { customer_id: 10, department: '経理部', name: '坂上田村丸', email: 'dfjeooffa@email.com', tel: '1411442284' }
   ]
 )
-
 
 Package.create!(
   [
@@ -104,8 +89,6 @@ Package.create!(
   { name: '倉庫管理システム' }
 ]
 )
-
-
 
 Feature.create!(
   [
@@ -124,5 +107,17 @@ Feature.create!(
   { name: '入庫管理機能', package_id: 5 },
   { name: '出庫管理機能', package_id: 5 },
   { name: '倉庫管理機能', package_id: 5 }
+]
+)
+
+Project.create!(
+  [
+  { title: '商品紹介について', department: '営業部', employee_id: 1, customer: 'サカタインダストリィ', customeruser_id: 4, package: '販売管理システム', feature_id: 1 , apoint_at: Date.today, deadline: Date.today, description: 'あいうえお', priority: 3},
+  { title: 'デモンストレーション', department: '営業部', employee_id: 2, customer: 'ヴァルストークファミリー', customeruser_id: 22, package: '生産管理システム', feature_id: 2 , apoint_at: Date.today, deadline: Date.today, description: 'かきくけこ', priority: 2},
+  { title: '見積もり商談', department: '営業部', employee_id: 3, customer: 'ディアブルアビオニクス', customeruser_id: 29, package: '会計システム', feature_id: 3 , apoint_at: Date.today, deadline: Date.today, description: 'さしすせそ', priority: 1},
+  { title: 'システム操作について', department: 'サポート部', employee_id: 1, customer: '中川コンツェルン', customeruser_id: 1 , package: '人事給与システム', feature_id: 1 , apoint_at: Date.today, deadline: Date.today, description: 'たちつてと', priority: 1},
+  { title: 'システム障害対応', department: 'サポート部', employee_id: 2, customer: '東西新聞社', customeruser_id: 14 , package: '倉庫管理システム', feature_id: 2 , apoint_at: Date.today, deadline: Date.today, description: 'なにぬねの', priority: 2},
+  { title: 'カスタマイズ対応', department: '開発部', employee_id: 3, customer: 'ZOITEC', customeruser_id: 25 , package: '販売管理システム', feature_id: 3 , apoint_at: Date.today, deadline: Date.today, description: 'はひふへほ', priority: 3},
+  { title: '状況調査について', department: '開発部', employee_id: 3, customer: 'ブッホ・コンツェルン', customeruser_id: 26 , package: '生産管理システム', feature_id: 1 , apoint_at: Date.today, deadline: Date.today, description: 'まみむめも', priority: 3}
 ]
 )

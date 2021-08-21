@@ -32,7 +32,7 @@
        <%= link_to 'クリア', url_for, class: "btn btn-info" %>
     <% end %>
   <br>
-    <button type="button" class="btn btn-warning" type="button"><%= link_to "状況管理", id: "check_list" %></button>
+    <button type="button" class="btn btn-warning" type="button"><%= link_to "状況管理" , customer_managements_path(sort_checked: "true"), id: "sort_checked" %></button>
   </div>
 <hr>
 <table class="col-md-12">

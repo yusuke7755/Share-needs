@@ -16,10 +16,9 @@ ActiveRecord::Schema.define(version: 2021_08_12_003343) do
   enable_extension "plpgsql"
 
   create_table "checks", force: :cascade do |t|
-    t.bigint "project_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["project_id"], name: "index_checks_on_project_id"
+    t.bigint "employee_id", null: false
+    t.string "customername", null: false
+    t.index ["employee_id"], name: "index_checks_on_employee_id"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -100,7 +99,7 @@ ActiveRecord::Schema.define(version: 2021_08_12_003343) do
     t.index ["feature_id"], name: "index_projects_on_feature_id"
   end
 
-  add_foreign_key "checks", "projects"
+  add_foreign_key "checks", "employees"
   add_foreign_key "customerusers", "customers"
   add_foreign_key "features", "packages"
   add_foreign_key "projects", "customerusers"
