@@ -2,7 +2,7 @@
 
 開発環境
 ---
-・Ruby 2.6.5
+・Ruby 2.7.4
 ・Rails 5.2.6
 
 就業Tarmの技術
@@ -19,7 +19,6 @@
 ```
 $ git clone git@github.com:yusuke7755/Share-needs.git
 $ cd Share-needs
-$ rails g kaminari:views bootstrap4
 $ bundle install
 $ rails db:create
 $ rails db:migrate

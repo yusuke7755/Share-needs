@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.5'
+ruby '2.7.4'
 
 gem 'rails', '~> 5.2.5'
 gem 'pg', '>= 0.18', '< 2.0'
@@ -25,8 +25,8 @@ gem 'cancancan'
 gem 'ransack'
 gem 'kaminari'
 
-gem 'jquery-rails'
 gem 'therubyracer'
+gem 'jquery-rails'
 gem 'less-rails'
 
 group :development, :test do
