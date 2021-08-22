@@ -15,7 +15,6 @@ class CustomerManagementsController < ApplicationController
     @employee = Employee.where(department_id: params[:department][:department_id])
   end
 
-
   def index
     @q = Project.ransack(params[:q])
     if params[:sort_checked].present?
@@ -37,8 +36,6 @@ class CustomerManagementsController < ApplicationController
       @projects = @q.result.order("apoint_at asc").page(params[:page]).per(5)
     end
 
-     
-
   end
 
   def search
@@ -51,10 +48,8 @@ class CustomerManagementsController < ApplicationController
     @package = Package.all
   end
 
-  
   def show
   end
-
 
   def update
     #binding.pry
@@ -69,13 +64,13 @@ class CustomerManagementsController < ApplicationController
   def create
 
     #所属部署の社員であるかチェックする
-#      checkdepartment = Department.where(name: project_params[:department])
-#      checkemployee = Employee.where(id: project_params[:employee_id])
-# binding.pry
-#      if checkdepartment.id != checkemployee.department_id
-#        errors.add("所属部署の社員を選択してください")
-#        throw(:abort)
-#      end
+     checkdepartment = Department.where(name: project_params[:department])
+     checkemployee = Employee.where(id: project_params[:employee_id])
+binding.pry
+     if checkdepartment.id != checkemployee.department_id
+       errors.add("所属部署の社員を選択してください")
+       throw(:abort)
+     end
 
     @project =Project.new(project_params)
     # binding.pry
