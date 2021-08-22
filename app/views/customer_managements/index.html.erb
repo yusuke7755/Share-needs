@@ -48,6 +48,8 @@
       </tr>
     </thead>
     <tbody>
+
+    <% if @projects != nil %>
       <% @projects.each do |pt| %>
       <tr class="table-info">
         <td><%= pt.department %></td>  
@@ -65,10 +67,14 @@
           <% end %>
         </td>
         <td><button type="button" class="btn btn-info" type="button"><%= link_to '詳細', customer_management_path(pt), id: "project_report_view" %></td>
-      </tr>
+        </tr>
       <% end %>
+    <% end %>
+
     </tbody>
+  <% if @projects != nil %>
   <%= paginate @projects %> 
+  <% end %>
 </table>
 <br>
 <br>

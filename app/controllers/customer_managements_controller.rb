@@ -64,20 +64,19 @@ class CustomerManagementsController < ApplicationController
   def create
 
     #所属部署の社員であるかチェックする
-     checkdepartment = Department.where(name: project_params[:department])
-     checkemployee = Employee.where(id: project_params[:employee_id])
-binding.pry
-     if checkdepartment.id != checkemployee.department_id
-       errors.add("所属部署の社員を選択してください")
-       throw(:abort)
-     end
+#      checkdepartment = Department.where(name: project_params[:department])
+#      checkemployee = Employee.where(id: project_params[:employee_id])
+# binding.pry
+#      if checkdepartment.id != checkemployee.department_id
+#        errors.add("所属部署の社員を選択してください")
+#        throw(:abort)
+#      end
 
     @project =Project.new(project_params)
     # binding.pry
       if @project.save
         redirect_to new_customer_management_path  flash[:notice] = "レポートが作成されました。"
       else
-        binding.pry
         redirect_to new_customer_management_path  flash[:notice] = "レポートの作成が失敗しました。"
       end
   end
