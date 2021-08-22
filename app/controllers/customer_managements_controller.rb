@@ -63,15 +63,6 @@ class CustomerManagementsController < ApplicationController
 
   def create
 
-    #所属部署の社員であるかチェックする
-#      checkdepartment = Department.where(name: project_params[:department])
-#      checkemployee = Employee.where(id: project_params[:employee_id])
-# binding.pry
-#      if checkdepartment.id != checkemployee.department_id
-#        errors.add("所属部署の社員を選択してください")
-#        throw(:abort)
-#      end
-
     @project =Project.new(project_params)
     # binding.pry
       if @project.save
@@ -92,7 +83,6 @@ class CustomerManagementsController < ApplicationController
   end
 
   def project_params
-    # binding.pry
     params.require(:project).permit(:title, :employee_id, :department, :customer, :customeruser_id, :package, :feature_id, :description, :apoint_at, :priority, :deadline  )
   end
 
