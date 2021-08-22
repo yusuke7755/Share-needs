@@ -5,6 +5,6 @@
     "@nathanvda/cocoon": "^1.2.14",
     "bootstrap": "4",
     "jquery": "^3.6.0",
-    "popper.js": "^1.16.1"
+    "popper.js": "1"
   }
 }
