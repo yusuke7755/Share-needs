@@ -5,9 +5,9 @@ class CustomerManagementsController < ApplicationController
 
   def new
     @project = Project.new
-    @department = Department.where(web_flg: true)
-    @customer = Customer.all
-    @package = Package.all
+    @department = Department.employees.where(web_flg: true)
+    @customer = Customer.customerusers.all
+    @package = Package.features.all
   end
   
   def set_employee
@@ -64,7 +64,6 @@ class CustomerManagementsController < ApplicationController
   def create
 
     @project =Project.new(project_params)
-    # binding.pry
       if @project.save
         redirect_to new_customer_management_path  flash[:notice] = "レポートが作成されました。"
       else

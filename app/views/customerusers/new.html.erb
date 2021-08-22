@@ -16,7 +16,7 @@
 <%= form_with(model: @user, local: true) do |user| %>
 
 
-<%= user.select :customer_id, options_for_select(Customer.all.map{|customer| [customer.name, customer.id]}) %>
+<%= user.select :customer_id, options_for_select(@customer.all.map{|customer| [customer.name, customer.id]}) %>
 
   <div class="customeruser">
     <%= user.label :department %><br>
