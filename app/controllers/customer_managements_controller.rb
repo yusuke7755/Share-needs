@@ -5,9 +5,9 @@ class CustomerManagementsController < ApplicationController
 
   def new
     @project = Project.new
-    @department = Department.employees.where(web_flg: true)
-    @customer = Customer.customerusers.all
-    @package = Package.features.all
+    @department = Department.where(web_flg: true)
+    @customer = Customer.all
+    @package = Package.all
   end
   
   def set_employee
