@@ -19,19 +19,17 @@
     <%= form.label :title %><br>
     <%= form.text_field :title %>
   </div>
+
   <br>
 
     <h4>部署：担当</h4>
-
-  <div>
 
 <%
 =begin%>
  <%= form.select :employee_id, options_for_select(@employee.all.map{|emp| [( emp.departmentname+' ：' + emp.name ) , emp.id]}) %> 
 <%
 =end%>
-
-  </div>
+  <div>
     <table>
     <% @department.all.each do |dm| %>
       <tr>
@@ -49,6 +47,7 @@
       </tr>
     <% end %>
     </table>
+
   </div>
 <br>
     <h4>企業名/お客様名</h4>
@@ -86,7 +85,7 @@
     <%= form.select :package, Project.enum_packages.keys %>
   </div> 
 <%
-=end%>
+=end %>
     <table>
     <% @package.all.each do |pcg| %>
       <tr>

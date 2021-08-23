@@ -50,4 +50,4 @@ https://drive.google.com/file/d/1idOktwzkJB12V8L5DuC9tyyhwpqTPWjS/view?usp=shari
 画面遷移図
 ---
 https://drive.google.com/file/d/1taogbdZQEJaoXw1g0DkoXcUon53GtFhQ/view?usp=sharing
-![卒業課題-画面遷移図2](https://user-images.githubusercontent.com/81786073/130401517-af045f1d-5add-42bd-aba6-4efb18f856ac.png)
+![卒業課題-画面遷移図2](https://user-images.githubusercontent.com/81786073/130403779-25306950-a8fd-4300-a95b-8ba7bbaeca23.png)
