@@ -28,25 +28,38 @@ class CustomerManagementsController < ApplicationController
     @q = @projects.ransack(params[:q])
     if params[:sort_checked].present?
 
-      @check = Check.where(employee_id: current_employee.id)
-      if @check.count > 0
+          @check = Check.where(employee_id: current_employee.id)
+          if @check.count > 0
 
-        @customer = []
-        @check.all.each do |ck|
-          @customer << ck.customeruser_id
-        end
+            @customer = []
+            @check.all.each do |ck|
+              @customer << ck.customeruser_id
+            end
 
-        @projects = Project.where(customeruser_id: @customer).page(params[:page]).per(5)
-        
-      else
-         flash[:notice] = "状況管理しているものはありません。"
-      end
-    elsif params[:search].present?
-      # binding.pry
-          @projects = Project.join(:employee).where(deparatment_id: param[:department])if params[:search][:department].present?
-          @projects = @projects.join(:employee).where(customer_id: param[:customer])if params[:search][:customer].present?
-         
-          @projects = @q.result.order("apoint_at asc").page(params[:page]).per(5)
+            @projects = Project.where(customeruser_id: @customer).page(params[:page]).per(5)
+            
+          else
+              flash[:notice] = "状況管理しているものはありません。"
+          end
+
+    # elsif params[:search].present?
+    #    binding.pry 
+    #       if params[:search][:department_id].present?
+    #         binding.pry
+    #         # @projects = @projects.joins(:employees).where(employees: { deparatment_id: params[:search][:department_id] }) 
+    #         @projects = @projects.joins(:employees).select(' employees.*, departments.*').where(id: params[:search][:department_id] ) 
+    #         binding.pry
+    #       end
+
+    #       if params[:search][:customer_id].present?
+    #         binding.pry
+    #         @projects = @projects.joins(:employees).where(employees: { customer_id: params[:search][:customer_id] })
+    #       end
+
+    #       @projects = @projects.order(apoint_at: :ASC).page(params[:page]).per(5)
+
+    #     binding.pry
+
     else
 
       # binding.pry

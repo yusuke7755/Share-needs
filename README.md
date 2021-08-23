@@ -25,7 +25,7 @@
 ```
 $ git clone git@github.com:yusuke7755/Share-needs.git
 $ cd Share-needs
-$ yarn add jquery bootstrap@4
+$ yarn add jquery bootstrap@3
 $ bundle install
 $ rails db:create
 $ rails db:migrate
