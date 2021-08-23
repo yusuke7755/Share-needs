@@ -6,8 +6,11 @@ class CustomerManagementsController < ApplicationController
   def new
     @project = Project.new
     @department = Department.where(web_flg: true)
+    @employee = Employee.where(web_flg: true).order(department_id: :ASC).all
+    @customeruser = Customeruser.all
     @customer = Customer.all
     @package = Package.all
+    @feature = Feature.all
   end
   
   def set_employee
@@ -16,7 +19,13 @@ class CustomerManagementsController < ApplicationController
   end
 
   def index
-    @q = Project.ransack(params[:q])
+    @department = Department.where(web_flg: true)
+    @customer = Customer.all
+    # @projects = Project.left_joins(:employee ,:customeruser ,:feature).select("titles.*, employee_ids.*, customeruser_ids.*, feature_ids.*, descriptions.*, prioritys.*, deadlines.*, department_ids.*, customer_ids.*")
+    @projects = Project.all
+
+
+    @q = @projects.ransack(params[:q])
     if params[:sort_checked].present?
 
       @check = Check.where(employee_id: current_employee.id)
@@ -24,15 +33,23 @@ class CustomerManagementsController < ApplicationController
 
         @customer = []
         @check.all.each do |ck|
-          @customer << ck.customername
+          @customer << ck.customeruser_id
         end
 
-        @projects = Project.where(customer: @customer).page(params[:page]).per(5)
+        @projects = Project.where(customeruser_id: @customer).page(params[:page]).per(5)
         
       else
          flash[:notice] = "状況管理しているものはありません。"
       end
+    elsif params[:search].present?
+      # binding.pry
+          @projects = Project.join(:employee).where(deparatment_id: param[:department])if params[:search][:department].present?
+          @projects = @projects.join(:employee).where(customer_id: param[:customer])if params[:search][:customer].present?
+         
+          @projects = @q.result.order("apoint_at asc").page(params[:page]).per(5)
     else
+
+      # binding.pry
       @projects = @q.result.order("apoint_at asc").page(params[:page]).per(5)
     end
 
@@ -64,6 +81,7 @@ class CustomerManagementsController < ApplicationController
   def create
 
     @project =Project.new(project_params)
+binding.pry
       if @project.save
         redirect_to new_customer_management_path  flash[:notice] = "レポートが作成されました。"
       else
@@ -82,7 +100,7 @@ class CustomerManagementsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:title, :employee_id, :department, :customer, :customeruser_id, :package, :feature_id, :description, :apoint_at, :priority, :deadline  )
+    params.require(:project).permit(:title, :employee_id, :customeruser_id, :feature_id, :description, :apoint_at, :priority, :deadline  )
   end
 
 end

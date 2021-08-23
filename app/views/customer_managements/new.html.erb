@@ -21,10 +21,16 @@
   </div>
   <br>
 
-    <h4>担当</h4>
+    <h4>部署：担当</h4>
+
   <div>
-    <% form.label :department %>
-    <%= form.select :department, Project.enum_departments.keys %>
+
+<%
+=begin%>
+ <%= form.select :employee_id, options_for_select(@employee.all.map{|emp| [( emp.departmentname+' ：' + emp.name ) , emp.id]}) %> 
+<%
+=end%>
+
   </div>
     <table>
     <% @department.all.each do |dm| %>
@@ -34,7 +40,7 @@
         </th>
           <td>
           <div>
-            <% Employee.where(department_id: dm.id).all.each do |emp| %>
+            <% @employee.where(department_id: dm.id).all.each do |emp| %>
               <%= form.radio_button :employee_id, emp.id %>
             <%= emp.name %><br>
           <% end %>
@@ -46,9 +52,13 @@
   </div>
 <br>
     <h4>企業名/お客様名</h4>
-  <div>
+  <%
+=begin%>
+ <div>
     <%= form.select :customer, Project.enum_customers.keys %>
-  </div>
+  </div> 
+<%
+=end%>
   <div>
     <table>
     <% @customer.each do |ct| %>
@@ -58,7 +68,7 @@
         </th>
           <td>
           <div>
-            <% Customeruser.where(customer_id: ct.id).all.each do |usr| %>
+            <% @customeruser.where(customer_id: ct.id).all.each do |usr| %>
               <%= form.radio_button :customeruser_id, usr.id %>
               <%= usr.name %><br>
             <% end %>
@@ -69,10 +79,14 @@
     </table>
   </div>
 <br>
-  <div>
     <h4>システム/機能</h4>
+  <%
+=begin%>
+ <div>
     <%= form.select :package, Project.enum_packages.keys %>
-  </div>
+  </div> 
+<%
+=end%>
     <table>
     <% @package.all.each do |pcg| %>
       <tr>
@@ -81,7 +95,7 @@
         </th>
           <td>
           <div>
-            <% Feature.where(package_id: pcg.id).all.each do |ft| %>
+            <% @feature.where(package_id: pcg.id).all.each do |ft| %>
               <%= form.radio_button :feature_id, ft.id %>
               <%= ft.name %><br>
             <% end %>

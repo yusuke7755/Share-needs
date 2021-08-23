@@ -34,6 +34,8 @@ class DeviseCreateEmployees < ActiveRecord::Migration[5.2]
 
       t.string :name
       t.references :department
+      t.string :departmentname
+      t.boolean :web_flg  , default: false ,null: false
       t.integer :position
       t.boolean :admin  , default: false ,null: false
 

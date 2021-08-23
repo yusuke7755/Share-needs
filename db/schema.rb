@@ -17,7 +17,8 @@ ActiveRecord::Schema.define(version: 2021_08_12_003343) do
 
   create_table "checks", force: :cascade do |t|
     t.bigint "employee_id", null: false
-    t.string "customername", null: false
+    t.bigint "customeruser_id", null: false
+    t.index ["customeruser_id"], name: "index_checks_on_customeruser_id"
     t.index ["employee_id"], name: "index_checks_on_employee_id"
   end
 
@@ -32,6 +33,7 @@ ActiveRecord::Schema.define(version: 2021_08_12_003343) do
 
   create_table "customerusers", force: :cascade do |t|
     t.bigint "customer_id"
+    t.string "customername"
     t.string "department"
     t.string "name", null: false
     t.string "email", default: ""
@@ -57,6 +59,8 @@ ActiveRecord::Schema.define(version: 2021_08_12_003343) do
     t.datetime "remember_created_at"
     t.string "name"
     t.bigint "department_id"
+    t.string "departmentname"
+    t.boolean "web_flg", default: false, null: false
     t.integer "position"
     t.boolean "admin", default: false, null: false
     t.datetime "created_at", null: false
@@ -69,6 +73,7 @@ ActiveRecord::Schema.define(version: 2021_08_12_003343) do
   create_table "features", force: :cascade do |t|
     t.string "name", null: false
     t.bigint "package_id"
+    t.string "packagename", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["package_id"], name: "index_features_on_package_id"
@@ -82,11 +87,8 @@ ActiveRecord::Schema.define(version: 2021_08_12_003343) do
 
   create_table "projects", force: :cascade do |t|
     t.string "title", null: false
-    t.string "department", null: false
     t.bigint "employee_id", null: false
-    t.string "customer", null: false
     t.bigint "customeruser_id", null: false
-    t.string "package", null: false
     t.bigint "feature_id", null: false
     t.date "apoint_at", null: false
     t.date "deadline"
@@ -99,6 +101,7 @@ ActiveRecord::Schema.define(version: 2021_08_12_003343) do
     t.index ["feature_id"], name: "index_projects_on_feature_id"
   end
 
+  add_foreign_key "checks", "customerusers"
   add_foreign_key "checks", "employees"
   add_foreign_key "customerusers", "customers"
   add_foreign_key "features", "packages"

@@ -14,6 +14,12 @@
 ---
 ・ransack
 
+その他
+---
+・bootstrap
+・cancancan
+・rails_admin
+
 実行手順
 ---
 ```
@@ -44,4 +50,4 @@ https://drive.google.com/file/d/1idOktwzkJB12V8L5DuC9tyyhwpqTPWjS/view?usp=shari
 画面遷移図
 ---
 https://drive.google.com/file/d/1taogbdZQEJaoXw1g0DkoXcUon53GtFhQ/view?usp=sharing
-![卒業課題-画面遷移図2](https://user-images.githubusercontent.com/81786073/128354482-13b72167-517c-42e2-a380-2d7c11afc6d6.jpg)
+![卒業課題-画面遷移図2](https://user-images.githubusercontent.com/81786073/130401517-af045f1d-5add-42bd-aba6-4efb18f856ac.png)

@@ -10,9 +10,7 @@ class Project < ApplicationRecord
   validates :feature_id, presence: true
   validates :customeruser_id, presence: true
   validates :employee_id, presence: true
-  validates :department, presence: true
-  validates :customer, presence: true
-  validates :package, presence: true
+
 
   #リストボックスを作成
   #部署情報
