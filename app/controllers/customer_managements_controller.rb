@@ -48,7 +48,7 @@ class CustomerManagementsController < ApplicationController
             @projects = @projects.order(apoint_at: :ASC).page(params[:page]).per(5)
 
           else
-            binding.pry
+
               flash[:notice] = "状況管理しているものはありません。"
               @projects = @q.result.order("apoint_at asc").page(params[:page]).per(5)
           end
@@ -97,11 +97,9 @@ class CustomerManagementsController < ApplicationController
 
   end
 
-  def search
+  def show
   end
-
   def top
-
   end
 
   def edit
