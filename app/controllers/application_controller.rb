@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_out_path_for(resource)
-    new_employee_session_path # ログアウト後に遷移するpathを設定
+    root_path # ログアウト後に遷移するpathを設定
   end
   def configure_permitted_parameters
     # 新規登録時にemployeeの取得を許可

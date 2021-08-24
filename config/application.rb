@@ -20,5 +20,6 @@ module ShereNeeds
     config.i18n.available_locales = [:ja, :en]
     #画像の設定
     config.assets.initialize_on_precompile = false
+
   end
 end

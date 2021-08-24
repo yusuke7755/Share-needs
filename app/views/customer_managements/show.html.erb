@@ -80,7 +80,7 @@
         </tr>
         <tr class="table-info">
             <td>
-           <button type="button" class="btn btn-warning" type="button"><%= link_to "状況管理" , checks_path(employee_id: current_employee.id , customeruser_id: @project.customeruser_id), method: :post , id: "check_list" %></button> 
+           <button type="button" class="btn btn-warning" type="button"><%= link_to "状況管理" , checks_path(employee_id: current_employee.id , customer_id: @project.customeruser.customer_id), method: :post , id: "check_list" %></button> 
 
           <% if current_employee.id == @project.employee_id %>　　
             <button type="button" class="btn btn-success" type="button"><%= link_to "編集", edit_customer_management_path, id: "back_to_menu" %></button>

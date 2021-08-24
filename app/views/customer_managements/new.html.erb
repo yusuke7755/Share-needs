@@ -1,7 +1,5 @@
 <main>
 
-<br>
-  <h4>レポート登録</h4>
    <% if @project.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
@@ -12,7 +10,10 @@
       </ul>
     </div>
   <% end %>
-
+<br>
+<button type="button" class="btn btn-info" type="button"><%= link_to "戻る", customer_managements_path, id: "back_to_menu" %></button>
+<br>
+  <h4>レポート登録</h4>
 <%= form_with(model: @project, url: customer_managements_path, local: true) do |form| %>
 
   <div>
@@ -21,9 +22,7 @@
   </div>
 
   <br>
-
     <h4>部署：担当</h4>
-
 <%
 =begin%>
  <%= form.select :employee_id, options_for_select(@employee.all.map{|emp| [( emp.departmentname+' ：' + emp.name ) , emp.id]}) %> 

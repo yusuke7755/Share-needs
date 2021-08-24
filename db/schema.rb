@@ -17,8 +17,8 @@ ActiveRecord::Schema.define(version: 2021_08_12_003343) do
 
   create_table "checks", force: :cascade do |t|
     t.bigint "employee_id", null: false
-    t.bigint "customeruser_id", null: false
-    t.index ["customeruser_id"], name: "index_checks_on_customeruser_id"
+    t.bigint "customer_id", null: false
+    t.index ["customer_id"], name: "index_checks_on_customer_id"
     t.index ["employee_id"], name: "index_checks_on_employee_id"
   end
 
@@ -101,7 +101,7 @@ ActiveRecord::Schema.define(version: 2021_08_12_003343) do
     t.index ["feature_id"], name: "index_projects_on_feature_id"
   end
 
-  add_foreign_key "checks", "customerusers"
+  add_foreign_key "checks", "customers"
   add_foreign_key "checks", "employees"
   add_foreign_key "customerusers", "customers"
   add_foreign_key "features", "packages"
