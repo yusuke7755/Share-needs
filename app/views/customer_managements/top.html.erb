@@ -8,7 +8,7 @@
     <p>このサイトは会社内の活動の情報を共有するサイトです。</p>
     <p>関心があれば、覗いてください。</p>
   </div>
-  <h2><%= link_to 'ログイン' , new_employee_session_path %></h2>
+  <h2><%= link_to 'ログイン' , new_employee_session_path , id: "login" %></h2>
 <br>
 <br>
 <br>
@@ -16,7 +16,7 @@
 
 
     <ul class="guest_login">
-      <li><%= link_to 'ゲスト一般者ログイン' , employees_guest_sign_in_path, method: :post %></li>
-      <li><%= link_to 'ゲスト管理者ログイン' , employees_admin_guest_sign_in_path , method: :post %></li>
+      <li><%= link_to 'ゲスト一般者ログイン' , employees_guest_sign_in_path, method: :post , id: "employee_login"%></li>
+      <li><%= link_to 'ゲスト管理者ログイン' , employees_admin_guest_sign_in_path , method: :post , id: "admin_login"%></li>
     </ul>
 </div>

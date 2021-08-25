@@ -14,7 +14,7 @@
         <% if employee_signed_in? %>
           <li class="col-md-3"><%= "Share-needs" %></li>
           <li class="col-md-6"><%= current_employee.name %> さん、お疲れ様です</li>
-          <li class="col-md-3"><%= link_to 'Logout', destroy_employee_session_path, method: :delete %>
+          <li class="col-md-3"><%= link_to 'Logout', destroy_employee_session_path, method: :delete , id: "logout1" %></li>
         <% else %>
           <li class="col-md-3"><%= "Share-needs" %></li>
           <li class="col-md-9"></li>
@@ -33,7 +33,7 @@
         <% if employee_signed_in? %>
           <li class="col-md-3"><%= "Share-needs" %></li>
           <li class="col-md-6"><%= "" %></li>
-          <li class="col-md-3"><%= link_to 'Logout', destroy_employee_session_path, method: :delete %>
+          <li class="col-md-3" ><%= link_to 'Logout', destroy_employee_session_path, method: :delete , id: "logout2" %></li>
         <% else %>
           <li class="col-md-3"><%= "Share-needs" %></li>
           <li class="col-md-12"></li>
