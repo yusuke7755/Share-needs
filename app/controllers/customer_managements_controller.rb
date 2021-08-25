@@ -1,6 +1,7 @@
 class CustomerManagementsController < ApplicationController
   before_action :authenticate_employee! , except: %i[top]
   before_action :set_project, only: %i[edit update show]
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
   def new
     @project = Project.new
@@ -20,7 +21,6 @@ class CustomerManagementsController < ApplicationController
   def index
     @department = Department.where(web_flg: true)
     @customer = Customer.all
-    # @projects = Project.left_joins(:employee ,:customeruser ,:feature).select("titles.*, employee_ids.*, customeruser_ids.*, feature_ids.*, descriptions.*, prioritys.*, deadlines.*, department_ids.*, customer_ids.*")
     @projects = Project.all
     @q = @projects.ransack(params[:q])
 
@@ -93,12 +93,26 @@ class CustomerManagementsController < ApplicationController
 
       # binding.pry
       @projects = @q.result.order("apoint_at asc").page(params[:page]).per(5)
+
     end
 
   end
 
   def show
+      # @getchk = current_employee.checks
+      # @list = []
+      # @getchk.each.do |chk|
+    # @setcuser = Customeruser.where(customer_id: @list.customer_id)
+
+    # @chklist=[] 
+    # @setuser.all.each do |chk|
+    #   @chklist << chk.id
+    # end
+
   end
+
+
+
   def top
   end
 
@@ -111,11 +125,12 @@ class CustomerManagementsController < ApplicationController
 
 
   def update
-    #binding.pry
+
     if @project.update(project_params)
-      redirect_to customer_managements_path  flash[:notice] = "レポートが編集されました。"
+      redirect_to customer_managements_path  notice: "レポートが編集されました。"
     else
-      redirect_to customer_managements_path  flash[:notice] = "レポートの編集が失敗しました。"
+     # notice:  "レポートの編集が失敗しました。"
+      render :edit
     end
   end
 
@@ -124,9 +139,10 @@ class CustomerManagementsController < ApplicationController
 
     @project =Project.new(project_params)
       if @project.save
-        redirect_to new_customer_management_path  flash[:notice] = "レポートが作成されました。"
+        redirect_to new_customer_management_path  notice: "レポートが作成されました。"
       else
-        redirect_to new_customer_management_path  flash[:notice] = "レポートの作成が失敗しました。"
+      #  notice: "レポートの作成が失敗しました。"
+        render :new
       end
   end
 
@@ -136,9 +152,13 @@ class CustomerManagementsController < ApplicationController
     @project = Project.find(params[:id])
   end
 
-
   def project_params
     params.require(:project).permit(:title, :employee_id, :customeruser_id, :feature_id, :description, :apoint_at, :priority, :deadline  )
   end
 
+  protected
+
+  def configure_permitted_parameters
+     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :password, :departments_id, :position , :admin])
+  end
 end

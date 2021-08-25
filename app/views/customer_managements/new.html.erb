@@ -1,8 +1,12 @@
 <main>
-
-   <% if @project.errors.any? %>
+<br>
+<br>
+  <h4>レポート登録</h4>
+<%= form_with(model: @project, url: customer_managements_path, local: true) do |form| %>
+  
+  <% if @project.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+      <h2><%= pluralize(@project.errors.count) %> <%= t('view.error') %></h2>
       <ul>
       <% @project.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -10,11 +14,6 @@
       </ul>
     </div>
   <% end %>
-<br>
-<button type="button" class="btn btn-info" type="button"><%= link_to "戻る", customer_managements_path, id: "back_to_menu" %></button>
-<br>
-  <h4>レポート登録</h4>
-<%= form_with(model: @project, url: customer_managements_path, local: true) do |form| %>
 
   <div>
     <%= form.label :title %><br>
@@ -30,14 +29,14 @@
 =end%>
   <div>
     <table>
-    <% @department.all.each do |dm| %>
+    <% Department.all.each do |dm| %>
       <tr>
         <th>
           <%= dm.name %>
         </th>
           <td>
           <div>
-            <% @employee.where(department_id: dm.id).all.each do |emp| %>
+            <% Employee.where(department_id: dm.id).all.each do |emp| %>
               <%= form.radio_button :employee_id, emp.id %>
             <%= emp.name %><br>
           <% end %>
@@ -66,7 +65,7 @@
         </th>
           <td>
           <div>
-            <% @customeruser.where(customer_id: ct.id).all.each do |usr| %>
+            <% Customeruser.where(customer_id: ct.id).all.each do |usr| %>
               <%= form.radio_button :customeruser_id, usr.id %>
               <%= usr.name %><br>
             <% end %>
@@ -86,14 +85,14 @@
 <%
 =end %>
     <table>
-    <% @package.all.each do |pcg| %>
+    <% Package.all.each do |pcg| %>
       <tr>
         <th>
         <label><%= pcg.name %></label>
         </th>
           <td>
           <div>
-            <% @feature.where(package_id: pcg.id).all.each do |ft| %>
+            <% Feature.where(package_id: pcg.id).all.each do |ft| %>
               <%= form.radio_button :feature_id, ft.id %>
               <%= ft.name %><br>
             <% end %>
@@ -143,7 +142,7 @@
   <%= form.submit "レポート作成"  %>
 <% end %>
   <br>
-<button type="button" class="btn btn-info" type="button"><%= link_to "戻る", customer_managements_path, id: "back_to_menu" %></button>
+<button type="button" class="btn btn-info"><%= link_to "戻る", customer_managements_path, id: "back_to_menu" %></button>
   <br>
   <br>
   <br>

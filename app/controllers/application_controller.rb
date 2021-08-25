@@ -12,8 +12,6 @@ class ApplicationController < ActionController::Base
     root_path # ログアウト後に遷移するpathを設定
   end
   def configure_permitted_parameters
-    # 新規登録時にemployeeの取得を許可
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :password, :departments_id, :position , :admin])
-
+     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :password, :departments_id, :position , :admin])
   end
 end

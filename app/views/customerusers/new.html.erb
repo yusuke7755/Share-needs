@@ -1,22 +1,20 @@
 <main>
+<br>
+<br>
+<%= form_with(model: @customeruser, local: true) do |user| %>
   <h2>ユーザ登録</h2>
-   <% if @user.errors.any? %>
+   <% if @customeruser.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <h2><%= pluralize(@customeruser.errors.count) %> <%= t('view.error') %></h2>
       <ul>
-      <% @user.errors.full_messages.each do |message| %>
+        <% @customeruser.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
-
-<p></p>
-
-<%= form_with(model: @user, local: true) do |user| %>
-
-
-<%= user.select :customer_id, options_for_select(@customer.all.map{|customer| [customer.name, customer.id]}) %>
+<br>
+<%= user.select :customer_id, options_for_select(Customer.all.map{|customer| [customer.name, customer.id]}) %>
 
   <div class="customeruser">
     <%= user.label :department %><br>
@@ -48,9 +46,10 @@
   <div class="actions">
     <%= user.submit '登録' %>
   </div>
- 
+<br>
+<br>
 <% end %>
-<button type="button" class="btn btn-info" type="button"><%= link_to "戻る", customer_managements_path, id: "back_to_menu" %></button>
+<button type="button" class="btn btn-info" ><%= link_to "戻る", customer_managements_path, id: "back_to_menu" %></button>
 <br>
 <br>
 <br>

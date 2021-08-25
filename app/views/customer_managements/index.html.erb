@@ -2,15 +2,15 @@
   <br>
   <% if current_employee.try(:admin?) %>
     <h6>管理者管理画面</h6>
-    <button type="button" class=" btn btn-info" type="button"><%= link_to "マスタ登録", rails_admin_path , id: "employee_create" %></button>
+    <button type="button" class=" btn btn-info"><%= link_to "マスタ登録", rails_admin_path , id: "employee_create" %></button>
   <% else %>
     <h6>メニュー画面</h6>
   <% end %>
 <hr>
   <br>
   <div>
-    <button type="button" class="btn btn-danger" type="button"><%= link_to "新規作成", new_customer_management_path(customer_id: @customer_id, count: @count), id: "create_report" %></button>
-    <button type="button" class="btn btn-success" type="button"><%= link_to "ユーザ登録", new_customeruser_path, id: "system_user_create" %></button>
+    <button type="button" class="btn btn-danger"><%= link_to "レポート作成", new_customer_management_path(customer_id: @customer_id, count: @count), id: "create_report" %></button>
+    <button type="button" class="btn btn-success" ><%= link_to "顧客登録", new_customeruser_path, id: "customer_user_create" %></button>
   </div>
   <br>
 <hr>
@@ -89,7 +89,7 @@
               低
           <% end %>
         </td>
-        <td><button type="button" class="btn btn-info" type="button"><%= link_to '詳細', customer_management_path(pt), id: "project_report_view" %></td>
+        <td><button type="button" class="btn btn-info" ><%= link_to '詳細', customer_management_path(pt), id: "project_report_view" %></td>
         </tr>
       <% end %>
     <% end %> 
