@@ -12,7 +12,8 @@ Department.create!(
   { name: 'サポート部', web_flg: true},
   { name: '開発部', web_flg: true},
   { name: '総務部', web_flg: false},
-  { name: '事業部', web_flg: false}
+  { name: '事業部', web_flg: false},
+  { name: '訪問客', web_flg: false}
 ]
 )
 

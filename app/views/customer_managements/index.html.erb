@@ -9,14 +9,13 @@
 <hr>
   <br>
   <div>
-    <button type="button" class="btn btn-danger"><%= link_to "レポート作成", new_customer_management_path(customer_id: @customer_id, count: @count), id: "create_report" %></button>
-    <button type="button" class="btn btn-success" ><%= link_to "顧客登録", new_customeruser_path, id: "customer_user_create" %></button>
+    <button type="button" class="btn btn-danger"><%= link_to "レポート作成", new_customer_management_path, id: "create_report" %></button>
+    <button type="button" class="btn btn-success" ><%= link_to "顧客登録", customerusers_path, id: "customer_index" %></button>
   </div>
   <br>
 <hr>
 
-
- <div class="form-group">
+  <div class="form-group">
   <%= form_with(scope: :search, url: customer_managements_path, method: :get, local: true) do |f| %>
       <li><%= f.label :department, '部署名' %><br>
       <li  id ="department"><%= f.select :department_id, options_for_select(@department.all.map{|department| [department.name, department.id]}), include_blank: ('選択してください') %><li/>
@@ -78,8 +77,8 @@
         <td><%= pt.employee.departmentname %></td>  
         <td><%= pt.title %></td>
         <td><%= pt.customeruser.customername %></td>
-        <td><%= pt.apoint_at.strftime("%Y年%m月%d日") %></td>
-        <td><%= pt.deadline.strftime("%Y年%m月%d日") %></td>
+        <td><%= pt.apoint_at %></td>
+        <td><%= pt.deadline %></td>
         <td>
           <% if pt.priority = 1 %>
               高

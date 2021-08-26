@@ -9,11 +9,6 @@ ja:
       feature: 機能情報
       check: 状況管理
       project: 顧客レポート
-      projectprogress: 顧客管理経過情報
-      projectmember: 顧客担当者
-      projectdepartment: 顧客担当部署
-      projectfeature: 顧客システム機能
-      projectuser: 顧客利用者情報
     # model毎に定義したいattributesを記述
     attributes:
         employee:
@@ -25,18 +20,18 @@ ja:
           position: 役職
           admin: 管理者権限
         package:
-          package_name: システム名
+          name: システム名
         feature:
-          feature_name: 機能名
+          name: 機能名
           package_id: システムid
         customer:
-          customer_name: 会社名
+          cname: 会社名
           address: 住所
           tel: 電話番号
           user_flg: ユーザフラグ
         customeruser:
           department: 部署名
-          user_name: 名前
+          name: 名前
           email: Eメール
           tel: 電話番号
           meta: 備考

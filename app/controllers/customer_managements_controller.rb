@@ -1,6 +1,6 @@
 class CustomerManagementsController < ApplicationController
   before_action :authenticate_employee! , except: %i[top]
-  before_action :set_project, only: %i[edit update show]
+  before_action :set_project, only: %i[edit update show destroy]
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def new
@@ -12,11 +12,6 @@ class CustomerManagementsController < ApplicationController
     @package = Package.all
     @feature = Feature.all
   end
-  
-  def set_employee
-    # employeesをdepartment_idで絞り込んで取得する。
-    @employee = Employee.where(department_id: params[:department][:department_id])
-  end
 
   def index
     @department = Department.where(web_flg: true)
@@ -24,73 +19,71 @@ class CustomerManagementsController < ApplicationController
     @projects = Project.all
     @q = @projects.ransack(params[:q])
 
-
     if params[:sort_checked].present?
 
-          @check = Check.where(employee_id: current_employee.id)
+      @check = Check.where(employee_id: current_employee.id)
 
-          if @check.count > 0
+      if @check.count > 0
 
-            #親データから子データを絞り込み
-            @customer = []
-            @check.all.each do |ck|
-              @customer << ck.customer_id
-            end
-            @cuser = Customeruser.where(customer_id: @customer)
+        #親データから子データを絞り込み
+        @customer = []
+        @check.all.each do |ck|
+        @customer << ck.customer_id
+        end
+        @cuser = Customeruser.where(customer_id: @customer)
 
-            #絞り込んだデータから作成物のIDを取り出す
-            @customeruser=[]
-            @cuser.all.each do |cid|
-              @customeruser << cid.id
-            end
+        #絞り込んだデータから作成物のIDを取り出す
+        @customeruser=[]
+        @cuser.all.each do |cid|
+          @customeruser << cid.id
+        end
 
-            @projects = Project.where(customeruser_id: @customeruser)
-            @projects = @projects.order(apoint_at: :ASC).page(params[:page]).per(5)
+        @projects = Project.where(customeruser_id: @customeruser)
+        @projects = @projects.order(apoint_at: :ASC).page(params[:page]).per(5)
 
-          else
+      else
 
-              flash[:notice] = "状況管理しているものはありません。"
-              @projects = @q.result.order("apoint_at asc").page(params[:page]).per(5)
-          end
+        flash[:notice] = "状況管理しているものはありません。"
+        @projects = @q.result.order(apoint_at: :ASC).page(params[:page]).per(5)
+
+      end
 
     elsif params[:search].present?
 
-          if params[:search][:department_id].present?
+      if params[:search][:department_id].present?
 
-            #親データから子データを絞り込み
-            @employee = Employee.where(department_id: params[:search][:department_id])
+        #親データから子データを絞り込み
+        @employee = Employee.where(department_id: params[:search][:department_id])
 
-            #絞り込んだデータから作成物を取り出す
-            @emp_id=[]
-            @employee.all.each do |emp|
-              @emp_id << emp.id
-            end
+        #絞り込んだデータから作成物を取り出す
+        @emp_id=[]
+        @employee.all.each do |emp|
+          @emp_id << emp.id
+        end
 
-            @projects = Project.where(employee_id: @emp_id)
+        @projects = Project.where(employee_id: @emp_id)
 
-          end
+      end
 
-          if params[:search][:customer_id].present?
+      if params[:search][:customer_id].present?
 
-            #親データから子データを絞り込み
-            @cuser = Customeruser.where(customer_id: params[:search][:customer_id])
+        #親データから子データを絞り込み
+        @cuser = Customeruser.where(customer_id: params[:search][:customer_id])
 
-            #絞り込んだデータから作成物を取り出す
-            #絞り込んだデータから作成物のIDを取り出す
-            @cuser_id=[]
-            @cuser.all.each do |cuser|
-              @cuser_id << cuser.id
-            end
+        #絞り込んだデータから作成物を取り出す
+        #絞り込んだデータから作成物のIDを取り出す
+        @cuser_id=[]
+        @cuser.all.each do |cuser|
+          @cuser_id << cuser.id
+        end
 
-            @projects = Project.where(customeruser_id: @cuser_id)
+        @projects = Project.where(customeruser_id: @cuser_id)
 
+      end
 
-          end
-
-          @projects = @projects.order(apoint_at: :ASC).page(params[:page]).per(5)
+      @projects = @projects.order(apoint_at: :ASC).page(params[:page]).per(5)
 
     else
-
       # binding.pry
       @projects = @q.result.order("apoint_at asc").page(params[:page]).per(5)
 
@@ -99,19 +92,8 @@ class CustomerManagementsController < ApplicationController
   end
 
   def show
-      # @getchk = current_employee.checks
-      # @list = []
-      # @getchk.each.do |chk|
-    # @setcuser = Customeruser.where(customer_id: @list.customer_id)
-
-    # @chklist=[] 
-    # @setuser.all.each do |chk|
-    #   @chklist << chk.id
-    # end
-
+      @getchk = Check.where(employee_id: current_employee.id)
   end
-
-
 
   def top
   end
@@ -123,25 +105,29 @@ class CustomerManagementsController < ApplicationController
     @package = Package.all
   end
 
+  def destroy
+    @project.destroy
+    redirect_to customer_managements_path flash[:notice] = "作成したレポートが削除されました。" 
+  end
 
   def update
 
     if @project.update(project_params)
-      redirect_to customer_managements_path  notice: "レポートが編集されました。"
+      redirect_to customer_managements_path  flash[:notice] = "レポートが編集されました。"
     else
-     # notice:  "レポートの編集が失敗しました。"
+     # notice: "レポートの編集が失敗しました。"
       render :edit
     end
-  end
 
+  end
 
   def create
 
     @project =Project.new(project_params)
       if @project.save
-        redirect_to new_customer_management_path  notice: "レポートが作成されました。"
+        redirect_to new_customer_management_path flash[:notice] ="レポートが作成されました。"
       else
-      #  notice: "レポートの作成が失敗しました。"
+        # notice: "レポートの作成が失敗しました。"
         render :new
       end
   end
@@ -159,6 +145,7 @@ class CustomerManagementsController < ApplicationController
   protected
 
   def configure_permitted_parameters
-     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :password, :departments_id, :position , :admin])
+     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :password, :department_id, :position , :admin])
   end
+
 end
