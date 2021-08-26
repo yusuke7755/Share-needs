@@ -13,7 +13,6 @@ class Project < ApplicationRecord
   validates :feature_id, presence: true
   validates :customeruser_id, presence: true
   validates :employee_id, presence: true
-
   validates :customer_id, presence: true
   validates :department_id, presence: true
   validates :package_id, presence: true
@@ -22,7 +21,6 @@ class Project < ApplicationRecord
 
   # 入力した日付を取得してチェックを行う
   def ensure_check_date
-    binding.pry
     chkdate1 = self.apoint_at
     chkdate2 = self.deadline
     if self.deadline != nil

@@ -74,9 +74,9 @@
  <% if @projects != nil %>
       <% @projects.each do |pt| %>
       <tr class="table-info">
-        <td><%= pt.employee.departmentname %></td>  
+        <td><%= pt.department.name %></td>  
         <td><%= pt.title %></td>
-        <td><%= pt.customeruser.customername %></td>
+        <td><%= pt.customer.name %></td>
         <td><%= pt.apoint_at %></td>
         <td><%= pt.deadline %></td>
         <td>
@@ -96,7 +96,7 @@
 
     </tbody>
   <% if @projects != nil %>
-  <%= paginate @projects %> 
+    <%= paginate @projects %> 
   <% end %>
 </table>
 <br>

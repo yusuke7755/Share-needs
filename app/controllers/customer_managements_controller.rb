@@ -92,7 +92,7 @@ class CustomerManagementsController < ApplicationController
   end
 
   def show
-      @getchk = Check.where(employee_id: current_employee.id)
+
   end
 
   def top
@@ -139,7 +139,7 @@ class CustomerManagementsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:title, :employee_id, :customeruser_id, :feature_id, :description, :apoint_at, :priority, :deadline  )
+    params.require(:project).permit(:title, :employee_id, :department_id, :customer_id, :customeruser_id, :package_id, :feature_id, :description, :apoint_at, :priority, :deadline  )
   end
 
   protected
