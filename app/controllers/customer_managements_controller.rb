@@ -36,20 +36,11 @@ class CustomerManagementsController < ApplicationController
       end
 
     elsif params[:search].present?
-
-      if params[:search][:department_id].present?
-
-        @projects = Project.where(department_id: params[:search][:department_id])
-
-      end
-
-      if params[:search][:customer_id].present?
-
-        @projects = Project.where(customer_id: params[:search][:customer_id])
-
-      end
-
-      @projects = @projects.order(apoint_at: :ASC).page(params[:page]).per(5)
+        # あいまい検索
+        @projects = Project.all
+        @projects = @projects.where(department_id: params[:search][:department_id]) if params[:search][:department_id].present?
+        @projects = @projects.where(customer_id: params[:search][:customer_id])if params[:search][:customer_id].present?
+        @projects = @projects.order(apoint_at: :ASC).page(params[:page]).per(5)
 
     else
 
@@ -60,7 +51,8 @@ class CustomerManagementsController < ApplicationController
   end
 
   def show
-
+    project = Project.find(params[:id])
+    @check = current_employee.checks.find_by(customer_id: project.customer_id)
   end
 
   def top
