@@ -79,22 +79,16 @@
         </tr>
         <tr class="table-info">
           <td>
-      <% binding.pry %>
-      <% if Check.all.count != 0 %> 
-        <% @chkid each do |chkid| %>
-            <% if chkid.customer_id != @project.customer.customer_id %>
-              <button type="button" class="btn btn-warning" ><%= link_to "状況管理する" , checks_path(employee_id: current_employee.id , customer_id: @project.customeruser.customer_id), method: :post , id: "check_list" %></button>
-            <% else %>
-              <button type="button" class="btn btn-warning" ><%= link_to "状況管理から外す" , checks_path(employee_id: current_employee.id , customer_id: @project.customeruser.customer_id), method: :post , id: "check_list" %></button>
-              <% break %>
-            <% end %>
-        <% end %> 
-      <% end %>
+              <button type="button" class="btn btn-warning" ><%= link_to "状況管理する" , checks_path(employee_id: current_employee.id , customer_id: @project.customeruser.customer_id), method: :post , id: "check_in" %></button>
+               <button type="button" class="btn btn-warning" ><%= link_to "状況管理から外す" , check_path(employee_id: current_employee.id , customer_id: @project.customeruser.customer_id), method: :delete , id: "check_out" %></button>
+          </td>
+        </tr>
+        <tr class="table-info">
+          <td>
             <% if current_employee.id == @project.employee_id %>　　
               <button type="button" class="btn btn-success" ><%= link_to "編集", edit_customer_management_path, id: "back_to_menu" %></button>
               <button type="button" class="btn btn-danger" ><%= link_to "削除", customer_management_path(id: @project.id), method: :delete, data: { confirm: '記載している情報が削除されます。よろしいですか？' } ,id: "delete_report" %></button>
             <% end %>
- 
           </td>
         </tr>
       </table>

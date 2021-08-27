@@ -7,7 +7,17 @@ class ChecksController < ApplicationController
 
     if @datacheck.count < 1
       checks = current_employee.checks.create(customer_id: params[:customer_id])
-      redirect_to customer_managements_path nflash[:notice] = "状況確認を確認したい企業に設定しました。"
+      redirect_to customer_managements_path flash[:notice] = "状況確認を確認したい会社に設定しました。"
+    else
+      redirect_to customer_managements_path flash[:notice] = "既に状況確認に設定されてます。"
+    end
+  end
+
+  def destroy
+    @datacheck = Check.where(customer_id: params[:customer_id])
+
+    if @datacheck.count == 0
+      redirect_to customer_managements_path flash[:notice] = "状況確認に設定されてません。"
     else
       checks = current_employee.checks.find_by(customer_id: params[:customer_id]).destroy
       redirect_to customer_managements_path flash[:notice] = "状況確認を解除にしました。"

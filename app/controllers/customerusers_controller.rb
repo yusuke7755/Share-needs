@@ -42,9 +42,7 @@ class CustomerusersController < ApplicationController
     if @customeruser.update(customeruser_params)
       redirect_to customerusers_path  flash[:notice] = "ユーザ情報が編集されました。"
     else
-
       render :edit
-
     end
 
   end

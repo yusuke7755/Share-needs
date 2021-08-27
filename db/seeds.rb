@@ -118,7 +118,7 @@ Project.create!(
   { title: '見積もり商談', department_id: 1, employee_id: 3, customer_id: 10, customeruser_id: 29, package_id: 3, feature_id: 3 , apoint_at: Date.today, deadline: Date.today, description: 'さしすせそ', priority: 1},
   { title: 'システム操作について', department_id: 2, employee_id: 1, customer_id: 1, customeruser_id: 1 , package_id: 4, feature_id: 1 , apoint_at: Date.today, deadline: Date.today, description: 'たちつてと', priority: 1},
   { title: 'システム障害対応', department_id: 2, employee_id: 2, customer_id: 4 , customeruser_id: 11 , package_id: 5, feature_id: 2 , apoint_at: Date.today, deadline: Date.today, description: 'なにぬねの', priority: 2},
-  { title: 'カスタマイズ対応', department_id: 2, employee_id: 3, customer_id: 8 , customeruser_id: 23 , package_id: 1, feature_id: 3 , apoint_at: Date.today, deadline: Date.today, description: 'はひふへほ', priority: 3},
-  { title: '状況調査について', department_id: 2, employee_id: 3, customer_id: 9 , customeruser_id: 26 , package_id: 2, feature_id: 1 , apoint_at: Date.today, deadline: Date.today, description: 'まみむめも', priority: 3}
+  { title: 'カスタマイズ対応', department_id: 3, employee_id: 3, customer_id: 8 , customeruser_id: 23 , package_id: 1, feature_id: 3 , apoint_at: Date.today, deadline: Date.today, description: 'はひふへほ', priority: 3},
+  { title: '状況調査について', department_id: 3, employee_id: 3, customer_id: 9 , customeruser_id: 26 , package_id: 2, feature_id: 1 , apoint_at: Date.today, deadline: Date.today, description: 'まみむめも', priority: 3}
 ]
 )

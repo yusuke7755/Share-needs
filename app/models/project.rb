@@ -18,6 +18,7 @@ class Project < ApplicationRecord
   validates :package_id, presence: true
 
   before_save :ensure_check_date
+  before_save :ensure_department_check
 
   # 入力した日付を取得してチェックを行う
   def ensure_check_date
@@ -31,6 +32,56 @@ class Project < ApplicationRecord
     end
   end
 
+  # 入力した部署と社員の一致
+  def ensure_department_check
+
+    getemployee = Employee.select("department_id").where(id: self.employee_id)
+    chkdepartmentid1=""
+    getemployee.all.each do |dp|
+      chkdepartmentid1 = dp.department_id 
+    end
+
+    chkdepartmentid2 = self.department_id
+
+    if chkdepartmentid1 != chkdepartmentid2
+        errors.add :base, '部署と所属社員を一致させてください'
+        throw :abort
+    end
+  end
+
+  # 入力した会社とユーザーの一致
+  def ensure_department_check
+    getcustomer = Customeruser.select("customer_id").where(id: self.customeruser_id)
+    chkdcustomerid1 = ""
+    getcustomer.all.each do |ct|
+      chkdcustomerid1 = ct.customer_id 
+    end
+
+    chkcustomerid2 = self.customer_id
+
+    if chkdcustomerid1 != chkcustomerid2
+        errors.add :base, '対象の会社と顧客を一致させてください'
+        throw :abort
+    end
+  end
+
+  # システムと機能の一致
+  def ensure_department_check
+    getfeature = Feature.select("package_id").where(id: self.feature_id)
+    chkdpackage1=""
+    binding.pry
+    getfeature.all.each do |ft|
+      chkdpackage1 = ft.package_id 
+    end
+
+    chkpackage2 = self.package_id
+
+    binding.pry
+    if chkdpackage1 != chkpackage2
+        errors.add :base, 'システムと機能を一致させてください'
+        throw :abort
+    end
+  end
 
   # #リストボックスを作成
   # #部署情報
