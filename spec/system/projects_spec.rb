@@ -47,30 +47,186 @@ RSpec.describe "レポート作成関連", type: :system do
 
     end
 
-    # it '顧客検索する' do
+    it 'レポート検索：部署検索' do
 
-    #   #ログインユーザー
-    #   FactoryBot.create(:employee1)
-    #   #企業
-    #   customer = FactoryBot.create(:customer)
+      #部署
+      department1 = FactoryBot.create(:department1)
+      department2 = FactoryBot.create(:department2)
+      #ログインユーザー
+      employee1 = FactoryBot.create(:employee2, department: department1)
+      employee2 = FactoryBot.create(:employee3, department: department2)
+      #会社
+      customer1 = FactoryBot.create(:customer1)
+      customer2 = FactoryBot.create(:customer2)
+      #利用者
+      customeruser1 = FactoryBot.create(:customeruser1, customer: customer1)
+      customeruser2 = FactoryBot.create(:customeruser2, customer: customer2)
+      #パッケージ
+      package = FactoryBot.create(:package1)
+      #機能
+      feature = FactoryBot.create(:feature1, package: package)
 
-    #   #利用者
-    #   FactoryBot.create(:customeruser1, customer: customer)
-    #   FactoryBot.create(:customeruser2, customer: customer)
-    #   visit root_path
-    #   click_link 'login'
-    #   fill_in 'employee_email', with: 'user1@gmail.com'
-    #   fill_in 'employee_password', with: 'password'
-    #   click_button 'login'
-    #   #ユーザー登録に移動
-    #   click_button '顧客登録'
-    #   #リストから選択
-    #   select "中川コンツェルン", from: "search_customer_id"
-    #   click_button '検索'
-    #   expect(page).to have_content '山田太郎'
+      #レポート
+      FactoryBot.create(:project2, customer: customer1 , customeruser: customeruser1, department: department1, employee: employee1, package: package, feature: feature )
+      FactoryBot.create(:project3, customer: customer2 , customeruser: customeruser2, department: department1, employee: employee1, package: package, feature: feature )
+      FactoryBot.create(:project4, customer: customer2 , customeruser: customeruser2, department: department2, employee: employee2, package: package, feature: feature )
 
-    # end
-  
+      visit root_path
+      click_link 'login'
+      fill_in 'employee_email', with: 'user2@gmail.com'
+      fill_in 'employee_password', with: 'password'
+      click_button 'login'
+      #リストから選択
+      select '営業部', from: 'search[department_id]'
+      click_button '部署・会社 検索'
+      expect(page).to have_content  '営業部'
+
+    end
+
+    it 'レポート検索：会社検索' do
+
+      #部署
+      department1 = FactoryBot.create(:department1)
+      department2 = FactoryBot.create(:department2)
+      #ログインユーザー
+      employee1 = FactoryBot.create(:employee2, department: department1)
+      employee2 = FactoryBot.create(:employee3, department: department2)
+      #会社
+      customer1 = FactoryBot.create(:customer1)
+      customer2 = FactoryBot.create(:customer2)
+      #利用者
+      customeruser1 = FactoryBot.create(:customeruser1, customer: customer1)
+      customeruser2 = FactoryBot.create(:customeruser2, customer: customer2)
+      #パッケージ
+      package = FactoryBot.create(:package1)
+      #機能
+      feature = FactoryBot.create(:feature1, package: package)
+
+      #レポート
+      FactoryBot.create(:project2, customer: customer1 , customeruser: customeruser1, department: department1, employee: employee1, package: package, feature: feature )
+      FactoryBot.create(:project3, customer: customer2 , customeruser: customeruser2, department: department1, employee: employee1, package: package, feature: feature )
+      FactoryBot.create(:project4, customer: customer2 , customeruser: customeruser2, department: department2, employee: employee2, package: package, feature: feature )
+
+      visit root_path
+      click_link 'login'
+      fill_in 'employee_email', with: 'user2@gmail.com'
+      fill_in 'employee_password', with: 'password'
+      click_button 'login'
+      #リストから選択
+      select 'サカタインダストリィ', from: 'search[customer_id]'
+      click_button '部署・会社 検索'
+      expect(page).to have_content  'サカタインダストリィ'
+
+    end
+
+    it 'レポート検索：部署・会社 検索' do
+
+      #部署
+      department1 = FactoryBot.create(:department1)
+      department2 = FactoryBot.create(:department2)
+      #ログインユーザー
+      employee1 = FactoryBot.create(:employee2, department: department1)
+      employee2 = FactoryBot.create(:employee3, department: department2)
+      #会社
+      customer1 = FactoryBot.create(:customer1)
+      customer2 = FactoryBot.create(:customer2)
+      #利用者
+      customeruser1 = FactoryBot.create(:customeruser1, customer: customer1)
+      customeruser2 = FactoryBot.create(:customeruser2, customer: customer2)
+      #パッケージ
+      package = FactoryBot.create(:package1)
+      #機能
+      feature = FactoryBot.create(:feature1, package: package)
+
+      #レポート
+      FactoryBot.create(:project2, customer: customer1 , customeruser: customeruser1, department: department1, employee: employee1, package: package, feature: feature )
+      FactoryBot.create(:project3, customer: customer2 , customeruser: customeruser2, department: department1, employee: employee1, package: package, feature: feature )
+      FactoryBot.create(:project4, customer: customer2 , customeruser: customeruser2, department: department2, employee: employee2, package: package, feature: feature )
+
+      visit root_path
+      click_link 'login'
+      fill_in 'employee_email', with: 'user2@gmail.com'
+      fill_in 'employee_password', with: 'password'
+      click_button 'login'
+      #リストから選択
+      select '営業部', from: 'search[department_id]'
+      select '霧島重工株式会社', from: 'search[customer_id]'
+      click_button '部署・会社 検索'
+      expect(page).to have_content  '営業部'
+      expect(page).to have_content  '霧島重工株式会社'
+
+    end
+
+    it 'レポート検索：タイトル・部分一致 検索' do
+
+      #部署
+      department1 = FactoryBot.create(:department1)
+      department2 = FactoryBot.create(:department2)
+      #ログインユーザー
+      employee1 = FactoryBot.create(:employee2, department: department1)
+      employee2 = FactoryBot.create(:employee3, department: department2)
+      #会社
+      customer1 = FactoryBot.create(:customer1)
+      customer2 = FactoryBot.create(:customer2)
+      #利用者
+      customeruser1 = FactoryBot.create(:customeruser1, customer: customer1)
+      customeruser2 = FactoryBot.create(:customeruser2, customer: customer2)
+      #パッケージ
+      package = FactoryBot.create(:package1)
+      #機能
+      feature = FactoryBot.create(:feature1, package: package)
+
+      #レポート
+      FactoryBot.create(:project2, customer: customer1 , customeruser: customeruser1, department: department1, employee: employee1, package: package, feature: feature )
+      FactoryBot.create(:project3, customer: customer2 , customeruser: customeruser2, department: department1, employee: employee1, package: package, feature: feature )
+      FactoryBot.create(:project4, customer: customer2 , customeruser: customeruser2, department: department2, employee: employee2, package: package, feature: feature )
+
+      visit root_path
+      click_link 'login'
+      fill_in 'employee_email', with: 'user2@gmail.com'
+      fill_in 'employee_password', with: 'password'
+      click_button 'login'
+      #タイトル選択
+      fill_in 'q[title_cont]', with: 'レポート'
+      click_button 'タイトル 検索'
+      expect(page).to have_content  'レポート検索'
+
+    end
+
+    it 'レポート詳細確認' do
+
+      #部署
+      department1 = FactoryBot.create(:department1)
+      department2 = FactoryBot.create(:department2)
+      #ログインユーザー
+      employee1 = FactoryBot.create(:employee2, department: department1)
+      employee2 = FactoryBot.create(:employee3, department: department2)
+      #会社
+      customer1 = FactoryBot.create(:customer1)
+      customer2 = FactoryBot.create(:customer2)
+      #利用者
+      customeruser1 = FactoryBot.create(:customeruser1, customer: customer1)
+      customeruser2 = FactoryBot.create(:customeruser2, customer: customer2)
+      #パッケージ
+      package = FactoryBot.create(:package1)
+      #機能
+      feature = FactoryBot.create(:feature1, package: package)
+
+      #レポート
+      FactoryBot.create(:project2, customer: customer1 , customeruser: customeruser1, department: department1, employee: employee1, package: package, feature: feature )
+      FactoryBot.create(:project3, customer: customer2 , customeruser: customeruser2, department: department1, employee: employee1, package: package, feature: feature )
+      FactoryBot.create(:project4, customer: customer2 , customeruser: customeruser2, department: department2, employee: employee2, package: package, feature: feature )
+
+      visit root_path
+      click_link 'login'
+      fill_in 'employee_email', with: 'user2@gmail.com'
+      fill_in 'employee_password', with: 'password'
+      click_button 'login'
+      #詳細ボタン確認
+       all('tr td')[6].click_link 
+       expect(page).to have_content  'レポート検索'
+    end
+
     # it '顧客編集する' do
 
     #   #ログインユーザー

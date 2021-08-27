@@ -1,6 +1,7 @@
 <main>
 <br>
-<button type="button" class="btn btn-info" ><%= link_to "戻る", customer_management_path, id: "back_to_show" %></button>
+<%= form_with(model: @projects, url: customer_management_path, local: true) do |form| %>
+
 <br>
 <br>
 <h1>レポート編集</h1>
@@ -14,7 +15,7 @@
       </ul>
     </div>
   <% end %>
-<%= form_with(model: @projects, url: customer_management_path, local: true) do |form| %>
+
   <div>
     <%= form.label :title %><br>
     <%= form.text_field :title %>

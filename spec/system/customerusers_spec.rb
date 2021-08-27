@@ -118,7 +118,7 @@ RSpec.describe "取引先の顧客登録", type: :system do
 
     end
 
-    it 'レポートに登録した顧客を削除する' do
+    it 'レポートに登録した顧客を削除出来ない' do
 
       #ログインユーザー
       employee = FactoryBot.create(:employee1)
@@ -131,7 +131,7 @@ RSpec.describe "取引先の顧客登録", type: :system do
       package = FactoryBot.create(:package1)
       #機能
       feature = FactoryBot.create(:feature1, package: package)
-      #利用者
+      #レポート
       FactoryBot.create(:project1, customer: customer , customeruser: customeruser, employee: employee, package: package, feature: feature )
       visit root_path
       click_link 'login'
