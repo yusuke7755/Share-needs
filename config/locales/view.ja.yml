@@ -1,8 +1,8 @@
 ja:
   view:
     error: 件のエラーがあります
-    Customer: 会社
-    Package: システム
+    Customer: 会社名
+    Package: システム名
     apoint_at: 日付
     title: タイトル
     edit: 編集

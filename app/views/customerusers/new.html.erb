@@ -14,8 +14,9 @@
     </div>
   <% end %>
 <br>
-  <%= user.select :customer_id, options_for_select(Customer.all.map{|customer| [customer.name, customer.id]}) %>
-
+  <label for="customer_id", disabled: true> 会社名 </label><br>
+  <%= user.select :customer_id, options_for_select(Customer.all.map{|customer| [customer.name, customer.id]}) , { include_blank: '選択してください'} %>
+  
   <div class="customeruser">
     <%= user.label :department %><br>
     <%= user.text_field :department ,:placeholder => " 所属部署・など記入してください。" %>

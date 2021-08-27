@@ -38,6 +38,7 @@ group :development, :test do
  # gem "factory_girl_rails"
   gem 'faker'
   gem 'launchy'
+  gem 'database_cleaner'
 end
 
 group :development do
@@ -51,6 +52,7 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   gem 'webdrivers'
+
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

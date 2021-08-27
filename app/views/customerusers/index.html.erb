@@ -2,14 +2,14 @@
   <h3>顧客検索</h3>
   <div class="form-group">
   <%= form_with(scope: :search, url: customerusers_path, method: :get, local: true) do |f| %>
-      <li><%= f.label :customer, '会社名' %><li/>
+      <li><%= f.label :customer, '会社名', disabled: true %><li/>
       <li  id ="customer"><%= f.select :customer_id, options_for_select(Customer.all.map{|customer| [customer.name, customer.id]}), include_blank: ('選択してください') %><li/>
       <br>
-      <li id= "search"><%= f.submit '検索', class: "btn btn-primary"%><li/>
+      <li id= "search"><%= f.submit '検索', class: "btn btn-primary" , id: "customer_search" %><li/>
   <% end %>
   </div>
 
-  <button type="button" class="btn btn-danger"><%= link_to "新規登録", new_customeruser_path(customer_id: @customer_id, count: @count), id: "create_report" %></button>
+  <button type="button" class="btn btn-danger"><%= link_to "新規登録", new_customeruser_path(customer_id: @customer_id, count: @count), id: "create_user" %></button>
   <br>
 
 <hr>

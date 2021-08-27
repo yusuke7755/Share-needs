@@ -69,45 +69,17 @@ class Project < ApplicationRecord
   def ensure_department_check
     getfeature = Feature.select("package_id").where(id: self.feature_id)
     chkdpackage1=""
-    binding.pry
+
     getfeature.all.each do |ft|
       chkdpackage1 = ft.package_id 
     end
 
     chkpackage2 = self.package_id
 
-    binding.pry
     if chkdpackage1 != chkpackage2
         errors.add :base, 'システムと機能を一致させてください'
         throw :abort
     end
   end
 
-  # #リストボックスを作成
-  # #部署情報
-  # departments= Department.where(web_flg: true).all
-  # department_names = departments.map(&:name)
-  # department_enum_hash = {}
-  # department_names.each_with_index do |name, i|
-  # department_enum_hash.store(name, i)
-  # end
-  # enum enum_departments: department_enum_hash
-
-  # #顧客情報
-  # customers = Customer.all
-  # customer_names = customers.map(&:name)
-  # customer_enum_hash = {}
-  # customer_names.each_with_index do |name, i|
-  # customer_enum_hash.store(name, i)
-  # end
-  # enum enum_customers: customer_enum_hash
-
-  # #システム情報
-  # packages = Package.all
-  # package_names = packages.map(&:name)
-  # package_enum_hash = {}
-  # package_names.each_with_index do |name, i|
-  # package_enum_hash.store(name, i)
-  # end
-  # enum enum_packages: package_enum_hash
 end

@@ -24,7 +24,7 @@
   <br>
     <h4>部署：担当</h4>
 
-    <%= form.select :department_id, options_for_select(Department.where( web_flg: true ).all.map{|dpt| [( dpt.name ) , dpt.id]} , {selected: current_employee.department.id}) %> 
+    <%= form.select :department_id, options_for_select(Department.where( web_flg: true ).all.map{|dpt| [( dpt.name ) , dpt.id]} , {selected: current_employee.department.id}), { include_blank: '選択してください'}  %> 
 
   <div>
     <table>
