@@ -74,6 +74,13 @@ RSpec.describe '顧客管理機能', type: :model do
       end
     end
 
+    context '内容がない場合' do
+      it 'バリデーションにひっかる' do
+        project = Project.new(title: 'エラーテスト', employee_id: '1' , customeruser_id: '1' , feature_id: '1' , department_id: '1' , package_id: '1' , customer_id: '1' , apoint_at: '2021-08-29' , deadline: '2021-08-28' , description: '' , priority: 1)
+        expect(project).not_to be_valid
+      end
+    end
+
     context '内容の文字数が超えた時(400)' do
       it 'バリデーションにひっかる' do
         project = Project.new(title: 'エラーテスト', employee_id: '1' , customeruser_id: '1' , feature_id: '1' , department_id: '1' , package_id: '1' , customer_id: '1' , apoint_at: '2021-08-29' , deadline: '2021-08-28' , description: '12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901' , priority: 1)
