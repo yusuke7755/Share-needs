@@ -44,7 +44,8 @@ https://drive.google.com/file/d/1pT88tiV-_ksw-8aDCkFVx6Y_RFODWrFk/view?usp=shari
 ER図
 ---
 https://drive.google.com/file/d/1idOktwzkJB12V8L5DuC9tyyhwpqTPWjS/view?usp=sharing
-![卒業課題ER図](https://user-images.githubusercontent.com/81786073/130455814-4b64ba92-3d19-4d8a-a5e8-e3a7ce6d11d2.png)
+![卒業課題ER図](https://user-images.githubusercontent.com/81786073/131232757-9d841dcc-52b5-4bfc-8bf7-62374be47459.jpg)
+
 
 
 画面遷移図
