@@ -17,10 +17,8 @@ class CustomerusersController < ApplicationController
   end
 
   def edit
-
     @Customeruser = Customeruser.find(params[:id])
     @customer = Customer.where(id: @Customeruser.customer_id)
-
   end
 
   def destroy
@@ -38,20 +36,20 @@ class CustomerusersController < ApplicationController
   end
 
   def update
-
     if @customeruser.update(customeruser_params)
       redirect_to customerusers_path  flash[:notice] = "ユーザ情報が編集されました。"
     else
       render :edit
     end
-
   end
 
   def create
+    @customer = Customer.all
     @customeruser = Customeruser.new(customeruser_params)
     if @customeruser.save
       redirect_to new_customeruser_path flash[:notice] = "ユーザ登録しました。"
     else
+
       render :new
     end
   end

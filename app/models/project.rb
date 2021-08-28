@@ -10,15 +10,25 @@ class Project < ApplicationRecord
   validates :title, presence: true, length: { maximum: 100 }
   validates :description, presence: true, length: { maximum: 400 }
   validates :apoint_at, presence: true
-  validates :feature_id, presence: true
-  validates :customeruser_id, presence: true
+  validates :feature_id, uniqueness: { scope: [:package_id, :feature_id] }
+  validates :customeruser_id, uniqueness: { scope: [ :customer_id, :customeruser_id] }
   validates :employee_id, presence: true
   validates :customer_id, presence: true
   validates :department_id, presence: true
-  validates :package_id, presence: true
+   validates :package_id, presence: true
+  #  validates :customer_id, uniqueness: { scope: [ :customeruser_id] }
+  #  validates :department_id, uniqueness: { scope: [:department_id] }
+  #  validates :package_id, uniqueness: { scope: [:package_id] }
 
   before_save :ensure_check_date
   before_save :ensure_department_check
+  before_save :ensure_customer_check
+  before_save :ensure_package_check
+
+  before_update :ensure_check_date
+  before_update :ensure_department_check
+  before_update :ensure_customer_check
+  before_update :ensure_package_check
 
   # 入力した日付を取得してチェックを行う
   def ensure_check_date
@@ -34,7 +44,6 @@ class Project < ApplicationRecord
 
   # 入力した部署と社員の一致
   def ensure_department_check
-
     getemployee = Employee.select("department_id").where(id: self.employee_id)
     chkdepartmentid1=""
     getemployee.all.each do |dp|
@@ -50,7 +59,7 @@ class Project < ApplicationRecord
   end
 
   # 入力した会社とユーザーの一致
-  def ensure_department_check
+  def ensure_customer_check
     getcustomer = Customeruser.select("customer_id").where(id: self.customeruser_id)
     chkdcustomerid1 = ""
     getcustomer.all.each do |ct|
@@ -66,10 +75,9 @@ class Project < ApplicationRecord
   end
 
   # システムと機能の一致
-  def ensure_department_check
+  def ensure_package_check
     getfeature = Feature.select("package_id").where(id: self.feature_id)
     chkdpackage1=""
-
     getfeature.all.each do |ft|
       chkdpackage1 = ft.package_id 
     end

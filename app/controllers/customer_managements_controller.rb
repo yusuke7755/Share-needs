@@ -5,6 +5,12 @@ class CustomerManagementsController < ApplicationController
 
   def new
     @project = Project.new
+    @department = Department.where(web_flg: true)
+    @customer = Customer.all
+    @package = Package.all
+    @customeruser = Customeruser.all
+    @feature = Feature.all
+    @employee = Employee.all
   end
 
   def index
@@ -59,10 +65,11 @@ class CustomerManagementsController < ApplicationController
   end
 
   def edit
-    @projects = Project.find(params[:id])
+    @project = Project.find(params[:id])
     @department = Department.where(web_flg: true)
-    @customer = Customer.all
-    @package = Package.all
+    @customer = Customer.where(id:  @project.customer_id)
+    @package = Package.where(id:  @project.package_id)
+
   end
 
   def destroy
@@ -71,7 +78,10 @@ class CustomerManagementsController < ApplicationController
   end
 
   def update
-
+    @project = Project.find(params[:id])
+    @department = Department.where(web_flg: true)
+    @customer = Customer.where(id:  @project.customer_id)
+    @package = Package.where(id:  @project.package_id)
     if @project.update(project_params)
       redirect_to customer_managements_path  flash[:notice] = "レポートが編集されました。"
     else
@@ -82,7 +92,12 @@ class CustomerManagementsController < ApplicationController
   end
 
   def create
-
+    @department = Department.where(web_flg: true)
+    @customer = Customer.all
+    @package = Package.all
+    @customeruser = Customeruser.all
+    @feature = Feature.all
+    @employee = Employee.all
     @project =Project.new(project_params)
       if @project.save
         redirect_to new_customer_management_path flash[:notice] ="レポートが作成されました。"

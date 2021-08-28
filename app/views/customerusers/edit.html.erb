@@ -12,12 +12,14 @@
       </ul>
     </div>
   <% end %>
+
 <br>
     <h6>会社名</h6>
   <% @customer.each do |ct| %>
     <h4><%= ct.name %></h4>
   <% end %>
 <br>
+
   <div class="customeruser">
     <%= user.label :department %><br>
     <%= user.text_field :department ,:placeholder => " 所属部署・など記入してください。" %>

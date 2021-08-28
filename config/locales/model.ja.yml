@@ -30,12 +30,19 @@ ja:
           tel: 電話番号
           user_flg: ユーザフラグ
         customeruser:
+          Customer: 会社名
           department: 部署名
           name: 名前
           email: Eメール
           tel: 電話番号
           meta: 備考
         project:
+          department: 部署
+          employee: 従業員
+          customer: 会社名
+          customeruser: お客様
+          package: システム
+          feature: 機能
           title: タイトル
           description: 内容
           apoint_at: 面談日時
@@ -45,3 +52,9 @@ ja:
   attributes:
     created_at: 作成日
     updated_at: 更新日
+    department: 部署
+    employee: 従業員
+    customer: 会社名
+    customeruser: お客様
+    package: システム
+    feature: 機能

@@ -29,19 +29,6 @@
   <div>
     <%= search_form_for @q ,url: customer_managements_path do |f| %>
 
-    <%
-=begin%>
- <div class="form-group">
-        <%= f.label :department_cont, "部署名" %>
-        <%= f.select :department_ids , options_for_select(@customer.all.map{|customer| [customer.name, customer.id]})%>
-    </div>
-    <div class="form-group">
-        <%= f.label :customer_cont, "会社名" %>
-        <%= f.search_field :customer_cont , class: "form-control", placeholder: "部分一致"%>
-    </div>  
-<%
-=end%>
-
     <div class="form-group">
         <%= f.label :title_cont, "タイトル" %>
         <%= f.search_field :title_cont , class: "form-control", placeholder: "部分一致"%>

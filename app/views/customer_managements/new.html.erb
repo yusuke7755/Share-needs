@@ -24,18 +24,18 @@
   <br>
     <h4>部署：担当</h4>
 
-    <%= form.select :department_id, options_for_select(Department.where( web_flg: true ).all.map{|dpt| [( dpt.name ) , dpt.id]} , {selected: current_employee.department.id}), { include_blank: '選択してください'}  %> 
+    <%= form.select :department_id, options_for_select(@department.all.map{|dpt| [( dpt.name ) , dpt.id]} , {selected: current_employee.department.id}), { include_blank: '選択してください'}  %> 
 
   <div>
     <table>
-    <% Department.where(web_flg: true).all.each do |dm| %>
+    <% @department.where(web_flg: true).all.each do |dm| %>
       <tr>
         <th>
           <%= dm.name %>
         </th>
           <td>
           <div>
-            <% Employee.where(department_id: dm.id).all.each do |emp| %>
+            <% @employee.where(department_id: dm.id).all.each do |emp| %>
 
               <% if current_employee.id == emp.id  && current_employee.department_id == dm.id %>
 
@@ -56,18 +56,18 @@
 <br>
     <h4>企業名/お客様名</h4>
 
-    <%= form.select :customer_id, options_for_select(Customer.all.map{|cst| [( cst.name ), cst.id]}) , { include_blank: '選択してください'} %> 
+    <%= form.select :customer_id, options_for_select(@customer.all.map{|cst| [( cst.name ), cst.id]}) , { include_blank: '選択してください'} %> 
 
   <div>
     <table>
-    <% Customer.all.each do |ct| %>
+    <% @customer.all.each do |ct| %>
       <tr>
         <th>
         <label><%= ct.name %></label>
         </th>
           <td>
           <div>
-            <% Customeruser.where(customer_id: ct.id).all.each do |usr| %>
+            <% @customeruser.where(customer_id: ct.id).all.each do |usr| %>
               <%= form.radio_button :customeruser_id, usr.id %>
               <%= usr.name %><br>
             <% end %>
@@ -80,16 +80,16 @@
 <br>
     <h4>システム/機能</h4>
 
-<%= form.select :package_id, options_for_select(Package.all.map{|pcg| [( pcg.name ) ,pcg.id]} ) , { include_blank: '選択してください'}  %> 
+<%= form.select :package_id, options_for_select(@package.all.map{|pcg| [( pcg.name ) ,pcg.id]} ) , { include_blank: '選択してください'}  %> 
     <table>
-    <% Package.all.each do |pcg| %>
+    <% @package.all.each do |pcg| %>
       <tr>
         <th>
         <label><%= pcg.name %></label>
         </th>
           <td>
           <div>
-            <% Feature.where(package_id: pcg.id).all.each do |ft| %>
+            <% @feature.where(package_id: pcg.id).all.each do |ft| %>
               <%= form.radio_button :feature_id, ft.id %>
               <%= ft.name %><br>
             <% end %>
