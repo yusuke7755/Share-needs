@@ -89,7 +89,7 @@
         <tr class="table-info">
           <td>
             <% if current_employee.id == @project.employee_id %>　　
-              <button type="button" class="btn btn-success" ><%= link_to "編集", edit_customer_management_path, id: "back_to_menu" %></button>
+              <button type="button" class="btn btn-success" ><%= link_to "編集", edit_customer_management_path, id: "report_edit" %></button>
               <button type="button" class="btn btn-danger" ><%= link_to "削除", customer_management_path(id: @project.id), method: :delete, data: { confirm: '記載している情報が削除されます。よろしいですか？' } ,id: "delete_report" %></button>
             <% end %>
           </td>

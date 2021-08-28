@@ -14,11 +14,11 @@ class Project < ApplicationRecord
   validates :customeruser_id, presence: true
   # validates :feature_id, uniqueness: { scope: [:package_id] }
   # validates :customeruser_id, uniqueness: { scope: [ :customer_id] }
-  #  validates :employee_id, uniqueness: { scope: [  :employee_id] }
+  # validates :employee_id, uniqueness: { scope: [  :employee_id] }
   validates :employee_id, presence: true
   validates :customer_id, presence: true
   validates :department_id, presence: true
-   validates :package_id, presence: true
+  validates :package_id, presence: true
   #  validates :customer_id, uniqueness: { scope: [ :customeruser_id] }
   #  validates :department_id, uniqueness: { scope: [:department_id] }
   #  validates :package_id, uniqueness: { scope: [:package_id] }

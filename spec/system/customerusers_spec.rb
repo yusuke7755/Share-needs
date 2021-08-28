@@ -119,9 +119,12 @@ RSpec.describe "取引先の顧客登録", type: :system do
     end
 
     it 'レポートに登録した顧客を削除出来ない' do
+      #部署
+      department1 = FactoryBot.create(:department1)
 
       #ログインユーザー
-      employee = FactoryBot.create(:employee1)
+      employee1 = FactoryBot.create(:employee1, department: department1)
+
       #企業
       customer = FactoryBot.create(:customer)
       #利用者
@@ -132,7 +135,7 @@ RSpec.describe "取引先の顧客登録", type: :system do
       #機能
       feature = FactoryBot.create(:feature1, package: package)
       #レポート
-      FactoryBot.create(:project1, customer: customer , customeruser: customeruser, employee: employee, package: package, feature: feature )
+      FactoryBot.create(:project1, customer: customer , customeruser: customeruser, employee: employee1, department: department1, package: package, feature: feature )
       visit root_path
       click_link 'login'
       fill_in 'employee_email', with: 'user1@gmail.com'

@@ -2,7 +2,7 @@
   <br>
   <% if current_employee.try(:admin?) %>
     <h6>管理者管理画面</h6>
-    <button type="button" class=" btn btn-info"><%= link_to "マスタ登録", rails_admin_path , id: "employee_create" %></button>
+    <button type="button" class=" btn btn-info"><%= link_to "マスタ登録", rails_admin_path , id: "admin_data" %></button>
   <% else %>
     <h6>メニュー画面</h6>
   <% end %>

@@ -40,11 +40,10 @@ FactoryBot.define do
     admin { false }
   end
 
-  factory :employee6, class: Employee do
+  factory :employee7, class: Employee do
     name { '上司1' }
     email { 'admin1@gmail.com' }
     password { 'password' }
-    association :department
     admin { true }
   end
 
