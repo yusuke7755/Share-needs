@@ -1,7 +1,7 @@
 # bundle exec rspec spec/models/customerusers_spec.rb
 require 'rails_helper'
 
-RSpec.describe '顧客管理機能', type: :model do
+RSpec.describe '顧客登録', type: :model do
 
   describe 'バリデーションのテスト' do
     context '会社未選択の場合' do
