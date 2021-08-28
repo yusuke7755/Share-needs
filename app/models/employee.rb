@@ -1,5 +1,5 @@
 class Employee < ApplicationRecord
-  belongs_to  :department
+  belongs_to  :department , optional: true
   has_many :projects
   has_many :checks
   devise :database_authenticatable, :registerable,

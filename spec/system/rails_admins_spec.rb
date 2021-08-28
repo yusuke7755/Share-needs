@@ -19,6 +19,25 @@ RSpec.describe "RailsAdmins", type: :system do
         click_button 'login'
         click_button 'マスタ登録'
         expect(page).to have_content 'サイト管理'
+
+      end
+
+      it 'システム情報の登録' do
+        #部署
+        department = FactoryBot.create(:department1)
+        #ログインユーザー
+        employee = FactoryBot.create(:employee7, department: department)
+        visit root_path
+        click_link 'login'
+        fill_in 'employee_email', with: 'admin1@gmail.com'
+        fill_in 'employee_password', with: 'password'
+        click_button 'login'
+        click_button 'マスタ登録'
+        # 特定のUserの編集画面に移動する
+        all('tr td')[0].click_link 
+        click_on 'システム情報'
+        Capybara.app_host = 'http://www.google.com'
+        fill_in 'package_name', with: 'Rspecシステム'
       end
 
     end
