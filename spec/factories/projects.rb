@@ -18,12 +18,12 @@ FactoryBot.define do
     deadline { '2021-08-30' }
     description { 'rspec' }
     priority { '2' }
-    association :department
-    association :employee
-    association :customer
-    association :customeruser
-    association :package
-    association :feature
+    # association :department
+    # association :employee
+    # association :customer
+    # association :customeruser
+    # association :package
+    # association :feature
   end
 
   factory :project3, class: Project do
@@ -32,12 +32,13 @@ FactoryBot.define do
     deadline { '2021-08-30' }
     description { 'rspec' }
     priority { '3' }
-    association :department
-    association :employee
-    association :customer
-    association :customeruser
-    association :package
-    association :feature
+    # association :department
+    # association :employee
+    # association :customer
+    # association :customeruser
+    # association :package
+    # association :feature
+
   end
 
   factory :project4, class: Project do
@@ -46,12 +47,13 @@ FactoryBot.define do
     deadline { '2021-08-30' }
     description { 'rspec' }
     priority { '3' }
-    association :department
-    association :employee
-    association :customer
-    association :customeruser
-    association :package
-    association :feature
+    # association :department
+    # association :employee
+    # association :customer
+    # association :customeruser
+    # association :package
+    # association :feature
+  
   end
 
 end
