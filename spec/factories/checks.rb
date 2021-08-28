@@ -1,5 +1,7 @@
 FactoryBot.define do
-  factory :checks do
-    
+
+  factory :check , class: Check do
+
   end
+
 end
