@@ -4,7 +4,6 @@ FactoryBot.define do
     name { '中川コンツェルン' }
     address { 'test1@email.com' }
     tel { '12345678901' }
-    meta { 'ログイン・ログアウト、顧客登録用' }
     user_flg { true }
   end
 
