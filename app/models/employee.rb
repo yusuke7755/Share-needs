@@ -1,12 +1,13 @@
 class Employee < ApplicationRecord
-  belongs_to  :department , optional: true
-  has_many :projects
+  belongs_to  :department
   has_many :checks
+  has_many :projects
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
   validates :name, presence: true, length: { maximum: 50 }
-  validates :email, presence: true,length: { maximum: 50 },
+  validates :email, presence: true,length: { maximum: 100 },
   format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
   validates :encrypted_password, presence: true, length: { minimum: 6 }
   before_validation { email.downcase! }

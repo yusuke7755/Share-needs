@@ -80,7 +80,6 @@ Customeruser.create!(
   { customer_id: 10 , department: '経理部', name: '坂上田村丸', email: 'dfjeooffa@email.com', tel: '1411442284' }
   ]
 )
-
 Package.create!(
   [
   { name: '販売管理システム' },
@@ -90,7 +89,6 @@ Package.create!(
   { name: '倉庫管理システム' }
 ]
 )
-
 Feature.create!(
   [
   { name: '商品管理機能', package_id: 1 },
@@ -110,15 +108,15 @@ Feature.create!(
   { name: '倉庫管理機能', package_id: 5 }
 ]
 )
-
+sleep 3
 Project.create!(
   [
-  { title: '商品紹介について', department_id: 1, employee_id: 1, customer_id: 2, customeruser_id: 4, package_id: 1 , feature_id: 1 , apoint_at: Date.today, deadline: Date.today, description: 'あいうえお', priority: 3},
-  { title: 'デモンストレーション', department_id: 1, employee_id: 2, customer_id: 6, customeruser_id: 17, package_id: 2, feature_id: 2 , apoint_at: Date.today, deadline: Date.today, description: 'かきくけこ', priority: 2},
-  { title: '見積もり商談', department_id: 1, employee_id: 3, customer_id: 10, customeruser_id: 29, package_id: 3, feature_id: 3 , apoint_at: Date.today, deadline: Date.today, description: 'さしすせそ', priority: 1},
-  { title: 'システム操作について', department_id: 2, employee_id: 1, customer_id: 1, customeruser_id: 1 , package_id: 4, feature_id: 1 , apoint_at: Date.today, deadline: Date.today, description: 'たちつてと', priority: 1},
-  { title: 'システム障害対応', department_id: 2, employee_id: 2, customer_id: 4 , customeruser_id: 11 , package_id: 5, feature_id: 2 , apoint_at: Date.today, deadline: Date.today, description: 'なにぬねの', priority: 2},
-  { title: 'カスタマイズ対応', department_id: 3, employee_id: 3, customer_id: 8 , customeruser_id: 23 , package_id: 1, feature_id: 3 , apoint_at: Date.today, deadline: Date.today, description: 'はひふへほ', priority: 3},
-  { title: '状況調査について', department_id: 3, employee_id: 3, customer_id: 9 , customeruser_id: 26 , package_id: 2, feature_id: 1 , apoint_at: Date.today, deadline: Date.today, description: 'まみむめも', priority: 3}
+  { title: '商品紹介について', department_id: 1, employee_id: 1, customer_id: 2, customeruser_id: 6, package_id: 1 , feature_id: 2 , apoint_at: Date.today, deadline: Date.today.next_month, description: 'あいうえお', priority: 3},
+  { title: 'デモンストレーション', department_id: 1, employee_id: 1, customer_id: 6, customeruser_id: 18, package_id: 2, feature_id: 4 , apoint_at: Date.today, deadline: Date.today.next_month, description: 'かきくけこ', priority: 2},
+  { title: '見積もり商談', department_id: 1, employee_id: 1, customer_id: 10, customeruser_id: 30, package_id: 3, feature_id: 8 , apoint_at: Date.today, deadline: Date.today.next_month, description: 'さしすせそ', priority: 1},
+  { title: 'システム操作について', department_id: 2, employee_id: 2, customer_id: 1, customeruser_id: 3 , package_id: 4, feature_id: 12 , apoint_at: Date.today, deadline: Date.today.next_month, description: 'たちつてと', priority: 1},
+  { title: 'システム障害対応', department_id: 2, employee_id: 2, customer_id: 4 , customeruser_id: 12 , package_id: 5, feature_id: 14 , apoint_at: Date.today, deadline: Date.today.next_month, description: 'なにぬねの', priority: 2},
+  { title: 'カスタマイズ対応', department_id: 3, employee_id: 3, customer_id: 8 , customeruser_id: 24 , package_id: 1, feature_id: 3 , apoint_at: Date.today, deadline: Date.today.next_month, description: 'はひふへほ', priority: 3},
+  { title: '状況調査について', department_id: 3, employee_id: 3, customer_id: 9 , customeruser_id: 27 , package_id: 2, feature_id: 4 , apoint_at: Date.today, deadline: Date.today.next_month, description: 'まみむめも', priority: 3}
 ]
 )
