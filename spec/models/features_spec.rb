@@ -12,7 +12,7 @@ require 'rails_helper'
         end
       end
 
-      context '機能入力のにゅりょくオーバー(50)' do
+      context '機能入力の入力オーバー(50)' do
         it 'バリデーション処理される' do
           feature = Feature.new(name: '123456789012345678901234567890123456789012345678901', package_id: '1' )
           expect(feature).not_to be_valid
@@ -38,7 +38,7 @@ require 'rails_helper'
           expect(feature).to be_valid
         end
       end
-      
+
     end
 
     

@@ -1,26 +1,35 @@
+#bundle exec rspec spec/models/packages_spec.rb
 require 'rails_helper'
 
-RSpec.describe '顧客登録', type: :model do
+RSpec.describe 'システムの登録', type: :model do
 
   describe 'バリデーションのテスト' do
-    context 'システム名未入力の場合' do
+
+    context 'システム未入力の場合' do
       it 'バリデーション処理される' do
-        customeruser = Customeruser.new(name: '')
-        expect(customeruser).not_to be_valid
+        package = Package.new(name: '' )
+        expect(package).not_to be_valid
       end
     end
-    context '名前未記入の場合' do
-      it 'バリデーションにひっかる' do
-        customeruser = Customeruser.new(customer_id: 1, department: '失敗テスト' , name: '' , email: 'err@email.com', tel: '1234567890' , meta: '失敗テスト')
-        expect(customeruser).not_to be_valid
+
+    context 'システム入力の入力オーバー(50)' do
+      it 'バリデーション処理される' do
+        package = Package.new(name: '123456789012345678901234567890123456789012345678901' )
+        expect(package).not_to be_valid
       end
     end
-    context '名前桁あふれの場合(50)' do
-      it 'バリデーションにひっかる' do
-        customeruser = Customeruser.new(customer_id: 1, department: '失敗テスト' , name: '12345678901234567890123456789012456789012345678901' , email: 'err@email.com', tel: '1234567890' , meta: '失敗テスト')
-        expect(customeruser).not_to be_valid
+
+  end
+
+  describe '登録のテスト' do
+
+    context '全て入力されたとき' do
+      it '登録される' do
+        package = Package.new(name: '確認' )
+        expect(package).to be_valid
       end
     end
+
   end
 
 end

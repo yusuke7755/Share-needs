@@ -13,11 +13,13 @@ FactoryBot.define do
     tel { '12345678901' }
     user_flg { false }
   end
+
   factory :customer2, class: Customer do
     name { '霧島重工株式会社' }
     address { 'test3@email.com' }
     tel { '12345678901' }
     user_flg { true }
   end
-
+  
 end
+
