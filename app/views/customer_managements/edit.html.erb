@@ -27,7 +27,7 @@
   </div>
 
   <br>
-    <h4>部署：担当</h4>
+    <h5>部署：担当</h5>
 
     <%= form.select :department_id, options_for_select(Department.where( web_flg: true ).all.map{|dpt| [( dpt.name ) , dpt.id]} ), include_blank: "選択して下さい" %> 
 
@@ -53,9 +53,9 @@
   </div>
 <br>
 
-    <h4>企業名/お客様名</h4>
+    <h5>企業名/お客様名</h5>
       <% @customer.each do |ct| %>
-    <h6><%= ct.name %></h6>
+    <h4><%= ct.name %></h4>
       <% end %>
 
   <div>
@@ -78,9 +78,9 @@
     </table>
   </div>
 <br>
-    <h4>システム/機能</h4>
+    <h5>システム/機能</h5>
     <% @package.each do |pk| %>
-    <h6><%= pk.name %></h6>
+    <h4><%= pk.name %></h4>
     <% end %>
 
     <table>

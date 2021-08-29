@@ -4,7 +4,7 @@ class CreateCustomers < ActiveRecord::Migration[5.2]
       t.string :name  , null: false
       t.string :address , null: false
       t.string :tel , null: false
-      t.boolean :user_flg     , default: false ,null: false
+      t.integer :user_flg     , default: 1 ,null: false
 
       t.timestamps
     end

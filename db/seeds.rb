@@ -19,30 +19,30 @@ Department.create!(
 
 Employee.create!(
   [
-  { name: '酒見賢一', email: 'admin1@gmail.com', password: 'password', password_confirmation: 'password', admin: true, department_id: 1, position: 1, web_flg: true },
-  { name: '大和真也', email: 'admin2@gmail.com', password: 'password', password_confirmation: 'password', admin: true, department_id: 2, position: 2, web_flg: true },
-  { name: '篠月美弥', email: 'admin3@gmail.com', password: 'password', password_confirmation: 'password', admin: true, department_id: 3, position: 1, web_flg: true },
-  { name: '神坂一', email: 'user1@gmail.com', password: 'password', password_confirmation: 'password', admin: false, department_id: 1, position: 4 , web_flg: true},
-  { name: '雑賀礼史', email: 'user2@gmail.com', password: 'password', password_confirmation: 'password', admin: false, department_id: 1, position: 4, web_flg: true },
-  { name: '深沢美潮', email: 'user3@gmail.com', password: 'password', password_confirmation: 'password', admin: false, department_id: 2, position: 3 , web_flg: true},
-  { name: '仁木英之', email: 'user4@gmail.com', password: 'password', password_confirmation: 'password', admin: false, department_id: 2, position: 4 , web_flg: true},
-  { name: '鷹見一幸', email: 'user5@gmail.com', password: 'password', password_confirmation: 'password', admin: false, department_id: 3, position: 3 , web_flg: true},
-  { name: '森岡浩之', email: 'user6@gmail.com', password: 'password', password_confirmation: 'password', admin: false, department_id: 3 , position: 4 , web_flg: true}
+  { name: '酒見賢一', email: 'admin1@gmail.com', password: 'password', password_confirmation: 'password', admin: true, department_id: 1, position: 1 },
+  { name: '大和真也', email: 'admin2@gmail.com', password: 'password', password_confirmation: 'password', admin: true, department_id: 2, position: 2 },
+  { name: '篠月美弥', email: 'admin3@gmail.com', password: 'password', password_confirmation: 'password', admin: true, department_id: 3, position: 1 },
+  { name: '神坂一', email: 'user1@gmail.com', password: 'password', password_confirmation: 'password', admin: false, department_id: 1, position: 4 },
+  { name: '雑賀礼史', email: 'user2@gmail.com', password: 'password', password_confirmation: 'password', admin: false, department_id: 1, position: 4 },
+  { name: '深沢美潮', email: 'user3@gmail.com', password: 'password', password_confirmation: 'password', admin: false, department_id: 2, position: 3 },
+  { name: '仁木英之', email: 'user4@gmail.com', password: 'password', password_confirmation: 'password', admin: false, department_id: 2, position: 4 },
+  { name: '鷹見一幸', email: 'user5@gmail.com', password: 'password', password_confirmation: 'password', admin: false, department_id: 3, position: 3 },
+  { name: '森岡浩之', email: 'user6@gmail.com', password: 'password', password_confirmation: 'password', admin: false, department_id: 3 , position: 4 }
   ]
 )
 
 Customer.create!(
   [
-  { name: '中川コンツェルン', address: '東京都港区', tel: '0312345678', user_flg: true },
-  { name: 'サカタインダストリィ', address: '東京都渋谷区', tel: '0388899998', user_flg: false },
-  { name: '霧島重工株式会社', address: '東京都上野区', tel: '348948999', user_flg: false },
-  { name: '東西新聞社', address: '東京都中央区', tel: '348979925', user_flg: true },
-  { name: 'カプセルコーポレーション', address: '東京都豊島区', tel: '12345678901', user_flg: true },
-  { name: 'バロックワークス', address:'東京都新宿区', tel: '13454559154', user_flg: false },
-  { name: 'ヴァルストークファミリー', address: '東京都品川区', tel: '1446568733', user_flg: false },
-  { name: 'ZOITEC', address: '東京都文京区', tel: '7585255875' , user_flg: true },
-  { name: 'ブッホ・コンツェルン', address: '東京都墨田区', tel: '1245456297', user_flg: true },
-  { name: 'ディアブルアビオニクス', address:'東京都台東区', tel: '12345678990', user_flg: false }
+  { name: '中川コンツェルン', address: '東京都港区', tel: '0312345678', user_flg: 2 },
+  { name: 'サカタインダストリィ', address: '東京都渋谷区', tel: '0388899998', user_flg: 1 },
+  { name: '霧島重工株式会社', address: '東京都上野区', tel: '348948999', user_flg: 1 },
+  { name: '東西新聞社', address: '東京都中央区', tel: '348979925', user_flg: 2 },
+  { name: 'カプセルコーポレーション', address: '東京都豊島区', tel: '12345678901', user_flg: 2 },
+  { name: 'バロックワークス', address:'東京都新宿区', tel: '13454559154', user_flg: 1 },
+  { name: 'ヴァルストークファミリー', address: '東京都品川区', tel: '1446568733', user_flg: 1 },
+  { name: 'ZOITEC', address: '東京都文京区', tel: '7585255875' , user_flg: 2 },
+  { name: 'ブッホ・コンツェルン', address: '東京都墨田区', tel: '1245456297', user_flg: 2 },
+  { name: 'ディアブルアビオニクス', address:'東京都台東区', tel: '12345678990', user_flg: 1 }
   ]
 )
 

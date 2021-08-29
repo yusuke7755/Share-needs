@@ -54,7 +54,7 @@ RSpec.describe '顧客登録', type: :model do
     context '全て入力されたとき' do
       it '登録される' do
         # 会社名 
-        customer = FactoryBot.create(:customer)
+        customer = FactoryBot.create(:customer1)
         customeruser = Customeruser.new(customer_id: '1', department: '管理部' , name: 'テスト太郎' , email: 'pass@email.com', tel: '1234567890' , meta: '成功テスト')
         expect(customeruser).to be_valid
       end

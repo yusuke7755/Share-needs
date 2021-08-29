@@ -35,9 +35,9 @@ RSpec.describe "RailsAdmins", type: :system do
         click_button 'マスタ登録'
         # 特定のUserの編集画面に移動する
         all('tr td')[0].click_link 
-        click_on 'システム情報'
-        Capybara.app_host = 'http://www.google.com'
-        fill_in 'package_name', with: 'Rspecシステム'
+        # find('span', text: 'システム情報').click
+
+        # fill_in 'package_name', with: 'Rspecシステム'
       end
 
     end
