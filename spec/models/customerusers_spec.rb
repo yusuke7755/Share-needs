@@ -49,8 +49,6 @@ RSpec.describe '顧客登録', type: :model do
 
   end
 
-
-
   describe '登録のテスト' do
 
     context '全て入力されたとき' do
