@@ -1,6 +1,7 @@
 FactoryBot.define do
 
   factory :customer, class: Customer do
+    user_flg { true }
     name { '中川コンツェルン' }
     address { 'test1@email.com' }
     tel { '12345678901' }
@@ -11,7 +12,7 @@ FactoryBot.define do
     name { 'サカタインダストリィ' }
     address { 'test2@email.com' }
     tel { '12345678901' }
-    user_flg { false }
+    user_flg { true }
   end
 
   factory :customer2, class: Customer do

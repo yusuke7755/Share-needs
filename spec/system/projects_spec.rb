@@ -308,6 +308,43 @@ RSpec.describe "レポート作成関連", type: :system do
 
     end
 
+    it 'レポート作成者以外は編集・削除ができない' do
+
+      #部署
+      department1 = FactoryBot.create(:department1)
+      department2 = FactoryBot.create(:department2)
+      #ログインユーザー
+      employee2 = FactoryBot.create(:employee2, department: department1)
+      employee3 = FactoryBot.create(:employee3, department: department2)
+      employee4 = FactoryBot.create(:employee4, department: department2)
+      #会社
+      customer1 = FactoryBot.create(:customer1)
+      customer2 = FactoryBot.create(:customer2)
+      #利用者
+      customeruser1 = FactoryBot.create(:customeruser1, customer: customer1)
+      customeruser2 = FactoryBot.create(:customeruser2, customer: customer2)
+      #パッケージ
+      package = FactoryBot.create(:package1)
+      #機能
+      feature = FactoryBot.create(:feature1, package: package)
+
+      #レポート
+      FactoryBot.create(:project2, customer: customer1 , customeruser: customeruser1, department: department1, employee: employee2, package: package, feature: feature )
+      FactoryBot.create(:project3, customer: customer2 , customeruser: customeruser2, department: department1, employee: employee2, package: package, feature: feature )
+      FactoryBot.create(:project4, customer: customer2 , customeruser: customeruser2, department: department2, employee: employee3, package: package, feature: feature )
+
+      visit root_path
+      click_link 'login'
+      fill_in 'employee_email', with: 'user4@gmail.com'
+      fill_in 'employee_password', with: 'password'
+      click_button 'login'
+      #詳細ボタン確認
+      all('tr td')[6].click_link 
+      expect(page).to have_content  'レポート検索'
+      expect(page).to_not have_button '編集'
+    end
+
+
     it '状況確認する。(お気に入り機能)' do
 
       #部署

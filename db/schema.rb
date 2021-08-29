@@ -58,7 +58,6 @@ ActiveRecord::Schema.define(version: 2021_08_12_003343) do
     t.datetime "remember_created_at"
     t.string "name"
     t.bigint "department_id"
-    t.boolean "web_flg", default: false, null: false
     t.integer "position"
     t.boolean "admin", default: false, null: false
     t.datetime "created_at", null: false
