@@ -85,7 +85,7 @@ class CustomerManagementsController < ApplicationController
     if @project.update(project_params)
       redirect_to customer_managements_path  flash[:notice] = "レポートが編集されました。"
     else
-     # notice: "レポートの編集が失敗しました。"
+      # notice: "レポートの編集が失敗しました。"
       render :edit
     end
 

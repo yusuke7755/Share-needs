@@ -1,3 +1,5 @@
+<br>
+<br>
 <h2><%= t('.sign_in') %></h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -17,10 +19,13 @@
       <%= f.label :remember_me %>
     </div>
   <% end %> -->
- <p></p>
+ <br>
+
   <div class="actions" >
     <li id = "login"><%= f.submit t('.sign_in') , id: "login" %></li>
   </div>
 <% end %>
-
+ <br>
+ <br>
+<h4><%= link_to 'Top画面に戻る' , root_path , id: "top" %></h4>
 <!-- <%= render "devise/shared/links" %> -->

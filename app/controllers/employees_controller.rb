@@ -13,4 +13,10 @@ class EmployeesController < ApplicationController
     redirect_to customer_managements_path, notice: 'ゲスト管理者でログインしました'
   end
 
+  def guest_sign_in
+    user = Employee.guest
+    sign_in user
+    redirect_to customer_managements_path, notice: 'ゲストユーザーでログインしました'
+  end
+
 end
