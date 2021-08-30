@@ -100,7 +100,7 @@ class CustomerManagementsController < ApplicationController
     @employee = Employee.all
     @project =Project.new(project_params)
       if @project.save
-        redirect_to new_customer_management_path flash[:notice] ="レポートが作成されました。"
+        redirect_to customer_managements_path flash[:notice] ="レポートが作成されました。"
       else
         # notice: "レポートの作成が失敗しました。"
         render :new

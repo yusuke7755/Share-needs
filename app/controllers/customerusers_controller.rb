@@ -26,11 +26,11 @@ class CustomerusersController < ApplicationController
     chkproject = Project.where(customeruser_id: params[:id] )
 
     if chkproject.count > 0
-      redirect_to customerusers_path flash[:notice] = "レポートに登録のあるユーザーは削除できません。"
-      # render :edit
+      redirect_to customerusers_path  flash[:notice] = "レポートに登録のあるユーザーは削除できません。"
+
     else
       @customeruser.destroy
-      redirect_to customerusers_path flash[:notice] = "ユーザを削除しました。"
+      redirect_to customerusers_path  flash[:notice] = "ユーザを削除しました。"
     end
 
   end
@@ -47,9 +47,8 @@ class CustomerusersController < ApplicationController
     @customer = Customer.all
     @customeruser = Customeruser.new(customeruser_params)
     if @customeruser.save
-      redirect_to new_customeruser_path flash[:notice] = "ユーザ登録しました。"
+      redirect_to customerusers_path flash[:notice] = "ユーザ登録しました。"
     else
-
       render :new
     end
   end

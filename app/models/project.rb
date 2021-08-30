@@ -22,15 +22,29 @@ class Project < ApplicationRecord
   before_update :ensure_package_check
 
   # 入力した日付を取得してチェックを行う
+  Chkday = DateTime.now
   def ensure_check_date
+
     chkdate1 = self.apoint_at
     chkdate2 = self.deadline
+     
+
     if self.deadline != nil
-      if chkdate1 > chkdate2
+      if Chkday.weeks_ago(1) >= chkdate2
+
+        #期日が1週間前以前の時エラーを返す。
+        errors.add :base, '期日が1週間前の入力はできません。'
+        throw :abort
+
+      elsif chkdate1 > chkdate2
+        #面談日付より過去日付の場合、
         errors.add :base, '面談日時が期日より前です。'
         throw :abort
+
       end
+
     end
+
   end
 
   # 入力した部署と社員の一致
