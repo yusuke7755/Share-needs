@@ -5,15 +5,15 @@ class Employees::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
 
   #GET /resource/sign_up
-  def new
-    super
-    @department = Department.all
-  end
+  # def new
+  #   super
+  #   @department = Department.all
+  # end
 
   #POST /resource
-  def create
-    super
-  end
+  # def create
+  #   super
+  # end
 
   # #GET /resource/edit
   # def edit
@@ -39,7 +39,7 @@ class Employees::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  protected
+  # protected
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
