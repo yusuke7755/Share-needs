@@ -19,6 +19,7 @@ ja:
           departments_id: 部署id
           position: 役職
           admin: 管理者権限
+          Password confirmation: パスワード確認
         package:
           name: システム名
         feature:
