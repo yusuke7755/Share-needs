@@ -16,9 +16,10 @@
 <table class="col-md-12">
   <thead>
     <tr class="table-primary">
-      <th class="col-md-3">部署名</th>
+      <th class="col-md-2">会社名</th>
+      <th class="col-md-2">部署名</th>
       <th class="col-md-2">名前</th>
-      <th class="col-md-3">メール</th>
+      <th class="col-md-2">メール</th>
       <th class="col-md-2">電話番号</th>
       <th class="col-md-1">編集</th>
       <th class="col-md-1">削除</th>
@@ -28,6 +29,7 @@
   <% if @customerusers != nil %>
     <% @customerusers.each do |cu| %>
       <tr class="table-info">
+        <td><%= cu.customer.name %></td> 
         <td><%= cu.department %></td>  
         <td><%= cu.name %></td>
         <td><%= cu.email %></td>

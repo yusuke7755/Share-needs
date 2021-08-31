@@ -7,30 +7,43 @@ class CustomerusersController < ApplicationController
   end
 
   def index
-
+    @customerusers = Customeruser.all.page(params[:page]).per(10)
     if params[:search].present?
-      @customerusers = Customeruser.where(customer_id: params[:search][:customer_id]).page(params[:page]).per(10)
-    else
-      @customerusers = nil
+      @customerusers = @customerusers.where(customer_id: params[:search][:customer_id]).page(params[:page]).per(10)
     end
 
   end
 
   def edit
-    @Customeruser = Customeruser.find(params[:id])
-    @customer = Customer.where(id: @Customeruser.customer_id)
+
+    if current_employee.admin == true
+        #管理者権限がある場合
+        @Customeruser = Customeruser.find(params[:id])
+        @customer = Customer.where(id: @Customeruser.customer_id)
+     else
+        #管理者権限がない場合
+        redirect_to customerusers_path  flash[:notice] = "管理者権限がないので編集はできません。"
+        @customerusers = Customeruser.all.page(params[:page]).per(10)
+     end
   end
 
   def destroy
+    if current_employee.admin == true
 
-    chkproject = Project.where(customeruser_id: params[:id] )
+      #管理者権限がある場合、
+      chkproject = Project.where(customeruser_id: params[:id] )
 
-    if chkproject.count > 0
-      redirect_to customerusers_path  flash[:notice] = "レポートに登録のあるユーザーは削除できません。"
+      if chkproject.count > 0
+        redirect_to customerusers_path  flash[:notice] = "レポートに登録のあるユーザーは削除できません。"
 
+      else
+        @customeruser.destroy
+        redirect_to customerusers_path  flash[:notice] = "ユーザを削除しました。"
+      end
     else
-      @customeruser.destroy
-      redirect_to customerusers_path  flash[:notice] = "ユーザを削除しました。"
+      #管理者権限がない場合
+      redirect_to customerusers_path flash[:notice] = "管理者権限がないので削除はできません。"
+      @customerusers = Customeruser.all.page(params[:page]).per(10)
     end
 
   end
@@ -46,8 +59,10 @@ class CustomerusersController < ApplicationController
   def create
     @customer = Customer.all
     @customeruser = Customeruser.new(customeruser_params)
+    binding.pry
     if @customeruser.save
-      redirect_to customerusers_path flash[:notice] = "ユーザ登録しました。"
+      redirect_to customerusers_path 
+      flash[:notice] = "ユーザ登録しました。"
     else
       render :new
     end
