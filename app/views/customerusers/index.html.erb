@@ -21,8 +21,10 @@
       <th class="col-md-2">名前</th>
       <th class="col-md-2">メール</th>
       <th class="col-md-2">電話番号</th>
-      <th class="col-md-1">編集</th>
-      <th class="col-md-1">削除</th>
+      <% if current_employee.admin == true %>　　
+        <th class="col-md-1">編集</th>
+        <th class="col-md-1">削除</th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -34,8 +36,10 @@
         <td><%= cu.name %></td>
         <td><%= cu.email %></td>
         <td><%= cu.tel %></td>
+      <% if current_employee.admin == true %>　　
         <td><button type="button" class="btn btn-info" ><%= link_to '編集', edit_customeruser_path(id: cu.id), id: "customeruser_edit" %></td>
         <td><button type="button" class="btn btn-danger" ><%= link_to "削除", customeruser_path(id: cu.id), method: :delete , data: { confirm: 'ユーザ情報が削除されます。よろしいですか？' }  , id: "customeruser_delete" %></button></td>
+      <% end %>
       </tr>
     <% end %>
   <% end %> 
