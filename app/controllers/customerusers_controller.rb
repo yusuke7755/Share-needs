@@ -7,9 +7,13 @@ class CustomerusersController < ApplicationController
   end
 
   def index
-    @customerusers = Customeruser.all.page(params[:page]).per(10)
+    @customerusers = Customeruser.all.order(customer_id: :ASC).page(params[:page]).per(10)
     if params[:search].present?
-      @customerusers = @customerusers.where(customer_id: params[:search][:customer_id]).page(params[:page]).per(10)
+      if params[:search][:customer_id] != ""
+        @customerusers = @customerusers.where(customer_id: params[:search][:customer_id]).page(params[:page]).per(10)
+      else
+        @customerusers = Customeruser.all.order(customer_id: :ASC).page(params[:page]).per(10)
+      end
     end
 
   end
@@ -23,7 +27,7 @@ class CustomerusersController < ApplicationController
      else
         #管理者権限がない場合
         redirect_to customerusers_path  flash[:notice] = "管理者権限がないので編集はできません。"
-        @customerusers = Customeruser.all.page(params[:page]).per(10)
+        @customerusers = Customeruser.all.order(customer_id: :ASC).page(params[:page]).per(10)
      end
   end
 
@@ -43,7 +47,7 @@ class CustomerusersController < ApplicationController
     else
       #管理者権限がない場合
       redirect_to customerusers_path flash[:notice] = "管理者権限がないので削除はできません。"
-      @customerusers = Customeruser.all.page(params[:page]).per(10)
+      @customerusers = Customeruser.all.order(customer_id: :ASC).page(params[:page]).per(10)
     end
 
   end
@@ -59,7 +63,6 @@ class CustomerusersController < ApplicationController
   def create
     @customer = Customer.all
     @customeruser = Customeruser.new(customeruser_params)
-    binding.pry
     if @customeruser.save
       redirect_to customerusers_path 
       flash[:notice] = "ユーザ登録しました。"
