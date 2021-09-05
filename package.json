@@ -4,7 +4,7 @@
   "dependencies": {
     "@nathanvda/cocoon": "^1.2.14",
     "bootstrap": "4",
-    "jquery": "3.6",
+    "jquery": "^3.6.0",
     "popper.js": "1"
   }
 }

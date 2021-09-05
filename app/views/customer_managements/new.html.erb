@@ -23,7 +23,18 @@
 
   <br>
     <h4>部署：担当</h4>
+<%= @employee.all.each do |f| %>
+<%= form.text_field :name %>
+<% category_options = @department.order(:id).map { |c| [c.name, c.id, data: { children_path: category_sub_categories_path(c) }] } %>
+<%= form.select :category_id , category_options, { include_blank: true }, class: 'select-parent' %>
+<% category_options = @employee.department.try(:name) || [] %>
+<% sub_category_options = sub_categories.map { |c| [c.name, c.id] } %>
+<%= form.select :sub_category_id, sub_category_options, { include_blank: true }, class: 'select-children' %>
+<% end %>
 
+
+
+<hr>
     <%= form.select :department_id, options_for_select(@department.all.map{|dpt| [( dpt.name ) , dpt.id]} , {selected: current_employee.department.id}), { include_blank: '選択してください'}  %> 
 
   <div>

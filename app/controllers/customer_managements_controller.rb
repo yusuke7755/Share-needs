@@ -11,7 +11,23 @@ class CustomerManagementsController < ApplicationController
     @customeruser = Customeruser.all
     @feature = Feature.all
     @employee = Employee.all
+
+#     #セレクトボックスの初期値設定
+#     @department_parent_array = ["選択してください"]
+# 　　#データベースから、親カテゴリーのみ抽出し、配列化
+#     Department.where(ancestry: nil).each do |department|
+#       @department_parent_array << department.name
+#     end
+
   end
+
+   # 以下全て、formatはjsonのみ
+   # 親カテゴリーが選択された後に動くアクション
+  def get_employee_children
+    #選択された親カテゴリーに紐付く子カテゴリーの配列を取得
+    @employee_children = Employee.find_by(name: "#{params[:parent_name]}", ancestry: nil).children
+  end
+
 
   def index
     @department = Department.where(web_flg: true)
@@ -69,7 +85,6 @@ class CustomerManagementsController < ApplicationController
     @department = Department.where(web_flg: true)
     @customer = Customer.where(id:  @project.customer_id)
     @package = Package.where(id:  @project.package_id)
-
   end
 
   def destroy
@@ -78,10 +93,6 @@ class CustomerManagementsController < ApplicationController
   end
 
   def update
-    @project = Project.find(params[:id])
-    @department = Department.where(web_flg: true)
-    @customer = Customer.where(id:  @project.customer_id)
-    @package = Package.where(id:  @project.package_id)
     if @project.update(project_params)
       redirect_to customer_managements_path  flash[:notice] = "レポートが編集されました。"
     else
@@ -93,11 +104,6 @@ class CustomerManagementsController < ApplicationController
 
   def create
     @department = Department.where(web_flg: true)
-    @customer = Customer.all
-    @package = Package.all
-    @customeruser = Customeruser.all
-    @feature = Feature.all
-    @employee = Employee.all
     @project =Project.new(project_params)
       if @project.save
         redirect_to customer_managements_path flash[:notice] ="レポートが作成されました。"
@@ -106,6 +112,8 @@ class CustomerManagementsController < ApplicationController
         render :new
       end
   end
+
+
 
   private
 

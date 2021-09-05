@@ -12,4 +12,10 @@ Rails.application.routes.draw do
   resources :main_menus, :features ,:customers, :customerusers 
   resources :checks, only: [ :create ,:destroy]
 
+  # #Ajaxで動くアクションのルートを作成
+  # collection do
+  #   get 'get_category_department', defaults: { format: 'json' }
+  #   get 'get_category_employee', defaults: { format: 'json' }
+  # end
+
 end
