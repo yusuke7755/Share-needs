@@ -25,7 +25,7 @@ class CustomerManagementsController < ApplicationController
    # 親カテゴリーが選択された後に動くアクション
   def get_employee_children
     #選択された親カテゴリーに紐付く子カテゴリーの配列を取得
-    @employee_children = Employee.find_by(name: "#{params[:parent_name]}", ancestry: nil).children
+    @employee_children = Department.find_by(name: "#{params[:parent_name]}", ancestry: nil).employee
   end
 
 
