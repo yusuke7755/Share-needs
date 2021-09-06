@@ -48,7 +48,6 @@
 
 
 
-<hr>
     <%= form.select :department_id, options_for_select(@department.all.map{|dpt| [( dpt.name ) , dpt.id]} , {selected: current_employee.department.id}), { include_blank: '選択してください'}  %> 
 
   <div>
