@@ -12,12 +12,12 @@ class CustomerManagementsController < ApplicationController
     @feature = Feature.all
     @employee = Employee.all
 
-#     #セレクトボックスの初期値設定
-#     @department_parent_array = ["選択してください"]
-# 　　#データベースから、親カテゴリーのみ抽出し、配列化
-#     Department.where(ancestry: nil).each do |department|
-#       @department_parent_array << department.name
-#     end
+    #セレクトボックスの初期値設定
+    @department_parent_array = ["選択してください"]
+    #データベースから、親カテゴリーのみ抽出し、配列化
+    Department.where(web_flg: true).each do |department|
+      @department_parent_array << department.name
+    end
 
   end
 

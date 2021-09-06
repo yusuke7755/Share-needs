@@ -24,7 +24,10 @@ gem 'cancancan'
 #追加機能
 gem 'ransack'
 gem 'kaminari'
+##########################
 gem 'ancestry'
+gem 'font-awesome-rails'
+gem 'jquery-turbolinks'
 
 gem 'therubyracer'
 gem 'jquery-rails'

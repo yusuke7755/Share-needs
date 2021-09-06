@@ -8,14 +8,15 @@ Rails.application.routes.draw do
     post 'employees/guest_sign_in', to: 'employees#guest_sign_in'
     post 'employees/admin_guest_sign_in', to: 'employees#admin_guest_sign_in'
 
-  resources :customer_managements
+ 
   resources :main_menus, :features ,:customers, :customerusers 
   resources :checks, only: [ :create ,:destroy]
 
-  # #Ajaxで動くアクションのルートを作成
-  # collection do
-  #   get 'get_category_department', defaults: { format: 'json' }
-  #   get 'get_category_employee', defaults: { format: 'json' }
-  # end
-
+  resources :customer_managements do
+    #Ajaxで動くアクションのルートを作成
+    collection do
+      get 'get_category_department', defaults: { format: 'json' }
+      get 'get_category_employee', defaults: { format: 'json' }
+    end
+  end
 end
