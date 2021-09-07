@@ -24,15 +24,33 @@
   </div>
 
   <br>
-    <h4>部署：担当</h4>
-<div class= "listing-form-box" ></div>
- <label class="listing-product-detail__department" ></label>
+    <h4>部署</h4>
+<!-- remote: trueを追加することでajaxでparams[:project][department_id]をpostできる -->
+<div>
+  <%= form.select :department_id, options_from_collection_for_select( @department, :id, :name),
+  {prompt: '選択してください'}, {data: {remote: true, url: url_for(action: :department_employee)}} %>
+</div>
+<br>
+<h4>担当</h4>
+<!-- 色を選択するとここに動的にセレクトボックスが描画される -->
+<div id="employee-select">
+  部署を選択して、社員を表示させてください。
+</div>
+  <br>
+    <br>
+      <br>
+  <%
+=begin%>
+ <div class= "listing-form-box" ></div>
+  <label class="listing-product-detail__department" ></label>
     <%= form.label '部署', class: 'listing-default__label' %>
     <span class='listing-default--require'> 必須</span>
     <div class=' listing-select-wrapper' ></div>
     <div class=' listing-select-wrapper__box' ></div>
         <%= form.select :department_id, @department_parent_array, {}, {class: 'listing-select-wrapper__box--select', id: 'parent_department'} %>
-         <i class='fa fa-chevron-down | listing-select-wrapper__box--arrow-down' ></i>
+         <i class='fa fa-chevron-down | listing-select-wrapper__box--arrow-down' ></i> 
+<%
+=end%>
 
 
 <%

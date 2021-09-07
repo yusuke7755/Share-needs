@@ -1,0 +1,4 @@
+// 受け取った@vegetableを元にselectボックスを描画する
+$('#employee-select').html(
+  "<%= j(select :project, :employee_id, options_from_collection_for_select(@employee, :id, :name)) %>"
+);

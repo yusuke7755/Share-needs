@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   resources :main_menus, :features ,:customers, :customerusers 
   resources :checks, only: [ :create ,:destroy]
 
+ # selectからremote: trueでpostされるデータを受け取り、getで描画するための準備
+ match 'department_employee', to: 'customer_managements#department_employee', via: [:get, :post]
+
   resources :customer_managements do
     #Ajaxで動くアクションのルートを作成
     collection do

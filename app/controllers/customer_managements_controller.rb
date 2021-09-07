@@ -12,6 +12,10 @@ class CustomerManagementsController < ApplicationController
     @feature = Feature.all
     @employee = Employee.all
 
+
+
+
+
     #セレクトボックスの初期値設定
     @department_parent_array = ["選択してください"]
     #データベースから、親カテゴリーのみ抽出し、配列化
@@ -20,7 +24,11 @@ class CustomerManagementsController < ApplicationController
     end
 
   end
-
+  
+  def department_employee
+    # employeeをdepartment_idで絞り込んで取得する。
+    @employee = Employee.where(department_id: params[:project][:department_id])
+  end
    # 以下全て、formatはjsonのみ
    # 親カテゴリーが選択された後に動くアクション
   def get_employee_children
