@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
  # selectからremote: trueでpostされるデータを受け取り、getで描画するための準備
  match 'department_employee', to: 'customer_managements#department_employee', via: [:get, :post]
+ match 'customer_customeruser', to: 'customer_managements#customer_customeruser', via: [:get, :post]
+ match 'package_feature', to: 'customer_managements#package_feature', via: [:get, :post]
 
   resources :customer_managements do
     #Ajaxで動くアクションのルートを作成

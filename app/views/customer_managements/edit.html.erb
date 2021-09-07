@@ -9,14 +9,10 @@
     <div id="error_explanation">
       <h2><%=  @project.errors.count %> <%= t('view.error') %></h2>
       <ul>
-      <%
-=begin%>
- <% binding.pry %> 
-<%
-=end%>
-      <% @project.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+
+        <% @project.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
@@ -27,9 +23,61 @@
   </div>
 
   <br>
-    <h5>部署：担当</h5>
 
-    <%= form.select :department_id, options_for_select(Department.where( web_flg: true ).all.map{|dpt| [( dpt.name ) , dpt.id]} ), include_blank: "選択して下さい" %> 
+  <br>
+  <br>
+    <h4>部署</h4>
+
+<!-- remote: trueを追加することでajaxでparams[:project][department_id]をpostできる -->
+<div>
+  <%= form.select :department_id, options_from_collection_for_select( @department, :id, :name),
+  {prompt: '選択してください'}, {data: {remote: true, url: url_for(action: :department_employee)}} %>
+</div>
+<br>
+<h4>担当</h4>
+<!-- 色を選択するとここに動的にセレクトボックスが描画される -->
+<div id="employee-select">
+<h5><%= current_employee.name %></h5>
+</div>
+  ※部署を選択すると社員が選べます。
+
+<br>
+  <h4>企業名</h4>
+<!-- remote: trueを追加することでajaxでparams[:project][customer_id]をpostできる -->
+<div>
+  <%= form.select :customer_id, options_for_select(Customer.all.map{|cst| [( cst.name ), cst.id]}) , { include_blank: '選択してください'},
+   {data: {remote: true, url: url_for(action: :customer_customeruser)}} %>
+</div>
+
+<br>
+  <h4>お客様名</h4>
+  <!-- 色を選択するとここに動的にセレクトボックスが描画される -->
+  <div id="customeruser-select">
+  <h5>お客様の企業名を選択してください</h5>
+  </div>
+  ※企業名を選択すると社員が選べます。
+<br>
+
+<br>
+  <h4>システム</h4>
+  <!-- remote: trueを追加することでajaxでparams[:project][package_id]をpostできる -->
+  <div>
+    <%= form.select :package_id, options_for_select(Package.all.map{|cst| [( cst.name ), cst.id]}) , { include_blank: '選択してください'},
+    {data: {remote: true, url: url_for(action: :package_feature)}} %>
+  </div>
+
+<br>
+  <h4>機能</h4>
+  <!-- 色を選択するとここに動的にセレクトボックスが描画される -->
+  <div id="feature-select">
+    <h5>システムを選択してください</h5>
+  </div>
+  ※システムを選択すると機能が選べます。
+<br>
+
+    <%
+=begin%>
+ <%= form.select :department_id, options_for_select(Department.where( web_flg: true ).all.map{|dpt| [( dpt.name ) , dpt.id]} ), include_blank: "選択して下さい" %> 
 
   <div>
     <table>
@@ -50,10 +98,14 @@
     <% end %>
     </table>
 
-  </div>
+  </div> 
+<%
+=end%>
 <br>
 
-    <h5>企業名/お客様名</h5>
+    <%
+=begin%>
+ <h5>企業名/お客様名</h5>
       <% @customer.each do |ct| %>
     <h4><%= ct.name %></h4>
       <% end %>
@@ -100,7 +152,9 @@
       </tr>
     <% end %>
     </table>
-  </div>
+  </div> 
+<%
+=end%>
 
   <br>
   <div>
