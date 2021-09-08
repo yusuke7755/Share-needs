@@ -16,9 +16,9 @@
     </div>
   <% end %>
 
-  <div>
+  <div class="field" >
     <h4><%= form.label :title %></h4>
-    <%= form.text_field :title %>
+    <%= form.text_field :title ,class: 'form-control' %>
   </div>
 <br>
     <h4>部署</h4>
@@ -98,11 +98,11 @@
   </div>
 
     <h4><%= form.label :description %></h4>
-  <div>
-    <%= form.text_area :description , size: "40x10" ,:placeholder => "内容を記載してください。(400文字)"%>
+  <div class="field" >
+    <%= form.text_area :description , size: "40x10" ,:placeholder => "内容を記載してください。(400文字)" ,class: 'form-control' %>
   </div>
   <br>
-  <%= form.submit "レポート編集"  %>
+  <%= form.submit "レポート編集" , class: 'btn btn-danger' %>
   <% end %>
   <br>
 <button type="button" class="btn btn-info" ><%= link_to "戻る", customer_management_path, id: "back_to_show" %></button>

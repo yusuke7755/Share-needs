@@ -20,40 +20,42 @@
   <% end %>
 <br>
 
-  <div class="customeruser">
+  <div cclass="field" >
     <%= user.label :department %><br>
-    <%= user.text_field :department ,:placeholder => " 所属部署・など記入してください。" %>
+    <%= user.text_field :department ,:placeholder => " 所属部署・など記入してください。" ,class: 'form-control' %>
   </div>
 
-  <div class="customeruser">
+  <div class="field" >
     <%= user.label :name %><br>
-    <%= user.text_field :name ,:placeholder => "山田 花子 必須 入力です。" %>
+    <%= user.text_field :name ,:placeholder => "山田 花子 必須 入力です。" ,class: 'form-control' %>
   </div>
 
-  <div class="customeruser">
+  <div class="field" >
     <%= user.label :email %><br>
-    <%= user.text_field :email ,:placeholder => "abc@email.com 必須入力です。" %>
+    <%= user.text_field :email ,:placeholder => "abc@email.com 必須入力です。" ,class: 'form-control' %>
   </div>
 
 
-  <div class="customeruser">
+  <div class="field" >
     <%= user.label :tel %><br>
-    <%= user.text_field :tel ,:placeholder => "123-456-7890"%>
+    <%= user.text_field :tel ,:placeholder => "123-456-7890" ,class: 'form-control' %>
   </div>
 
-  <div class="customeruser">
+  <div class="field" >
     <%= user.label :meta %><br>
-    <%= user.text_area :meta , size: "40x10" %>
+    <%= user.text_area :meta , size: "40x10" ,class: 'form-control' %>
   </div>
 
   <p></p>
   <div class="actions">
-    <%= user.submit '更新' %>
+    <%= user.submit 'ユーザー情報更新' , class: 'btn btn-danger' %>
   </div>
 <br>
 <br>
 <% end %>
 <button type="button" class="btn btn-info" ><%= link_to "戻る", customerusers_path, id: "back_to_menu" %></button>
+<br>
+<br>
 <br>
 <br>
 <br>

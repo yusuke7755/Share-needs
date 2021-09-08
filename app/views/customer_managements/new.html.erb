@@ -17,9 +17,9 @@
     </div>
   <% end %>
 
-  <div>
+  <div class="field" >
     <h4><%= form.label :title  %></h4>
-    <%= form.text_field :title ,:placeholder => "例：システム提案・サポート対応・障害対応" %>
+    <%= form.text_field :title ,:placeholder => "例：システム提案・サポート対応・障害対応" ,class: 'form-control' %>
   </div>
 
 <br>
@@ -35,7 +35,7 @@
   <div id="employee-select">
     <h5>部署を選択してください。</h5>
   </div>
-  ※部署を選択すると社員が選べます。
+  <span style="color:#FA562A">※部署を選択すると社員が選べます。</span>
 <br>
 
 <br>
@@ -52,7 +52,7 @@
   <div id="customeruser-select">
   <h5>お客様の企業名を選択してください</h5>
   </div>
-  ※企業名を選択すると社員が選べます。
+  <span style="color:#FA562A">※企業名を選択すると社員が選べます。</span>
 <br>
 
   <h4>システム</h4>
@@ -68,7 +68,7 @@
   <div id="feature-select">
     <h5>システムを選択してください</h5>
   </div>
-  ※システムを選択すると機能が選べます。
+  <span style="color:#FA562A">※システムを選択すると機能が選べます。</span>
 <br>
 
     <h4><%= form.label :priority %></h4>
@@ -102,11 +102,11 @@
   </div>
 
     <h4><%= form.label :description %></h4>
-  <div>
-    <%= form.text_area :description , size: "40x10" ,:placeholder => "内容を記載してください。(400文字)"%>
+  <div class="field" >
+    <%= form.text_area :description , size: "40x10" ,:placeholder => "内容を記載してください。(400文字)" ,class: 'form-control' %>
   </div>
   <br>
-  <%= form.submit "レポート作成"  %>
+  <%= form.submit "レポート作成" , class: 'btn btn-danger'%>
 <% end %>
   <br>
 <button type="button" class="btn btn-info"><%= link_to "戻る", customer_managements_path, id: "back_to_menu" %></button>

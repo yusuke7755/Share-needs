@@ -32,6 +32,8 @@ gem 'jquery-turbolinks'
 gem 'therubyracer'
 gem 'jquery-rails'
 gem 'less-rails'
+gem 'bootstrap', '~> 4.0.0.alpha3'
+gem 'bootstrap-select-rails'
 
 group :development, :test do
   gem 'pry-rails'
