@@ -17,11 +17,6 @@ Rails.application.routes.draw do
  match 'customer_customeruser', to: 'customer_managements#customer_customeruser', via: [:get, :post]
  match 'package_feature', to: 'customer_managements#package_feature', via: [:get, :post]
 
-  resources :customer_managements do
-    #Ajaxで動くアクションのルートを作成
-    collection do
-      get 'get_category_department', defaults: { format: 'json' }
-      get 'get_category_employee', defaults: { format: 'json' }
-    end
-  end
+  resources :customer_managements 
+
 end

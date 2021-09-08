@@ -12,13 +12,6 @@ class CustomerManagementsController < ApplicationController
     @feature = Feature.all
     @employee = Employee.all
 
-    # #セレクトボックスの初期値設定
-    # @department_parent_array = ["選択してください"]
-    # #データベースから、親カテゴリーのみ抽出し、配列化
-    # Department.where(web_flg: true).each do |department|
-    #   @department_parent_array << department.name
-    # end
-
   end
   
   def department_employee
@@ -35,13 +28,6 @@ class CustomerManagementsController < ApplicationController
     # featureをpackage_idで絞り込んで取得する。
     @feature = Feature.where(package_id: params[:project][:package_id])
   end
-
-  #  # 以下全て、formatはjsonのみ
-  #  # 親カテゴリーが選択された後に動くアクション
-  # def get_employee_children
-  #   #選択された親カテゴリーに紐付く子カテゴリーの配列を取得
-  #   @employee_children = Department.find_by(name: "#{params[:parent_name]}", ancestry: nil).employee
-  # end
 
 
   def index
