@@ -3,5 +3,4 @@ class Department < ApplicationRecord
   validates :web_flg, inclusion: {in: [true, false]}
   has_many :employees
   has_many :projects
-  has_ancestry
 end
