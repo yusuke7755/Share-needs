@@ -14,7 +14,7 @@
         <% if employee_signed_in? %>
           <li class="col-md-2"><%= "Share-needs" %></li>
           <li class="col-md-6"><%= current_employee.name %> さん、お疲れ様です</li>
-          <li class="col-md-2"><button type="button" class="btn btn-secondary btn-sm"><%= link_to 'メニュー' , customer_managements_path , id: "menu" %></button></li>
+          <li class="col-md-2"><button  class="btn btn-secondary btn-sm"><%= link_to 'メニュー' , customer_managements_path , id: "menu" %></button></li>
           <li class="col-md-2"><%= link_to 'Logout' , destroy_employee_session_path, method: :delete , id: "logout1" %></li>
         <% else %>
           <li class="col-md-3"><%= "Share-needs" %></li>
@@ -34,7 +34,7 @@
         <% if employee_signed_in? %>
           <li class="col-md-2"><%= "Share-needs" %></li>
           <li class="col-md-6"><%= "" %></li>
-          <li class="col-md-2"><button type="button" class="btn btn-secondary btn-sm"><%= link_to 'メニュー' , customer_managements_path , id: "menu" %></button></li>
+          <li class="col-md-2"><button class="btn btn-secondary btn-sm"><%= link_to 'メニュー' , customer_managements_path , id: "menu" %></button></li>
           <li class="col-md-2"><%= link_to 'Logout' , destroy_employee_session_path, method: :delete , id: "logout2" %></li>
         <% else %>
           <li class="col-md-3"><%= "Share-needs" %></li>

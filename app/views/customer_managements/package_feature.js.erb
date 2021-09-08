@@ -1,0 +1,4 @@
+// 社員の選択
+$('#feature-select').html(
+  "<%= j(select :project, :feature_id, options_from_collection_for_select(@feature, :id, :name)) %>"
+);

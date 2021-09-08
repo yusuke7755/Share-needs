@@ -6,10 +6,11 @@ html {
   position: relative;
   min-height: 100%;
 }
-// body {
-//   text-align: center;
-//   overflow: hidden;
-// }
+main{
+  text-align: center;
+  overflow-y: scroll;
+  height: 100vh; 
+}
 li{
     list-style:none;
 }

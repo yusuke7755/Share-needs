@@ -24,6 +24,10 @@ gem 'cancancan'
 #追加機能
 gem 'ransack'
 gem 'kaminari'
+##########################
+gem 'ancestry'
+gem 'font-awesome-rails'
+gem 'jquery-turbolinks'
 
 gem 'therubyracer'
 gem 'jquery-rails'
@@ -35,7 +39,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'spring-commands-rspec'
   gem 'factory_bot_rails'
- # gem "factory_girl_rails"
   gem 'faker'
   gem 'launchy'
   gem 'database_cleaner'
