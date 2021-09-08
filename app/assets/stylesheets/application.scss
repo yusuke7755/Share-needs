@@ -11,15 +11,14 @@
  * It is generally better to create a new file per style scope.
 
  *= require bootstrap/dist/css/bootstrap.min
- *= require font-awesome
- *= require_self
  *= require_tree .
+ *= require_self
  */
 
 
  header {
   width: 100%;
-  background-color: #A3E1AE;
+  background-color: #288ff0;
   font-size: 18px;
   color: white;
   margin: 0
@@ -35,7 +34,7 @@ header ul a {
   color: white;
 }
 header li {
-  float: center;
+  float: left;
   width: auto;
 }
 header ul:after {
@@ -46,19 +45,25 @@ header ul:after {
 body {
   text-align: center;
   overflow: scroll;
-  background-color: #DCFA84;
-  height: 100vh; 
+    background: radial-gradient(#e6f2a1, #62ead8);
 }
+main {
+  flex: 1;
 
+}
 footer {
   width: 100%;
-  background-color:#A3E1AE;
+  background-color:#288ff0;
   position: fixed;
   bottom: 0px;
   color: white;
-  font-size: 18px;
+  // padding: 20px 0 10px 0;
+  // color: white;
+  // margin: auto;
+  // padding-bottom: 10px;
+   font-size: 18px;
    position: absolute;
-
+   bottom: 0;
 }
 footer ul {
   margin: 0 auto;

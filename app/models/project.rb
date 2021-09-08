@@ -27,17 +27,22 @@ class Project < ApplicationRecord
 
     chkdate1 = self.apoint_at
     chkdate2 = self.deadline
+     
 
     if self.deadline != nil
       if Chkday.weeks_ago(1) >= chkdate2
+
         #期日が1週間前以前の時エラーを返す。
         errors.add :base, '期日が1週間前の入力はできません。'
         throw :abort
+
       elsif chkdate1 > chkdate2
         #面談日付より過去日付の場合、
         errors.add :base, '面談日時が期日より前です。'
         throw :abort
+
       end
+
     end
 
   end
@@ -46,7 +51,6 @@ class Project < ApplicationRecord
   def ensure_department_check
     getemployee = Employee.select("department_id").where(id: self.employee_id)
     chkdepartmentid1=""
-    
     getemployee.all.each do |dp|
       chkdepartmentid1 = dp.department_id 
     end
