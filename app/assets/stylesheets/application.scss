@@ -16,6 +16,8 @@
  *= require_tree .
  */
 
+@import "bootstrap";
+
  header {
   width: 100%;
   background-color: #A3E1AE;
@@ -46,7 +48,7 @@ body {
   text-align: center;
   overflow: scroll;
   background-color: #DCFA84;
-  height: 100vh; 
+  height: 100vh;
 }
 
 footer {
