@@ -10,11 +10,12 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
 
- *= require bootstrap/dist/css/bootstrap.min
  *= require font-awesome
  *= require_self
  *= require_tree .
  */
+
+@import "bootstrap";
 
  header {
   width: 100%;
@@ -46,7 +47,7 @@ body {
   text-align: center;
   overflow: scroll;
   background-color: #DCFA84;
-  height: 100vh; 
+  height: 100vh;
 }
 
 footer {
