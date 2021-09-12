@@ -1,4 +1,4 @@
 // お客様の選択
 $('#customeruser-select').html(
-  "<%= j(select :project, :customeruser_id, options_from_collection_for_select(@customeruser, :id, :name)) %>"
+  "<%= j(select :project, :customeruser_id, options_from_collection_for_select(@customeruser, :id, :name), { include_blank: @include_blank_message }, { class: 'form-control' }) %>"
 );

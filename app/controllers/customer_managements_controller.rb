@@ -13,20 +13,23 @@ class CustomerManagementsController < ApplicationController
     @employee = Employee.all
 
   end
-  
+
   def department_employee
     # employeeをdepartment_idで絞り込んで取得する。
     @employee = Employee.where(department_id: params[:project][:department_id])
+    @include_blank_message = @employee.count > 0 ? false : "部署を選択してください"
   end
 
   def customer_customeruser
     # customeruserをcustomer_idで絞り込んで取得する。
     @customeruser = Customeruser.where(customer_id: params[:project][:customer_id])
+    @include_blank_message = @customeruser.count > 0 ? false : "会社を選択してください"
   end
 
   def package_feature
     # featureをpackage_idで絞り込んで取得する。
     @feature = Feature.where(package_id: params[:project][:package_id])
+    @include_blank_message = @feature.count > 0 ? false : "システムを選択してください"
   end
 
 
@@ -49,12 +52,12 @@ class CustomerManagementsController < ApplicationController
         end
 
         @projects = Project.where(customer_id: @customer)
-        @projects = @projects.order(apoint_at: :ASC).page(params[:page]).per(5)
+        @projects = @projects.order(apoint_at: :DESC).page(params[:page]).per(5)
 
       else
 
         flash[:notice] = "状況管理しているものはありません。"
-        @projects = @q.result.order(apoint_at: :ASC).page(params[:page]).per(5)
+        @projects = @q.result.order(apoint_at: :DESC).page(params[:page]).per(5)
 
       end
 
@@ -90,7 +93,7 @@ class CustomerManagementsController < ApplicationController
 
   def destroy
     @project.destroy
-    redirect_to customer_managements_path flash[:notice] = "作成したレポートが削除されました。" 
+    redirect_to customer_managements_path flash[:notice] = "作成したレポートが削除されました。"
   end
 
   def update
