@@ -1,4 +1,8 @@
 // 社員の選択
+// console.log() でDeveloperToolsのConsoleに表示する
+//console.log($('#employee-select'))
+//console.log("hello.")
+
 $('#employee-select').html(
-  "<%= j(select :project, :employee_id, options_from_collection_for_select(@employee, :id, :name)) %>"
+  "<%= j(select :project, :employee_id, options_from_collection_for_select(@employee, :id, :name), { include_blank: @include_blank_message }, { class: 'form-control' }) %>"
 );

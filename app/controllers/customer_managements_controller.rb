@@ -13,10 +13,11 @@ class CustomerManagementsController < ApplicationController
     @employee = Employee.all
 
   end
-  
+
   def department_employee
     # employeeをdepartment_idで絞り込んで取得する。
     @employee = Employee.where(department_id: params[:project][:department_id])
+    @include_blank_message = @employee.count > 0 ? false : "部署を選択してください"
   end
 
   def customer_customeruser
@@ -90,7 +91,7 @@ class CustomerManagementsController < ApplicationController
 
   def destroy
     @project.destroy
-    redirect_to customer_managements_path flash[:notice] = "作成したレポートが削除されました。" 
+    redirect_to customer_managements_path flash[:notice] = "作成したレポートが削除されました。"
   end
 
   def update
