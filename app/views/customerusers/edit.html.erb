@@ -20,30 +20,30 @@
   <% end %>
 <br>
 
-  <div cclass="field" >
+  <div cclass="form-group" >
     <%= user.label :department %><br>
     <%= user.text_field :department ,:placeholder => " 所属部署・など記入してください。" ,class: 'form-control' %>
   </div>
 
-  <div class="field" >
+  <div class="form-group" >
     <%= user.label :name %><br>
     <%= user.text_field :name ,:placeholder => "山田 花子 必須 入力です。" ,class: 'form-control' %>
   </div>
 
-  <div class="field" >
+  <div class="form-group" >
     <%= user.label :email %><br>
     <%= user.text_field :email ,:placeholder => "abc@email.com 必須入力です。" ,class: 'form-control' %>
   </div>
 
 
-  <div class="field" >
+  <div class="form-group" >
     <%= user.label :tel %><br>
     <%= user.text_field :tel ,:placeholder => "123-456-7890" ,class: 'form-control' %>
   </div>
 
-  <div class="field" >
+  <div class="form-group" >
     <%= user.label :meta %><br>
-    <%= user.text_area :meta , size: "40x10" ,class: 'form-control' %>
+    <%= user.text_area :meta ,  size: "40x10" %>
   </div>
 
   <p></p>

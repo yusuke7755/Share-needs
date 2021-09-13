@@ -18,9 +18,9 @@
   <div class="form-group">
     <%= form_with(scope: :search, url: customer_managements_path, method: :get, local: true) do |f| %>
         <li><%= f.label :department, '部署名' %><br>
-        <li  id ="department"><%= f.select :department_id, options_for_select(@department.all.map{|department| [department.name, department.id]}), include_blank: ('選択してください') , class: 'form-control' %><li/>
+        <li  id ="department"><%= f.select :department_id, options_for_select(@department.all.map{|department| [department.name, department.id]}), { include_blank: "選択して下さい" }, { class: 'form-control' } %><li/>
         <li><%= f.label :customer, '会社名' %><li/>
-        <li  id ="customer"><%= f.select :customer_id, options_for_select(Customer.all.map{|customer| [customer.name, customer.id]}, class: 'form-control'), include_blank: ('選択してください') %><li/>
+        <li  id ="customer"><%= f.select :customer_id, options_for_select(Customer.all.map{|customer| [customer.name, customer.id]}), { include_blank: "選択して下さい" }, { class: 'form-control' } %><li/>
         <br>
         <li id= "search"><%= f.submit '部署・会社 検索', class: "btn btn-primary"%><li/>
     <% end %>
