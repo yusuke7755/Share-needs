@@ -36,7 +36,7 @@
     <!-- 動的にセレクトボックスが描画される -->
   <div id="employee-select">
     <select class="form-control">
-      <option value="-1">部署を選択してください</option>
+      <option value="-1">担当を選択してください</option>
     </select>
   </div>
   <span style="color:#FA562A">※部署を選択すると社員が選べます。</span>
@@ -56,7 +56,7 @@
   <!-- 動的にセレクトボックスが描画される -->
   <div id="customeruser-select">
     <select class="form-control">
-      <option value="-1">企業名を選択してください</option>
+      <option value="-1">お客様名を選択してください</option>
     </select>
   </div>
   <span style="color:#FA562A">※企業名を選択すると社員が選べます。</span>
@@ -65,7 +65,7 @@
   <h4>システム</h4>
   <!-- remote: trueを追加することでajaxでparams[:project][package_id]をpostできる -->
   <div>
-    <%= form.select :package_id, options_for_select(Package.all.map{|cst| [( cst.name ), cst.id]}), 
+    <%= form.select :package_id, options_for_select(Package.all.map{|cst| [( cst.name ), cst.id]}),
                                   { include_blank: '選択してください'},
                                   {class: 'form-control', data: {remote: true, url: url_for(action: :package_feature)}} %>
   </div>
@@ -75,7 +75,7 @@
   <!-- 動的にセレクトボックスが描画される -->
   <div id="feature-select">
     <select class="form-control">
-      <option value="-1">システムを選択してください</option>
+      <option value="-1">機能を選択してください</option>
     </select>
   </div>
   <span style="color:#FA562A">※システムを選択すると機能が選べます。</span>
@@ -112,7 +112,7 @@
   </div>
 
     <h4><%= form.label :description %></h4>
-  <div class="field" >
+  <div class="form-group" >
     <%= form.text_area :description , size: "40x10" ,:placeholder => "内容を記載してください。(400文字)" ,class: 'field span12' %>
   </div>
   <br>

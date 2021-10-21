@@ -111,9 +111,12 @@ Feature.create!(
 sleep 3
 Project.create!(
   [
-  { title: '商品紹介について', department_id: 1, employee_id: 1, customer_id: 2, customeruser_id: 6, package_id: 1 , feature_id: 2 , apoint_at: Date.today, deadline: Date.today.next_month, description: 'あいうえお', priority: 3},
-  { title: 'デモンストレーション', department_id: 1, employee_id: 1, customer_id: 6, customeruser_id: 18, package_id: 2, feature_id: 4 , apoint_at: Date.today, deadline: Date.today.next_month, description: 'かきくけこ', priority: 2},
-  { title: '見積もり商談', department_id: 1, employee_id: 1, customer_id: 10, customeruser_id: 30, package_id: 3, feature_id: 8 , apoint_at: Date.today, deadline: Date.today.next_month, description: 'さしすせそ', priority: 1},
+  { title: '商品紹介について', department_id: 1, employee_id: 1, customer_id: 2, customeruser_id: 6, package_id: 1 , feature_id: 2 , apoint_at: Date.today, deadline: Date.today.next_month, description: '資料を元に見積もり商談を行った。そしてヒアリングも行った', priority: 3},
+  { title: 'デモンストレーション', department_id: 1, employee_id: 1, customer_id: 2, customeruser_id: 6, package_id: 1 , feature_id: 2 , apoint_at: Date.today, deadline: Date.today.next_month, description: '前日のヒアリングより、お客様の希望に添えたシステムの操作の提案を行った', priority: 3},
+  { title: '見積もり商談', department_id: 1, employee_id: 1, customer_id: 2, customeruser_id: 6, package_id: 1 , feature_id: 2 , apoint_at: Date.today, deadline: Date.today.next_month, description: 'システム導入について見積書と予算の話し合いを行った', priority: 3},
+  { title: '価格交渉', department_id: 1, employee_id: 1, customer_id: 2, customeruser_id: 6, package_id: 1 , feature_id: 2 , apoint_at: Date.today, deadline: Date.today.next_month, description: '必要な機能とサービスでの価格交渉を行った', priority: 3},
+  { title: 'システム追加', department_id: 1, employee_id: 4, customer_id: 6, customeruser_id: 18, package_id: 2, feature_id: 4 , apoint_at: Date.today, deadline: Date.today.next_month, description: '新たに機能を追加したいとの事なので相談を受けた', priority: 2},
+  { title: 'システムの更新', department_id: 1, employee_id: 4, customer_id: 10, customeruser_id: 30, package_id: 3, feature_id: 8 , apoint_at: Date.today, deadline: Date.today.next_month, description: 'さしすせそ', priority: 1},
   { title: 'システム操作について', department_id: 2, employee_id: 2, customer_id: 1, customeruser_id: 3 , package_id: 4, feature_id: 12 , apoint_at: Date.today, deadline: Date.today.next_month, description: 'たちつてと', priority: 1},
   { title: 'システム障害対応', department_id: 2, employee_id: 2, customer_id: 4 , customeruser_id: 12 , package_id: 5, feature_id: 14 , apoint_at: Date.today, deadline: Date.today.next_month, description: 'なにぬねの', priority: 2},
   { title: 'カスタマイズ対応', department_id: 3, employee_id: 3, customer_id: 8 , customeruser_id: 24 , package_id: 1, feature_id: 3 , apoint_at: Date.today, deadline: Date.today.next_month, description: 'はひふへほ', priority: 3},

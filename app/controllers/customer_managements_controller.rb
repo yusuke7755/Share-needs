@@ -86,9 +86,12 @@ class CustomerManagementsController < ApplicationController
 
   def edit
     @project = Project.find(params[:id])
-    @department = Department.where(web_flg: true)
+    @department = Department.where(id: @project.department_id)
     @customer = Customer.where(id:  @project.customer_id)
     @package = Package.where(id:  @project.package_id)
+    @employee = Employee.where(id: @project.employee_id)
+    @customeruser = Customeruser.where(id: @project.customeruser_id)
+    @feature = Feature.where(id: @project.feature_id)
   end
 
   def destroy

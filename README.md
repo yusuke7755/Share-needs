@@ -19,6 +19,7 @@
 ・bootstrap
 ・cancancan
 ・rails_admin
+. kaminari
 
 実行手順
 ---
