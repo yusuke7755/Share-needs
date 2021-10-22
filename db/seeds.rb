@@ -113,18 +113,17 @@ Feature.create!(
   { name: '倉庫管理機能', package_id: 5 }
 ]
 )
-sleep 3
 Project.create!(
   [
-  { title: '商品紹介について', department_id: 1, employee_id: 4, customer_id: 2, customeruser_id: 6, package_id: 1 , feature_id: 2 , apoint_at: '2021-09-21', deadline: '2021-11-26', description: '資料を元に見積もり商談を行った。そしてヒアリングも行った', priority: 3},
-  { title: 'デモンストレーション', department_id: 4, employee_id: 1, customer_id: 2, customeruser_id: 6, package_id: 1 , feature_id: 2 , apoint_at: '2021-09-28', deadline: '2021-11-26', description: '前日のヒアリングより、お客様の希望に添えたシステムの操作の提案を行った', priority: 3},
-  { title: '見積もり商談', department_id: 1, employee_id: 4, customer_id: 2, customeruser_id: 6, package_id: 1 , feature_id: 2 , apoint_at: '2021-10-10', deadline: '2021-11-26', description: 'システム導入について見積書と予算の話し合いを行った', priority: 3},
-  { title: '価格交渉', department_id: 1, employee_id: 4, customer_id: 2, customeruser_id: 6, package_id: 1 , feature_id: 2 , apoint_at: '2021-10-21', deadline: '2021-11-26', description: '必要な機能とサービスでの価格交渉を行った', priority: 3},
-  { title: 'システム追加', department_id: 1, employee_id: 5, customer_id: 6, customeruser_id: 18, package_id: 2, feature_id: 4 , apoint_at: '2021-10-11', deadline: '2021-11-19', description: '新たに機能を追加したいとの事なので相談を受けた', priority: 2},
-  { title: 'システムの更新', department_id: 1, employee_id: 5, customer_id: 10, customeruser_id: 30, package_id: 3, feature_id: 8 , apoint_at: '2021-10-19', deadline: '2021-11-30', description: '引き続き更新したいとの話があり2年更新の話を受けた。', priority: 1},
-  { title: 'システム操作について', department_id: 2, employee_id: 7, customer_id: 1, customeruser_id: 3 , package_id: 4, feature_id: 12 , apoint_at: '2021-10-14', deadline: '2021-10-14', description: '中途採用者でシステムを扱っているがわからないのでzoomで操作説明をした', priority: 1},
-  { title: 'システム障害対応', department_id: 2, employee_id: 7, customer_id: 4 , customeruser_id: 12 , package_id: 5, feature_id: 14 , apoint_at:  '2021-10-18', deadline: '2021-10-20', description: 'システム操作中に予期せぬエラーがでてしまった。開発部に確認して修正対応する。', priority: 2},
-  { title: 'カスタマイズ対応', department_id: 3, employee_id: 3, customer_id: 8 , customeruser_id: 24 , package_id: 1, feature_id: 3 , apoint_at: '2021-10-12', deadline: '2022-02-28', description: '営業と同行してシステムの機能を一部変更・追加のため打ち合わせに行った', priority: 3},
-  { title: '状況調査について', department_id: 3, employee_id: 3, customer_id: 9 , customeruser_id: 27 , package_id: 2, feature_id: 4 , apoint_at: '2021-10-15', deadline: '2021-10-29', description: 'ここのユーザーだけに起こる不具合で、直接お伺いして環境設定から全て確認を行った', priority: 3}
+  { title: '商品紹介について', department_id: 1, employee_id: 4, customer_id: 2, customeruser_id: 6, package_id: 1 , feature_id: 1 , apoint_at: '2021-09-21', description: '資料を元に見積もり商談を行った。そしてヒアリングも行った', priority: 3},
+  { title: 'デモンストレーション', department_id: 1, employee_id: 4, customer_id: 2, customeruser_id: 6, package_id: 1 , feature_id: 1 , apoint_at: '2021-09-28', description: '前日のヒアリングより、お客様の希望に添えたシステムの操作の提案を行った', priority: 3},
+  { title: '見積もり商談', department_id: 1, employee_id: 4, customer_id: 2, customeruser_id: 6, package_id: 1 , feature_id: 1 , apoint_at: '2021-10-10', description: 'システム導入について見積書と予算の話し合いを行った', priority: 3},
+  { title: '価格交渉', department_id: 1, employee_id: 4, customer_id: 2, customeruser_id: 6, package_id: 1 , feature_id: 1 , apoint_at: '2021-10-21', description: '必要な機能とサービスでの価格交渉を行った', priority: 3},
+  { title: 'システム追加', department_id: 1, employee_id: 5, customer_id: 6, customeruser_id: 18, package_id: 2, feature_id: 5 , apoint_at: '2021-10-11', description: '新たに機能を追加したいとの事なので相談を受けた', priority: 2},
+  { title: 'システムの更新', department_id: 1, employee_id: 5, customer_id: 10, customeruser_id: 30, package_id: 3, feature_id: 9 , apoint_at: '2021-10-19', description: '引き続き更新したいとの話があり2年更新の話を受けた。', priority: 1},
+  { title: 'システム操作について', department_id: 2, employee_id: 7, customer_id: 1, customeruser_id: 3 , package_id: 4, feature_id: 13 , apoint_at: '2021-10-14', description: '中途採用者でシステムを扱っているがわからないのでzoomで操作説明をした', priority: 1},
+  { title: 'システム障害対応', department_id: 2, employee_id: 7, customer_id: 4 , customeruser_id: 12 , package_id: 5, feature_id: 17 , apoint_at:  '2021-10-18', description: 'システム操作中に予期せぬエラーがでてしまった。開発部に確認して修正対応する。', priority: 2},
+  { title: 'カスタマイズ対応', department_id: 3, employee_id: 3, customer_id: 8 , customeruser_id: 24 , package_id: 1, feature_id: 3 , apoint_at: '2021-10-12', description: '営業と同行してシステムの機能を一部変更・追加のため打ち合わせに行った', priority: 3},
+  { title: '状況調査について', department_id: 3, employee_id: 3, customer_id: 9 , customeruser_id: 27 , package_id: 2, feature_id: 5 , apoint_at: '2021-10-15', description: 'ここのユーザーだけに起こる不具合で、直接お伺いして環境設定から全て確認を行った', priority: 3}
 ]
 )

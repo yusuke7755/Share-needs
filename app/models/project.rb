@@ -1,11 +1,13 @@
 class Project < ApplicationRecord
+
+  enum priority: { '1': 1, '2': 2, '3': 3 }
+
   belongs_to :employee
   belongs_to :customeruser
   belongs_to :feature
   belongs_to :customer
   belongs_to :department
   belongs_to :package
-  enum priority: { '1': 1, '2': 2, '3': 3 }
 
   validates :title, presence: true, length: { maximum: 100 }
   validates :description, presence: true, length: { maximum: 400 }
@@ -46,9 +48,9 @@ class Project < ApplicationRecord
   def ensure_department_check
     getemployee = Employee.select("department_id").where(id: self.employee_id)
     chkdepartmentid1=""
-    
+
     getemployee.all.each do |dp|
-      chkdepartmentid1 = dp.department_id 
+      chkdepartmentid1 = dp.department_id
     end
 
     chkdepartmentid2 = self.department_id
@@ -64,7 +66,7 @@ class Project < ApplicationRecord
     getcustomer = Customeruser.select("customer_id").where(id: self.customeruser_id)
     chkdcustomerid1 = ""
     getcustomer.all.each do |ct|
-      chkdcustomerid1 = ct.customer_id 
+      chkdcustomerid1 = ct.customer_id
     end
 
     chkcustomerid2 = self.customer_id
@@ -80,7 +82,7 @@ class Project < ApplicationRecord
     getfeature = Feature.select("package_id").where(id: self.feature_id)
     chkdpackage1=""
     getfeature.all.each do |ft|
-      chkdpackage1 = ft.package_id 
+      chkdpackage1 = ft.package_id
     end
 
     chkpackage2 = self.package_id
